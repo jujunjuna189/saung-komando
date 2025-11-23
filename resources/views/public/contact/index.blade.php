@@ -8,8 +8,8 @@
     <div class="my-12 px-20">
         <div class="bg-white p-7 rounded-3xl flex gap-7">
             <div class="">
-                <iframe class="rounded-3xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" width="915" height="334" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="grid grid-cols-3 w-[915px] max-w-[915px] min-w-[915px]">
+                <iframe class="rounded-3xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" width="715" height="334" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="grid grid-cols-3 w-[715px] max-w-[715px] min-w-[715px]">
                     <div class="py-7 px-3 text-center">
                         <div class="flex justify-center">
                             <div class="bg-[#AEEF8B] rounded-full h-10 w-10 flex justify-center items-center">

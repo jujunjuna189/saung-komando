@@ -21,7 +21,9 @@
     <div class="mt-12 px-5">
         <div class="grid grid-cols-3 gap-x-3 gap-y-5">
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -39,15 +41,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -61,7 +63,9 @@
                 </div>
             </div>
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -79,15 +83,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -101,7 +105,9 @@
                 </div>
             </div>
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -119,15 +125,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -141,7 +147,9 @@
                 </div>
             </div>
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -159,15 +167,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -181,7 +189,9 @@
                 </div>
             </div>
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -199,15 +209,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -221,7 +231,9 @@
                 </div>
             </div>
             <div class="rounded-4xl overflow-hidden bg-white">
-                <div class="h-[405px] bg-amber-950"></div>
+                <div class="h-[405px] bg-amber-950">
+                    <img src="{{ asset('assets/image/image-villa.jpg') }}" alt="" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h5 class="text-2xl font-semibold">Saung Tabibuya</h5>
@@ -239,15 +251,15 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/person.png') }}" alt="person">
-                            <span>20 Orang</span>
+                            <span class="md:text-[10px]">20 Orang</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bedroom.png') }}" alt="bedroom">
-                            <span>03 Kamar Tidur</span>
+                            <span class="md:text-[10px]">03 Kamar Tidur</span>
                         </div>
                         <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
                             <img src="{{ asset('assets/icon/bathroom.png') }}" alt="bathroom">
-                            <span>02 Kamar Mandi</span>
+                            <span class="md:text-[10px]">02 Kamar Mandi</span>
                         </div>
                     </div>
                     <div class="flex justify-between items-center mt-4">
@@ -276,7 +288,7 @@
                 </div>
             </div>
             <div>
-                <iframe class="rounded-3xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" width="710" height="409" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="rounded-3xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" width="610" height="309" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
