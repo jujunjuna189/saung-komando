@@ -19,11 +19,11 @@
         </ul>
     </div>
     <div class="flex items-center">
-        <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
+        <a href="https://wa.link/u8ov80" target="_blank" class="bg-[#AEEF8B] px-5 py-3 rounded-full">
             <div class="flex gap-3 items-center">
                 <img src="{{ asset('assets/icon/headset.png') }}" alt="cs" class="h-[21px]">
                 <span>Tanya Admin</span>
             </div>
-        </div>
+        </a>
     </div>
 </div>

@@ -24,12 +24,12 @@
                             <span>Export To Excel</span>
                         </div>
                     </div>
-                    <div class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B]">
+                    <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal" data-id="modalAdd">
                         <div class="flex gap-1 items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                            <span>Tambah Kode</span>
+                            <span>Tambah Reservasi</span>
                         </div>
-                    </div>
+                    </button>
                 </div>
             </div>
             <div class="mt-7">
@@ -164,6 +164,63 @@
         </div>
     </div>
 </div>
+
+<!-- Add -->
+<x-dashboard.modal id="modalAdd" title="Tambah Reservasi" footer="false">
+    <div class="grid grid-cols-2 gap-2">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="title" placeholder="Masukan Pemesan" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
+            <select name="" id="" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="">Saung Damar</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div>
+            <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="">
+            <label for="" class="font-semibold text-[12px]">Pembayaran<span class="text-red-500">*</span></label>
+            <select name="" id="" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="">Lunas</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check In<span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="title" placeholder="Masukan Pemesan" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check Out<span class="text-red-500">*</span></label>
+            <select name="" id="" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="">Saung Damar</option>
+            </select>
+        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Catatan <i class="text-[#808080]">(Optional)</i></label>
+        <textarea name="description" id="description" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
+    </div>
+    <div class="mt-3">
+        <div class="flex gap-2 items-end">
+            <div class="grow">
+                <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
+                <input type="text" name="title" id="title" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            </div>
+            <button class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer" data-id="modalAdd">Tambah Reservasi</button>
+        </div>
+    </div>
+</x-dashboard.modal>
 @endsection
 
 @section('script')

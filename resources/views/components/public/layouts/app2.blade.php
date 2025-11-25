@@ -11,6 +11,7 @@
 
     <title>{{ config('app.name', 'Saung Komando') }}</title>
 
+    <script id="chatbot-iframe" data-bot-src="https://studio.estha.ai/app/691c373452d5f985b5943731" data-bot-width="375px" data-bot-height="667px" src="https://studio.estha.ai/iframe.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 

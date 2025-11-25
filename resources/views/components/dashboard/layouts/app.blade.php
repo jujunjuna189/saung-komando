@@ -53,6 +53,8 @@
             setTimeout(() => {
                 modal.removeClass('opacity-0');
                 box.removeClass('scale-95');
+                box.removeClass('-mx-[100px]');
+                box.addClass('mx-4');
             }, 10); // small delay to trigger animation
         });
 
@@ -64,6 +66,8 @@
 
             modal.addClass('opacity-0');
             box.addClass('scale-95');
+            box.removeClass('mx-4');
+            box.addClass('-mx-[100px]');
 
             setTimeout(() => {
                 modal.removeClass('flex').addClass('hidden');

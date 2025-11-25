@@ -83,12 +83,12 @@
     </div>
     <div class="relative w-[40%] max-w-[40%] min-w-[40%]">
         <div class="absolute right-20 left-10 top-6 flex justify-end items-center">
-            <div class="bg-white px-5 py-3 rounded-full">
+            <a href="https://wa.link/u8ov80" target="_blank" class="bg-white px-5 py-3 rounded-full">
                 <div class="flex gap-3 items-center">
                     <img src="{{ asset('assets/icon/headset.png') }}" alt="cs" class="h-[21px]">
                     <span>Tanya Admin</span>
                 </div>
-            </div>
+            </a>
         </div>
         <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="cover-main" class="rounded-bl-4xl w-full h-[40rem] object-cover">
     </div>
