@@ -41,7 +41,14 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Custome Js -->
+<script src="{{ asset('assets/script/notification.js') }}"></script>
+<script src="{{ asset('assets/script/script.js') }}"></script>
 <script>
+    let url = "<?= url('') ?>";
+    let token = "<?= Illuminate\Support\Facades\Session::token() ?>";
+    let auth_user = <?= json_encode(Illuminate\Support\Facades\Auth::user()) ?>;
+
     $(document).ready(function() {
         // Buka modal
         $('.open-modal').on('click', function() {
@@ -61,19 +68,23 @@
         // Tutup modal
         $('.close-modal').on('click', function() {
             const id = $(this).data('id');
-            const modal = $('#' + id);
-            const box = modal.find('> div');
-
-            modal.addClass('opacity-0');
-            box.addClass('scale-95');
-            box.removeClass('mx-4');
-            box.addClass('-mx-[100px]');
-
-            setTimeout(() => {
-                modal.removeClass('flex').addClass('hidden');
-            }, 300); // delay sesuai durasi animasi
+            closeModal(id);
         });
     });
+
+    function closeModal(id) {
+        const modal = $('#' + id);
+        const box = modal.find('> div');
+
+        modal.addClass('opacity-0');
+        box.addClass('scale-95');
+        box.removeClass('mx-4');
+        box.addClass('-mx-[100px]');
+
+        setTimeout(() => {
+            modal.removeClass('flex').addClass('hidden');
+        }, 300); // delay sesuai durasi animasi
+    }
 </script>
 @stack('scripts')
 @yield('script')

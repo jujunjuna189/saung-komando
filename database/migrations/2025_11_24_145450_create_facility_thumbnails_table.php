@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('facility_thumbnails', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('facility_id');
             $table->text('path');
             $table->timestamps();
         });

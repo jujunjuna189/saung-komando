@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('facility_specification', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('facility_id');
             $table->string('icon');
             $table->string('value');
             $table->timestamps();

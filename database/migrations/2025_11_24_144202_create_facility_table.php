@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('category');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('price');
             $table->string('rating')->nullable();
+            $table->tinyInteger('is_free_for_guest')->default(0);
+            $table->tinyInteger('is_membership')->default(0);
             $table->timestamps();
         });
     }

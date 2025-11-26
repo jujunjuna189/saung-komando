@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="mt-10 pl-20 pr-10">
-            <h1 class="font-semibold text-4xl leading-12">#1 Penginapan dan <br/>Tempat Wisata di Ciwidey</h1>
-            <p class="mt-8 text-[#808391]">Liburan terasa lebih bermakna di tempat di mana udara dingin, suasana tenang, <br/>pemandangan hijau, serta fasilitas penginapan yang lengkap. Setiap momen terasa lebih <br/>damai, lebih segar, dan juga lebih berkesan.</p>
+            <h1 class="font-semibold text-4xl leading-12">#1 Penginapan dan <br />Tempat Wisata di Ciwidey</h1>
+            <p class="mt-8 text-[#808391]">Liburan terasa lebih bermakna di tempat di mana udara dingin, suasana tenang, <br />pemandangan hijau, serta fasilitas penginapan yang lengkap. Setiap momen terasa lebih <br />damai, lebih segar, dan juga lebih berkesan.</p>
             <div class="mt-10 flex justify-start">
                 <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
                     <div class="flex gap-3 items-center">
@@ -90,7 +90,7 @@
                 </div>
             </a>
         </div>
-        <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="cover-main" class="rounded-bl-4xl w-full h-[40rem] object-cover">
+        <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="cover-main" class="rounded-bl-4xl w-full h-160 object-cover">
     </div>
 </div>
 <div class="my-14 px-20">
@@ -101,25 +101,25 @@
             <div class="flex gap-10 py-10">
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
-                        <img src="{{ asset('assets/icon/sofa.svg') }}" alt="Sofa" class="h-[4rem]">
+                        <img src="{{ asset('assets/icon/sofa.svg') }}" alt="Sofa" class="h-16">
                     </div>
                     <span class="text-[#808391]">Furniture Lengkap</span>
                 </div>
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
-                        <img src="{{ asset('assets/icon/mop.svg') }}" alt="Mop" class="h-[4rem]">
+                        <img src="{{ asset('assets/icon/mop.svg') }}" alt="Mop" class="h-16">
                     </div>
                     <span class="text-[#808391]">Housekeeping</span>
                 </div>
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
-                        <img src="{{ asset('assets/icon/wifi-router.svg') }}" alt="Wifi Router" class="h-[4rem]">
+                        <img src="{{ asset('assets/icon/wifi-router.svg') }}" alt="Wifi Router" class="h-16">
                     </div>
                     <span class="text-[#808391]">Internet Cepat & Stabil</span>
                 </div>
                 <div class="text-center">
                     <div class="flex justify-center mb-3">
-                        <img src="{{ asset('assets/icon/smart-tv.svg') }}" alt="Smart Tv" class="h-[4rem]">
+                        <img src="{{ asset('assets/icon/smart-tv.svg') }}" alt="Smart Tv" class="h-16">
                     </div>
                     <span class="text-[#808391]">42” Smart TV</span>
                 </div>
