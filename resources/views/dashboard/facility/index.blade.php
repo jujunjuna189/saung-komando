@@ -408,8 +408,8 @@
             <input type="text" name="title" id="title" placeholder="Masukan Nama Fasilitas" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
         <div class="grow">
-            <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
-            <select name="" id="" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <label for="" class="font-semibold text-[12px]">Kategori<span class="text-red-500">*</span></label>
+            <select name="category" id="category" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
                 <option value="">Penginapan</option>
             </select>
         </div>
@@ -421,21 +421,21 @@
     <div class="flex gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Maxs. Kapasitas<span class="text-red-500">*</span></label>
-            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <input type="text" name="max-capasity" id="max-capasity" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Harga Per Item<span class="text-red-500">*</span></label>
-            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <input type="text" name="price" id="price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
         <div class="">
             <label for="" class="font-semibold text-[12px]">Rating<span class="text-red-500">*</span></label>
-            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <input type="text" name="rating" id="rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
     </div>
     <div class="flex gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
-            <input type="text" name="title" id="title" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <input type="text" name="bedroom" id="bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
         <div>
             <label for="" class="font-semibold text-[12px]">K. Mandi<span class="text-red-500">*</span></label>
