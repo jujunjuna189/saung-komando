@@ -28,6 +28,12 @@ class ReservationController extends Controller
             // Filter berdasarkan year & month dari check_in
             $query->whereYear('check_in', $year)
                 ->whereMonth('check_in', $month);
+        } else {
+            $nowYear = date('Y');
+            $nowMonth = date('m');
+
+            $query->whereYear('check_in', $nowYear)
+                ->whereMonth('check_in', $nowMonth);
         }
 
         $model = $query->get();

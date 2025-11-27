@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="h-screen flex justify-center items-center">
-    <div class="bg-white rounded-3xl p-10 w-[25rem] shadow-lg">
+    <div class="bg-white rounded-3xl p-10 w-100 shadow-lg">
         <div class="flex justify-center mt-5">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Saung Komando" class="h-20">
         </div>
@@ -14,11 +14,51 @@
                 <input type="password" name="password" id="password" placeholder="Masukan Password" class="border rounded-full px-5 py-3 w-full">
             </div>
             <div class="mt-6 mb-1 w-full">
-                <button type="button" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer" onclick="window.open('{{ route('dashboard.overview') }}', '_self')">
+                <button type="button" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer btn-login">
                     <span>Masuk</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+
+        // akun fix (bisa ditambah)
+        const accounts = [{
+                username: "admin",
+                password: "admin123"
+            },
+            {
+                username: "staff",
+                password: "12345"
+            },
+        ];
+
+        $(".btn-login").on("click", function() {
+            let user = $("#username").val().trim();
+            let pass = $("#password").val().trim();
+
+            // cek kosong
+            if (!user || !pass) {
+                showToast("error", "Gagal", "Username dan password wajib diisi!");
+                return;
+            }
+
+            // cek akun
+            const match = accounts.find(a => a.username === user && a.password === pass);
+
+            if (match) {
+                // redirect
+                window.location.href = "{{ route('dashboard.overview') }}";
+            } else {
+                showToast("error", "Gagal", "Username atau password salah!");
+            }
+        });
+
+    });
+</script>
 @endsection

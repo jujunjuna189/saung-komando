@@ -127,6 +127,14 @@
     let startDate = null;
     let endDate = null;
 
+    let events = [];
+
+    const categoryColor = {
+        A: "bg-green-300",
+        B: "bg-blue-300",
+        C: "bg-yellow-300",
+    };
+
     function renderCalendar() {
         const calendar = document.getElementById("calendar");
         calendar.innerHTML = "";
@@ -162,10 +170,42 @@
         // Tanggal bulan ini
         for (let d = 1; d <= totalDays; d++) {
             const dateObj = new Date(currentYear, currentMonth, d);
+            const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
             const el = document.createElement("div");
 
             el.className =
                 "h-24 border border-[#D8E0ED] flex items-start justify-end p-3 text-lg cursor-pointer hover:bg-[#AEEF8B] transition";
+
+            events.forEach(ev => {
+
+                const inDate = new Date(ev.check_in);
+                const outDate = new Date(ev.check_out);
+
+                // Jika tanggal ini berada di rentang check_in → check_out
+                if (dateObj >= inDate && dateObj <= outDate) {
+
+                    // beri warna kategori
+                    if (ev.category && categoryColor[ev.category]) {
+                        el.classList.add(categoryColor[ev.category]);
+                    }
+
+                    // check IN
+                    if (dateStr === ev.check_in) {
+                        const badge = document.createElement("span");
+                        badge.className = "absolute bottom-1 left-1 bg-green-600 text-white text-xs font-semibold px-1 rounded";
+                        badge.innerHTML = "IN";
+                        el.appendChild(badge);
+                    }
+
+                    // check OUT
+                    if (dateStr === ev.check_out) {
+                        const badge = document.createElement("span");
+                        badge.className = "absolute bottom-1 left-1 bg-red-600 text-white text-xs font-semibold px-1 rounded";
+                        badge.innerHTML = "OUT";
+                        el.appendChild(badge);
+                    }
+                }
+            });
 
             // Highlight range
             if (startDate && endDate && dateObj >= startDate && dateObj <= endDate) {
@@ -224,6 +264,14 @@
                 endDate = null;
             }
         }
+
+        renderCalendar();
+    }
+
+    function rerenderCalendar(date) {
+        const dateData = new Date(date);
+        currentYear = dateData.getFullYear();
+        currentMonth = dateData.getMonth();
 
         renderCalendar();
     }
@@ -296,33 +344,30 @@
     }
 
     function generateMonthOptions() {
-        const select = $("filter-month");
-
         const months = [
             "Januari", "Februari", "Maret", "April", "Mei", "Juni",
             "Juli", "Agustus", "September", "Oktober", "November", "Desember"
         ];
 
-        // Tambah default
-        $('#filter-month').append(`<option value="Semua">Semua</option>`);
+        const $select = $('#filter-month');
+        $select.empty();
 
         const now = new Date();
-        let year = now.getFullYear();
-        let month = now.getMonth(); // 0–11
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth(); // 0-based
 
-        // Loop 12 bulan mundur
-        for (let i = 0; i < 12; i++) {
-            const label = `${months[month]} ${year}`;
-            const value = `${year}-${String(month + 1).padStart(2, '0')}`;
+        // Loop dari +12 hingga -11 (24 bulan total), sehingga urutan: paling depan -> paling belakang
+        for (let offset = 12; offset >= -11; offset--) {
+            const dt = new Date(currentYear, currentMonth + offset, 1);
+            const y = dt.getFullYear();
+            const m = dt.getMonth(); // 0..11
 
-            $('#filter-month').append(`<option value="${value}">${label}</option>`);
+            const label = `${months[m]} ${y}`;
+            const value = `${y}-${String(m + 1).padStart(2, '0')}`;
 
-            month--;
-            if (month < 0) {
-                month = 11;
-                year--;
-            }
+            $select.append(`<option value="${value}">${label}</option>`);
         }
+        $select.val(`${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`);
     }
 
     var dataFilter = {
@@ -336,6 +381,8 @@
         getData({
             header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
         });
+        // Render calendar month
+        rerenderCalendar(target.target.value);
     }
 
     function filterFacilityChange(target) {
@@ -392,6 +439,7 @@
             data: header,
             onLoader: false,
             onSuccess: function(response) {
+                renderEvents(response.data);
                 $('#container-reservation').empty();
                 $.each(response.data, function(i, item) {
                     const element = renderReservation(item);
@@ -399,6 +447,18 @@
                 });
             },
         });
+    }
+
+    function renderEvents(data) {
+        events = [];
+        $.each(data, function(i, item) {
+            events.push({
+                check_in: item.check_in,
+                check_out: item.check_out,
+                category: item.status == "Lunas" ? "A" : item.status == "DP" ? "C" : item.status == "Dilokasi" ? "B" : "",
+            });
+        });
+        renderCalendar();
     }
 
     function form() {

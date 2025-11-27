@@ -10,18 +10,20 @@
             </div>
             <ul class="flex gap-2">
                 <li class="px-4 py-2 border rounded-full">
-                    <select name="" id="" class="border-none focus:outline-none">
-                        <option value="">November 2025</option>
-                        <option value="">Desember 2025</option>
+                    <select name="filter-month" id="filter-month" class="border-none focus:outline-none" onchange="filterMonthChange(event)">
+                        <!-- Render generate -->
                     </select>
                 </li>
                 <li class="px-4 py-2 border rounded-full">
-                    <select name="" id="" class="border-none focus:outline-none">
-                        <option value="">Lunas</option>
+                    <select name="status" id="status" class="border-none focus:outline-none" onchange="filterStatusChange(event)">
+                        <option value="">Semua</option>
+                        <option value="DP">DP</option>
+                        <option value="Lunas">Lunas</option>
+                        <option value="Dilokasi">Dilokasi</option>
                     </select>
                 </li>
                 <li class="px-4 py-2 border rounded-full">
-                    <input type="text" placeholder="Filter" class="border-none focus:outline-none placeholder-[#000000] text-center w-20">
+                    <button type="button" class="border-none focus:outline-none placeholder-[#000000] text-center w-20 cursor-pointer" onclick="onFilter()">Filter</button>
                 </li>
                 <li class="px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center">Export To Excel</li>
             </ul>
@@ -38,8 +40,36 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        generateMonthOptions();
         getData({});
     });
+
+    function generateMonthOptions() {
+        const months = [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+
+        const $select = $('#filter-month');
+        $select.empty();
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth(); // 0-based
+
+        // Loop dari +12 hingga -11 (24 bulan total), sehingga urutan: paling depan -> paling belakang
+        for (let offset = 12; offset >= -11; offset--) {
+            const dt = new Date(currentYear, currentMonth + offset, 1);
+            const y = dt.getFullYear();
+            const m = dt.getMonth(); // 0..11
+
+            const label = `${months[m]} ${y}`;
+            const value = `${y}-${String(m + 1).padStart(2, '0')}`;
+
+            $select.append(`<option value="${value}">${label}</option>`);
+        }
+        $select.val(`${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`);
+    }
 
     function renderReservation(item) {
         const element = `
@@ -86,6 +116,25 @@
         `;
 
         return element;
+    }
+
+    var dataFilter = {
+        month: "",
+        status: "",
+    };
+
+    function filterMonthChange(target) {
+        dataFilter.month = target.target.value;
+    }
+
+    function filterStatusChange(target) {
+        dataFilter.status = target.target.value;
+    }
+
+    function onFilter() {
+        getData({
+            header: `filter_month=${dataFilter.month}&status=${dataFilter.status}`,
+        });
     }
 
     function getData({

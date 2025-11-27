@@ -34,6 +34,9 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Custome Js -->
+<script src="{{ asset('assets/script/notification.js') }}"></script>
+<script src="{{ asset('assets/script/script.js') }}"></script>
 <script>
     $(document).ready(function() {
         // Buka modal
