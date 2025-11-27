@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('telp')->nullable();
             $table->integer('total_guest');
-            $table->datetimes('check_in');
-            $table->datetimes('check_out');
+            $table->datetime('check_in')->nullable();
+            $table->datetime('check_out')->nullable();
             $table->text('note')->nullable();
             $table->text('extra_bed')->nullable();
             $table->string('status');
