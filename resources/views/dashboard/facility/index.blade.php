@@ -165,10 +165,18 @@
     `;
         });
 
+        let freeGuest = "";
+        if(item.is_free_for_guest == 1){
+            freeGuest = `<div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1 mb-1">
+                <span class="text-[10px]"><strong>FREE</strong> untuk tamu menginap</span>
+            </div>`;
+        }
+
         const element = `
             <div class="bg-white rounded-xl p-2 flex gap-3">
                 <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-[100px] aspect-square rounded-xl h-full object-cover">
                 <div class="grow">
+                    ${freeGuest}
                     <div class="flex justify-between items-center">
                         <h5 class="font-semibold">${item.title}</h5>
                         <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end">
