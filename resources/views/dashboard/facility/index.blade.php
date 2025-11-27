@@ -166,7 +166,7 @@
         });
 
         let freeGuest = "";
-        if(item.is_free_for_guest == 1){
+        if (item.is_free_for_guest == 1) {
             freeGuest = `
             <div class="flex justify-between">
                 <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1 mb-1">
@@ -183,7 +183,7 @@
         }
 
         let membership = "";
-        if(item.is_membership == 1){
+        if (item.is_membership == 1) {
             membership = `
                 <div class="flex justify-between items-center">
                     <h5 class="font-semibold">${item.title}</h5>
@@ -192,7 +192,7 @@
                     </div>
                 </div>
             `;
-        }else{
+        } else {
             membership = `
                 <div class="flex justify-between items-center">
                     <h5 class="font-semibold">${item.title}</h5> 
@@ -202,17 +202,18 @@
 
         const element = `
             <div class="bg-white rounded-xl p-2 flex gap-3">
-                <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-[100px] aspect-square rounded-xl h-full object-cover">
-                <div class="grow">
+                <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-[100px] max-w-[100px] aspect-square rounded-xl h-full object-cover">
+                <div class="grow flex flex-col">
                     ${freeGuest}
                     ${membership}
                     <p class="text-[#808080] text-[10px]">${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}</p>
                     <div class="flex gap-2 justify-between my-1">
                         ${specHtml}
                     </div>
+                    <div class="grow"></div>
                     <div class="flex justify-between items-center">
                         <h5 class="font-semibold">${item.price}</h5>
-                        <div class="rounded-full bg-[#AEEF8B] text-[12px] px-3 py-1">Lihat Detail</div>
+                        <div class="rounded-full bg-[#AEEF8B] text-[12px] px-3 py-1">Edit</div>
                     </div>
                 </div>
             </div>
@@ -259,6 +260,7 @@
         const maxCapasity = $('#max-capasity').val();
         const bedroom = $('#bedroom').val();
         const bathroom = $('#bathroom').val();
+        const area = $('#area').val();
 
         const spesificationItem = [];
         if (maxCapasity !== null && maxCapasity !== undefined && maxCapasity !== "") {
@@ -279,6 +281,13 @@
             spesificationItem.push({
                 icon: "assets/icon/bathroom.png",
                 value: bathroom + " KM",
+            });
+        }
+
+        if (area !== null && area !== undefined && area !== "") {
+            spesificationItem.push({
+                icon: "assets/icon/area.png",
+                value: area,
             });
         }
 
