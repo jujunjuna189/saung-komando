@@ -168,8 +168,8 @@
         let freeGuest = "";
         if (item.is_free_for_guest == 1) {
             freeGuest = `
-            <div class="flex justify-between">
-                <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1 mb-1">
+            <div class="flex justify-between mb-1">
+                <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
                     <span class="text-[10px]"><strong>FREE</strong> untuk tamu menginap</span>
                 </div>
                 <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end">
@@ -187,14 +187,14 @@
             membership = `
                 <div class="flex justify-between items-center">
                     <h5 class="font-semibold">${item.title}</h5>
-                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1 mb-1">
+                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
                         <span class="text-[10px]">Membership 325rb/bln</span>
                     </div>
                 </div>
             `;
-        }else{
-            const rating = "";
-            if(item.is_free_for_guest == 0){
+        } else {
+            let rating = "";
+            if (item.is_free_for_guest == 0) {
                 rating = `
                     <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
