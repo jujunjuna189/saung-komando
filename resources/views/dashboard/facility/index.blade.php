@@ -188,7 +188,7 @@
                 <div class="flex justify-between items-center">
                     <h5 class="font-semibold">${item.title}</h5>
                     <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1 mb-1">
-                        <span class="text-[10px]"><strong>FREE</strong> untuk tamu menginap</span>
+                        <span class="text-[10px]">Membership 325rb/bln</span>
                     </div>
                 </div>
             `;
