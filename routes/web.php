@@ -34,7 +34,6 @@ Route::get('/dashboard/calendar', function () {
     return view('dashboard.calendar.index');
 })->name('dashboard.calendar');
 
-Route::get('/dashboard/promotion-code', function () {
-    return view('dashboard.promotion-code.index');
-})->name('dashboard.promotion-code');
-
+Route::get('/dashboard/promotion', function () {
+    return view('dashboard.promotion.index');
+})->name('dashboard.promotion');

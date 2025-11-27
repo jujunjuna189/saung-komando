@@ -10,12 +10,12 @@
             <div class="mt-5">
                 <div class="flex gap-2 items-center">
                     <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                        <select name="" id="" class="border-none focus:outline-none">
-                            <option value="">November 2025</option>
+                        <select name="filter-month" id="filter-month" class="border-none focus:outline-none" onchange="filterMonthChange(event)">
+                            <!-- Generate -->
                         </select>
                     </div>
                     <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                        <select name="" id="" class="border-none focus:outline-none">
+                        <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none" onchange="filterFacilityChange(event)">
                             <option value="">Saung Damar</option>
                         </select>
                     </div>
@@ -44,126 +44,19 @@
             <h4 class="font-semibold text-2xl">List Pesanan</h4>
             <div class="mt-5 flex gap-2">
                 <div class="px-4 py-2 border rounded-lg bg-[#F2F4F7] grow">
-                    <select name="" id="" class="border-none focus:outline-none w-full">
-                        <option value="">Lunas</option>
+                    <select name="" id="" class="border-none focus:outline-none w-full" onchange="filterStatusChange(event)">
+                        <option value="">Semua</option>
+                        <option value="DP">DP</option>
+                        <option value="Lunas">Lunas</option>
+                        <option value="Dilokasi">Dilokasi</option>
                     </select>
                 </div>
-                <div class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center">
+                <button type="button" onclick="filterStatus()" class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center">
                     <span>Filter</span>
-                </div>
+                </button>
             </div>
-            <div class="mt-4 overflow-y-auto max-h-164 space-y-3">
-                <div class="bg-[#F2F4F7] rounded-lg p-5">
-                    <div class="flex justify-between items-center">
-                        <h6 class="font-semibold text-lg">Saung Damar</h6>
-                        <div class="bg-[#AEEF8B] rounded-full w-7 h-7 p-1.5 flex justify-center items-center">
-                            <img src="{{ asset('assets/icon/pin.svg') }}" alt="Pin">
-                        </div>
-                    </div>
-                    <hr class="border-[#808080] my-3" />
-                    <div class="flex justify-between">
-                        <span class="font-semibold">Yanyan K.</span>
-                        <span class="font-semibold text-end">08572220024</span>
-                    </div>
-                    <div class="mt-3 grid grid-cols-2">
-                        <div>
-                            <p>Check In :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                        <div class="text-end">
-                            <p>Check Out :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <p>Catatan :</p>
-                        <p>1 Kasur Besar, 1 kasur Kecil, 3 Tenda</p>
-                    </div>
-                    <div class="mt-3 flex gap-2">
-                        <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
-                            <select name="" id="" class="border-none focus:outline-none">
-                                <option value="">Lunas</option>
-                            </select>
-                        </div>
-                        <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED]">
-                            <p>02 Hari</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[#F2F4F7] rounded-lg p-5">
-                    <div class="flex justify-between items-center">
-                        <h6 class="font-semibold text-lg">Saung Damar</h6>
-                        <div class="bg-[#AEEF8B] rounded-full w-7 h-7 p-1.5 flex justify-center items-center">
-                            <img src="{{ asset('assets/icon/pin.svg') }}" alt="Pin">
-                        </div>
-                    </div>
-                    <hr class="border-[#808080] my-3" />
-                    <div class="flex justify-between">
-                        <span class="font-semibold">Yanyan K.</span>
-                        <span class="font-semibold text-end">08572220024</span>
-                    </div>
-                    <div class="mt-3 grid grid-cols-2">
-                        <div>
-                            <p>Check In :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                        <div class="text-end">
-                            <p>Check Out :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <p>Catatan :</p>
-                        <p>1 Kasur Besar, 1 kasur Kecil, 3 Tenda</p>
-                    </div>
-                    <div class="mt-3 flex gap-2">
-                        <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
-                            <select name="" id="" class="border-none focus:outline-none">
-                                <option value="">Lunas</option>
-                            </select>
-                        </div>
-                        <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED]">
-                            <p>02 Hari</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[#F2F4F7] rounded-lg p-5">
-                    <div class="flex justify-between items-center">
-                        <h6 class="font-semibold text-lg">Saung Damar</h6>
-                        <div class="bg-[#AEEF8B] rounded-full w-7 h-7 p-1.5 flex justify-center items-center">
-                            <img src="{{ asset('assets/icon/pin.svg') }}" alt="Pin">
-                        </div>
-                    </div>
-                    <hr class="border-[#808080] my-3" />
-                    <div class="flex justify-between">
-                        <span class="font-semibold">Yanyan K.</span>
-                        <span class="font-semibold text-end">08572220024</span>
-                    </div>
-                    <div class="mt-3 grid grid-cols-2">
-                        <div>
-                            <p>Check In :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                        <div class="text-end">
-                            <p>Check Out :</p>
-                            <p class="font-semibold">15 Nov 2025</p>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <p>Catatan :</p>
-                        <p>1 Kasur Besar, 1 kasur Kecil, 3 Tenda</p>
-                    </div>
-                    <div class="mt-3 flex gap-2">
-                        <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
-                            <select name="" id="" class="border-none focus:outline-none">
-                                <option value="">Lunas</option>
-                            </select>
-                        </div>
-                        <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED]">
-                            <p>02 Hari</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-4 overflow-y-auto max-h-164 space-y-3" id="container-reservation">
+                <!-- Container of reservation -->
             </div>
         </div>
     </div>
@@ -179,7 +72,7 @@
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
             <select name="facility_id" id="facility_id" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-                <option value="1">Saung Damar</option>
+                <!-- From data facility -->
             </select>
         </div>
     </div>
@@ -339,8 +232,156 @@
 </script>
 <script>
     $(document).ready(function() {
+        generateMonthOptions();
+        getFacility({});
         getData({});
     });
+
+    function renderFasility({
+        value,
+        category
+    }) {
+        const element = `
+            <option value="${value}">${category}</option>
+        `;
+
+        return element;
+    }
+
+    function renderReservation(item) {
+        const element = `
+            <div class="bg-[#F2F4F7] rounded-lg p-5">
+                <div class="flex justify-between items-center">
+                    <h6 class="font-semibold text-lg">${item.facility?.title ?? ""}</h6>
+                    <div class="flex justify-end items-center cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                    </div>
+                </div>
+                <hr class="border-[#808080] my-3" />
+                <div class="flex justify-between">
+                    <span class="font-semibold">${item.name}</span>
+                    <span class="font-semibold text-end">${item.telp}</span>
+                </div>
+                <div class="mt-3 grid grid-cols-2">
+                    <div>
+                        <p>Check In :</p>
+                        <p class="font-semibold">${dateFormat(item.check_in)}</p>
+                    </div>
+                    <div class="text-end">
+                        <p>Check Out :</p>
+                        <p class="font-semibold">${dateFormat(item.check_out)}</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p>Catatan :</p>
+                    <p>${item.note}</p>
+                </div>
+                <div class="mt-3 flex gap-2">
+                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
+                        <select name="" id="" class="border-none focus:outline-none w-full">
+                            <option value="${item.status}">${item.status}</option>
+                            <option value="DP">DP</option>
+                            <option value="Lunas">Lunas</option>
+                            <option value="Dilokasi">Dilokasi</option>
+                        </select>
+                    </div>
+                    <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED]">
+                        <p>${dateDiff(item.check_in, item.check_out)} Hari</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        return element;
+    }
+
+    function generateMonthOptions() {
+        const select = $("filter-month");
+
+        const months = [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+
+        // Tambah default
+        $('#filter-month').append(`<option value="Semua">Semua</option>`);
+
+        const now = new Date();
+        let year = now.getFullYear();
+        let month = now.getMonth(); // 0–11
+
+        // Loop 12 bulan mundur
+        for (let i = 0; i < 12; i++) {
+            const label = `${months[month]} ${year}`;
+            const value = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+            $('#filter-month').append(`<option value="${value}">${label}</option>`);
+
+            month--;
+            if (month < 0) {
+                month = 11;
+                year--;
+            }
+        }
+    }
+
+    var dataFilter = {
+        month: "",
+        facility: "",
+        status: "",
+    };
+
+    function filterMonthChange(target) {
+        dataFilter.month = target.target.value;
+        getData({
+            header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+        });
+    }
+
+    function filterFacilityChange(target) {
+        dataFilter.facility = target.target.value;
+        getData({
+            header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+        });
+    }
+
+    function filterStatusChange(target) {
+        dataFilter.status = target.target.value;
+    }
+
+    function filterStatus() {
+        getData({
+            header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+        });
+    }
+
+    function getFacility({
+        header = {},
+    }) {
+        requestServer({
+            url: url + '/api/facility/show',
+            type: "GET",
+            data: header,
+            onLoader: false,
+            onSuccess: function(response) {
+                $('#modalAdd #facility_id').empty();
+                $('#filter-facility').empty();
+                var element = renderFasility({
+                    value: "",
+                    category: "Semua"
+                });
+                $('#filter-facility').append(element);
+                $.each(response.data, function(i, item) {
+                    const element = renderFasility({
+                        value: item.id,
+                        category: item.title,
+                    });
+                    $('#modalAdd #facility_id').append(element);
+                    $('#filter-facility').append(element);
+                });
+            },
+        });
+    }
 
     function getData({
         header = {},
@@ -351,7 +392,11 @@
             data: header,
             onLoader: false,
             onSuccess: function(response) {
-                console.log(response);
+                $('#container-reservation').empty();
+                $.each(response.data, function(i, item) {
+                    const element = renderReservation(item);
+                    $('#container-reservation').append(element);
+                });
             },
         });
     }

@@ -10,7 +10,27 @@ class ReservationController extends Controller
 {
     public function show(Request $request)
     {
-        $model = ReservationModel::all();
+        $query = ReservationModel::with('facility');
+
+        if ($request->facility_id) {
+            $query->where('facility_id', $request->facility_id);
+        }
+
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->filter_month && $request->filter_month !== "Semua") {
+
+            // Ambil tahun dan bulan
+            [$year, $month] = explode('-', $request->filter_month);
+
+            // Filter berdasarkan year & month dari check_in
+            $query->whereYear('check_in', $year)
+                ->whereMonth('check_in', $month);
+        }
+
+        $model = $query->get();
 
         return response()->json([
             "status" => 'success',

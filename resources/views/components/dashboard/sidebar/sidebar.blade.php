@@ -5,34 +5,34 @@
         </div>
         <ul class="mt-8 space-y-3">
             <li>
-               <a href="{{ route('dashboard.overview') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/overview') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.overview') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/overview') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/overview.svg') }}" alt="Overview">
                     <span>Overview</span>
-                </a> 
+                </a>
             </li>
             <li>
-               <a href="{{ route('dashboard.facility') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/facility') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.facility') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/facility') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/facility.svg') }}" alt="Facility">
                     <span>Fasilitas</span>
-                </a> 
+                </a>
             </li>
             <li>
-               <a href="{{ route('dashboard.calendar') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.calendar') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/calendar.svg') }}" alt="Calendar">
                     <span>Kalender</span>
-                </a> 
+                </a>
             </li>
             <li>
-               <a href="{{ route('dashboard.promotion-code') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion-code') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.promotion') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Coupon">
                     <span>Kode Promo</span>
-                </a> 
+                </a>
             </li>
             <li>
-               <div class="flex item-center gap-3 w-full border rounded-xl px-4 py-4">
+                <a href="{{ route('login') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4">
                     <img src="{{ asset('assets/icon/profile.svg') }}" alt="Profile">
                     <span>Logout</span>
-                </div> 
+                </a>
             </li>
         </ul>
     </div>

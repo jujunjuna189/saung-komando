@@ -13,3 +13,8 @@ Route::post('/facility/create', [App\Http\Controllers\Dashboard\Facility\Facilit
 // Reservation
 Route::get('/reservation/show', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, "show"]);
 Route::post('/reservation/create', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, "create"]);
+
+// Promotion
+Route::get('/promotion/show', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, "show"]);
+Route::post('/promotion/create', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, "create"]);
+Route::post('/promotion/delete', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, "delete"]);
