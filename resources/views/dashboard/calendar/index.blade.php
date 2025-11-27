@@ -506,7 +506,9 @@
             onLoader: true,
             onSuccess: function(value) {
                 showToast("success", "Berhasil", value.message);
-                getData({});
+                getData({
+                    header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+                });
                 closeModal('modalAdd');
             },
         });
