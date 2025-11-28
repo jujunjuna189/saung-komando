@@ -158,11 +158,11 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-        <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-            <img src="${url + '/' + itemChild.icon}" alt="" class="h-3">
-            <span class="text-[10px]">${itemChild.value}</span>
-        </div>
-    `;
+                <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
+                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-3">
+                    <span class="text-[10px]">${itemChild.value}</span>
+                </div>
+            `;
         });
 
         let freeGuest = "";

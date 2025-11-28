@@ -37,7 +37,14 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Custome Js -->
+<script src="{{ asset('assets/script/notification.js') }}"></script>
+<script src="{{ asset('assets/script/script.js') }}"></script>
 <script>
+    let url = "<?= url('') ?>";
+    let token = "<?= Illuminate\Support\Facades\Session::token() ?>";
+    let auth_user = <?= json_encode(Illuminate\Support\Facades\Auth::user()) ?>;
+
     $(document).ready(function() {
         // Buka modal
         $('.open-modal').on('click', function() {
