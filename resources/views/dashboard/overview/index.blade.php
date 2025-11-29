@@ -1,35 +1,40 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="pr-5 py-5">
+<div class="px-5 py-5">
     <div class="bg-white rounded-2xl p-5">
-        <div class="flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-semibold">Overview</h1>
-                <p>Selasa, 15 November 2025</p>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
+            <div class="w-full md:w-auto flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-semibold">Overview</h1>
+                    <p>Selasa, 15 November 2025</p>
+                </div>
+                <div class="md:hidden">
+                    <div class="px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer text-sm">Export to Excel</div>
+                </div>
             </div>
-            <ul class="flex gap-2">
-                <li class="px-4 py-2 border rounded-full">
-                    <select name="filter-month" id="filter-month" class="border-none focus:outline-none" onchange="filterMonthChange(event)">
-                        <!-- Render generate -->
-                    </select>
-                </li>
-                <li class="px-4 py-2 border rounded-full">
-                    <select name="status" id="status" class="border-none focus:outline-none" onchange="filterStatusChange(event)">
-                        <option value="">Semua</option>
-                        <option value="DP">DP</option>
-                        <option value="Lunas">Lunas</option>
-                        <option value="Dilokasi">Dilokasi</option>
-                    </select>
-                </li>
-                <li class="px-4 py-2 border rounded-full">
-                    <button type="button" class="border-none focus:outline-none placeholder-[#000000] text-center w-20 cursor-pointer" onclick="onFilter()">Filter</button>
-                </li>
-                <li class="px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center">Export To Excel</li>
-            </ul>
+
+            <div class="w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <ul class="flex justify-between md:justify-end gap-2 min-w-max w-full">
+                    <li class="px-4 py-2 border rounded-full">
+                        <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent" onchange="filterMonthChange(event)">
+                            <!-- Render generate -->
+                        </select>
+                    </li>
+                    <li class="px-4 py-2 border rounded-full">
+                        <select name="status" id="status" class="border-none focus:outline-none bg-transparent" onchange="filterStatusChange(event)">
+                            <option value="">Semua</option>
+                            <option value="DP">DP</option>
+                            <option value="Lunas">Lunas</option>
+                            <option value="Dilokasi">Dilokasi</option>
+                        </select>
+                    </li>
+                    <li class="hidden md:block px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer">Export To Excel</li>
+                </ul>
+            </div>
         </div>
         <div class="mt-5">
-            <div class="grid grid-cols-4 gap-2" id="container-reservation">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2" id="container-reservation">
                 <!-- Container reservation -->
             </div>
         </div>

@@ -1,20 +1,20 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="pr-5 py-5">
-    <div class="bg-white rounded-2xl p-5">
+<div class="px-3 py-3 md:px-5 md:py-5">
+    <div class="bg-white rounded-2xl p-4 md:p-5 w-full">
         <div class="">
-            <h1 class="text-2xl font-semibold">Kode Promo</h1>
+            <h1 class="text-xl md:text-2xl font-semibold">Kode Promo</h1>
         </div>
         <div class="mt-5">
-            <div class="flex justify-between items-center">
-                <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                    <select name="" id="" class="border-none focus:outline-none">
+            <div class="flex justify-between items-center gap-2">
+                <div class="px-4 py-2 border rounded-full bg-[#F2F4F7] w-1/2 md:w-auto">
+                    <select name="" id="" class="border-none focus:outline-none bg-transparent w-full">
                         <option value="">November 2025</option>
                     </select>
                 </div>
-                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal" data-id="modalAdd">
-                    <div class="flex gap-1 items-center">
+                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal w-1/2 md:w-auto" data-id="modalAdd">
+                    <div class="flex gap-1 items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5l0 14" />
@@ -25,22 +25,23 @@
                 </button>
             </div>
         </div>
-        <table class="w-full mt-7">
-            <thead class="bg-[#F2F4F7]">
-                <tr>
-                    <td class="py-3 px-3 font-semibold rounded-l-xl text-center">#</td>
-                    <td class="py-3 px-3 font-semibold text-start">Fasilitas</td>
-                    <td class="py-3 px-3 font-semibold text-start">Kode</td>
-                    <td class="py-3 px-3 font-semibold text-start">Diskon</td>
-                    <td class="py-3 px-3 font-semibold text-start">Normal</td>
-                    <td class="py-3 px-3 font-semibold text-start">Promo</td>
-                    <td class="py-3 px-3 font-semibold text-start">Periode</td>
-                    <td class="py-3 px-3 font-semibold rounded-r-xl text-center">Hapus</td>
-                </tr>
-            </thead>
-            <tbody class="[&>tr:nth-child(even)]:bg-[#F2F4F7]" id="container-promotion">
-            </tbody>
-        </table>
+        <div class="mt-7 w-full overflow-x-auto" style="max-width: calc(100vw - 60px);">
+            <div class="min-w-[800px]">
+                <div class="grid grid-cols-8 bg-[#F2F4F7] rounded-xl font-semibold text-sm">
+                    <div class="py-3 px-3 text-center">#</div>
+                    <div class="py-3 px-3 text-start">Fasilitas</div>
+                    <div class="py-3 px-3 text-start">Kode</div>
+                    <div class="py-3 px-3 text-start">Diskon</div>
+                    <div class="py-3 px-3 text-start">Normal</div>
+                    <div class="py-3 px-3 text-start">Promo</div>
+                    <div class="py-3 px-3 text-start">Periode</div>
+                    <div class="py-3 px-3 text-center">Hapus</div>
+                </div>
+                <div id="container-promotion" class="flex flex-col mt-3">
+                    <!-- Content from JS -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -100,29 +101,41 @@
 
     function renderPromotion(i, item) {
         const element = `
-            <tr>
-                <td class="py-3 px-3 text-center rounded-l-xl">${i + 1}</td>
-                <td class="py-3 px-3">${item.facility?.title ?? ""}</td>
-                <td class="py-3 px-3">${item.code ?? ""}</td>
-                <td class="py-3 px-3">${item.discount ?? ""}</td>
-                <td class="py-3 px-3">${item.facility?.price ?? ""}</td>
-                <td class="py-3 px-3">...</td>
-                <td class="py-3 px-3">${dateFormat(item.periode)}</td>
-                <td class="py-3 px-3 rounded-r-xl">
-                    <div class="flex justify-center">
-                        <div class="w-7 h-7 p-2 flex justify-center items-center bg-[#D8E0ED] rounded-full cursor-pointer" onclick="onDelete('${item.id}')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M4 7l16 0" />
-                                <path d="M10 11l0 6" />
-                                <path d="M14 11l0 6" />
-                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                            </svg>
-                        </div>
+            <div class="grid grid-cols-8 items-center text-sm even:bg-[#F2F4F7]">
+                <div class="py-3 px-3 text-center">
+                    ${i + 1}
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ${item.facility?.title ?? ""}
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ${item.code ?? ""}
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ${item.discount ?? ""}
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ${item.facility?.price ?? ""}
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ...
+                </div>
+                <div class="py-3 px-3 text-start">
+                    ${dateFormat(item.periode)}
+                </div>
+                <div class="py-3 px-3 flex justify-center">
+                    <div class="w-7 h-7 p-2 flex justify-center items-center bg-[#D8E0ED] rounded-full cursor-pointer hover:bg-red-200 transition" onclick="onDelete('${item.id}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 7l16 0" />
+                            <path d="M10 11l0 6" />
+                            <path d="M14 11l0 6" />
+                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                        </svg>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </div>
         `;
 
         return element;

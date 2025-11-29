@@ -1,61 +1,82 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="pr-5 py-5">
-    <div class="flex gap-2">
-        <div class="bg-white rounded-2xl p-5 grow">
-            <div class="">
-                <h1 class="text-2xl font-semibold">Kalender Penginapan</h1>
-            </div>
-            <div class="mt-5">
-                <div class="flex gap-2 items-center">
-                    <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                        <select name="filter-month" id="filter-month" class="border-none focus:outline-none" onchange="filterMonthChange(event)">
+<div class="px-3 py-3 md:px-5 md:py-5">
+    <div class="flex flex-col xl:flex-row gap-4">
+        <div class="bg-white rounded-2xl p-4 md:p-5 grow w-full min-w-0">
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <h1 class="text-xl md:text-2xl font-semibold">Kalender Penginapan</h1>
+
+                    <div class="flex gap-2 w-full md:w-auto justify-between">
+                        <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition">
+                            <div class="flex gap-1 items-center">
+                                <span class="text-sm font-semibold">Export To Excel</span>
+                            </div>
+                        </div>
+                        <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal" data-id="modalAdd">
+                            <div class="flex gap-1 items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                                <span class="text-sm font-semibold">Tambah Reservasi</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 items-center">
+                    <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full">
+                        <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent w-full" onchange="filterMonthChange(event)">
                             <!-- Generate -->
                         </select>
                     </div>
-                    <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                        <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none" onchange="filterFacilityChange(event)">
+                    <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full">
+                        <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none bg-transparent w-full" onchange="filterFacilityChange(event)">
                             <option value="">Saung Damar</option>
                         </select>
                     </div>
-                    <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5]">
-                        <div class="flex gap-1 items-center">
-                            <span>Export To Excel</span>
-                        </div>
-                    </div>
-                    <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal" data-id="modalAdd">
-                        <div class="flex gap-1 items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                            <span>Tambah Reservasi</span>
-                        </div>
-                    </button>
                 </div>
             </div>
-            <div class="mt-7">
-                <div id="calendar" class="w-full"></div>
+
+            <!-- Legend -->
+            <div class="mt-6 flex flex-wrap gap-4 text-xs font-medium">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded bg-green-300"></div>
+                    <span>Lunas</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded bg-yellow-300"></div>
+                    <span>Baru DP</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded bg-blue-300"></div>
+                    <span>Di Lokasi</span>
+                </div>
+            </div>
+
+            <div class="mt-4 overflow-x-auto">
+                <div id="calendar" class="w-full flex-wrap"></div>
             </div>
         </div>
-        <div class="bg-white rounded-2xl p-5 w-[18rem]">
-            <h4 class="font-semibold text-2xl">List Pesanan</h4>
+        <div class="bg-white rounded-2xl p-5 w-full xl:w-[24rem] shrink-0">
+            <h4 class="font-semibold text-xl md:text-2xl">List Pesanan</h4>
             <div class="mt-5 flex gap-2">
                 <div class="px-4 py-2 border rounded-lg bg-[#F2F4F7] grow">
-                    <select name="" id="" class="border-none focus:outline-none w-full" onchange="filterStatusChange(event)">
+                    <select name="" id="" class="border-none focus:outline-none w-full bg-transparent" onchange="filterStatusChange(event)">
                         <option value="">Semua</option>
                         <option value="DP">DP</option>
                         <option value="Lunas">Lunas</option>
                         <option value="Dilokasi">Dilokasi</option>
                     </select>
                 </div>
-                <button type="button" onclick="filterStatus()" class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center">
-                    <span>Filter</span>
+                <button type="button" onclick="filterStatus()" class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center hover:bg-slate-200 transition">
+                    <span class="font-semibold">Filter</span>
                 </button>
             </div>
-            <div class="mt-4 overflow-y-auto max-h-164 space-y-3" id="container-reservation">
+            <div class="mt-4 overflow-y-auto max-h-[600px] space-y-3 pr-1" id="container-reservation">
                 <!-- Container of reservation -->
             </div>
         </div>
@@ -76,11 +97,17 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-2 mt-3">
+    <div class="grid grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
             <input type="text" name="telp" id="telp" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
+        <div class="grow w-full">
+            <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
+            <input type="text" name="extra_bed" id="extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
             <input type="number" name="total_guest" id="total_guest" placeholder="0" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -109,13 +136,7 @@
         <textarea name="note" id="note" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
     </div>
     <div class="mt-3">
-        <div class="flex gap-2 items-end">
-            <div class="grow">
-                <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
-                <input type="text" name="extra_bed" id="extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-            </div>
-            <button type="button" onclick="onSubmit()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer" data-id="modalAdd">Tambah Reservasi</button>
-        </div>
+        <button type="button" onclick="onSubmit()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full" data-id="modalAdd">Tambah Reservasi</button>
     </div>
 </x-dashboard.modal>
 @endsection
@@ -144,13 +165,13 @@
         const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
 
         const grid = document.createElement("div");
-        grid.className = "grid grid-cols-7 border border-[#D8E0ED] p-4 bg-white";
+        grid.className = "grid grid-cols-7 border border-[#D8E0ED] p-1 md:p-4 bg-white w-full";
 
         // Header hari
         const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
         days.forEach(d => {
             const el = document.createElement("div");
-            el.className = "text-center font-semibold py-2";
+            el.className = "text-center font-semibold py-2 text-sm md:text-base";
             el.innerHTML = d;
             grid.appendChild(el);
         });
@@ -161,7 +182,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-24 border border-[#D8E0ED] flex items-start justify-end p-3 text-lg text-gray-400 bg-gray-100";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg text-gray-400 bg-gray-100";
 
             el.innerHTML = num;
             grid.appendChild(el);
@@ -174,7 +195,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-24 border border-[#D8E0ED] flex items-start justify-end p-3 text-lg cursor-pointer hover:bg-[#AEEF8B] transition";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg cursor-pointer hover:bg-[#AEEF8B] transition relative";
 
             events.forEach(ev => {
 
@@ -192,7 +213,7 @@
                     // check IN
                     if (dateStr === ev.check_in) {
                         const badge = document.createElement("span");
-                        badge.className = "absolute bottom-1 left-1 bg-green-600 text-white text-xs font-semibold px-1 rounded";
+                        badge.className = "absolute bottom-1 left-1 bg-green-600 text-white text-[8px] md:text-[10px] font-semibold px-1 rounded";
                         badge.innerHTML = "IN";
                         el.appendChild(badge);
                     }
@@ -200,7 +221,7 @@
                     // check OUT
                     if (dateStr === ev.check_out) {
                         const badge = document.createElement("span");
-                        badge.className = "absolute bottom-1 left-1 bg-red-600 text-white text-xs font-semibold px-1 rounded";
+                        badge.className = "absolute bottom-1 left-1 bg-red-600 text-white text-[8px] md:text-[10px] font-semibold px-1 rounded";
                         badge.innerHTML = "OUT";
                         el.appendChild(badge);
                     }
@@ -234,7 +255,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-24 border border-[#D8E0ED] flex items-start justify-end p-3 text-lg text-gray-400 bg-gray-100";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg text-gray-400 bg-gray-100";
 
             el.innerHTML = i;
             grid.appendChild(el);
@@ -283,7 +304,21 @@
         generateMonthOptions();
         getFacility({});
         getData({});
+
+        // Close dropdown when clicking outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.dropdown-container').length) {
+                $('.dropdown-menu').addClass('hidden');
+            }
+        });
     });
+
+    function toggleDropdown(id) {
+        // Hide all other dropdowns
+        $('.dropdown-menu').not(`#dropdown-${id}`).addClass('hidden');
+        // Toggle current
+        $(`#dropdown-${id}`).toggleClass('hidden');
+    }
 
     function renderFasility({
         value,
@@ -298,11 +333,22 @@
 
     function renderReservation(item) {
         const element = `
-            <div class="bg-[#F2F4F7] rounded-lg p-5">
+            <div class="bg-[#F2F4F7] rounded-lg p-5 relative">
                 <div class="flex justify-between items-center">
                     <h6 class="font-semibold text-lg">${item.facility?.title ?? ""}</h6>
-                    <div class="flex justify-end items-center cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                    <div class="relative dropdown-container">
+                        <div class="flex justify-end items-center cursor-pointer p-1 rounded-full hover:bg-gray-200 transition" onclick="toggleDropdown('${item.id}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                        </div>
+                        <!-- Dropdown Menu -->
+                        <div id="dropdown-${item.id}" class="dropdown-menu hidden absolute right-0 top-8 bg-white shadow-lg rounded-xl p-2 z-10 flex flex-col gap-2 min-w-[150px] border border-slate-100">
+                            <button class="bg-[#F2F4F7] hover:bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition">
+                                Edit Reservasi
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition">
+                                Hapus
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <hr class="border-[#808080] my-3" />
@@ -326,7 +372,7 @@
                 </div>
                 <div class="mt-3 flex gap-2">
                     <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
-                        <select name="" id="" class="border-none focus:outline-none w-full">
+                        <select name="" id="" class="border-none focus:outline-none w-full bg-transparent">
                             <option value="${item.status}">${item.status}</option>
                             <option value="DP">DP</option>
                             <option value="Lunas">Lunas</option>

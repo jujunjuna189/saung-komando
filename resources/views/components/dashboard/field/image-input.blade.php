@@ -5,7 +5,7 @@
 'previewId' => 'imagePreview'
 ])
 
-<div class="w-full mb-4">
+<div>
     <div class="flex items-center gap-4 relative">
         <div class="relative border border-dashed bg-[#F2F4F7] rounded-2xl aspect-square h-20 overflow-hidden flex items-center justify-center">
             <img id="{{ $previewId }}" src="#" alt="Preview" class="object-cover w-full h-full hidden">

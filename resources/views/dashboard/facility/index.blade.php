@@ -1,7 +1,7 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="pr-5 py-5">
+<div class="px-5 py-5">
     <div class="bg-white rounded-2xl p-5">
         <div class="">
             <h1 class="text-2xl font-semibold">Fasilitas Saung Komando</h1>
@@ -25,8 +25,8 @@
                 </button>
             </div>
         </div>
-        <div class="mt-5 p-5 bg-[#D8E0ED] rounded-xl">
-            <div class="grid grid-cols-3 gap-2" id="container-facilitys">
+        <div class="mt-5 p-2 bg-[#D8E0ED] rounded-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2" id="container-facilitys">
                 <!-- Fasility container -->
             </div>
         </div>
@@ -81,7 +81,7 @@
     </div>
     <div class="mt-3">
         <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
-        <div class="mt-2 flex gap-2">
+        <div class="mt-2 grid grid-cols-[repeat(auto-fit,80px)] justify-center gap-6">
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload1" previewId="imageUpload1" required />
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload2" previewId="imageUpload2" required />
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload3" previewId="imageUpload3" required />
@@ -160,7 +160,7 @@
             specHtml += `
                 <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-3">
-                    <span class="text-[10px]">${itemChild.value}</span>
+                    <span class="text-[9px]">${itemChild.value}</span>
                 </div>
             `;
         });
@@ -168,16 +168,16 @@
         let freeGuest = "";
         if (item.is_free_for_guest == 1) {
             freeGuest = `
-            <div class="flex justify-between mb-1">
-                <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                    <span class="text-[10px]"><strong>FREE</strong> untuk tamu menginap</span>
+            <div class="flex justify-between gap-3 mb-1">
+                <div class="bg-[#EAC580] flex items-center gap-1 rounded-2xl px-2 py-1">
+                    <span class="text-[9px] font-bold text-slate-900 leading-tight">FREE untuk tamu menginap</span>
                 </div>
-                <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end">
+                <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end shrink-0 h-fit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                     </svg>
-                    <span class="text-[12px]">${item.rating}</span>
+                    <span class="text-[10px]">${item.rating}</span>
                 </div>
             </div>`;
         }
@@ -185,10 +185,10 @@
         let membership = "";
         if (item.is_membership == 1) {
             membership = `
-                <div class="flex justify-between items-center">
-                    <h5 class="font-semibold">${item.title}</h5>
-                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                        <span class="text-[10px]">Membership 325rb/bln</span>
+                <div class="flex justify-between gap-2 items-start">
+                    <h6 class="font-semibold leading-tight">${item.title}</h6>
+                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-2xl px-2 py-1 shrink-0">
+                        <span class="text-[9px] leading-tight">Membership 325rb/bln</span>
                     </div>
                 </div>
             `;
@@ -196,38 +196,40 @@
             let rating = "";
             if (item.is_free_for_guest == 0) {
                 rating = `
-                    <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end">
+                    <div class="bg-[#F2F4F7] flex gap-1 rounded-full px-2 py-1 items-center justify-end shrink-0 h-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="text-[12px]">${item.rating}</span>
-                    </div> 
+                        <span class="text-[10px]">${item.rating}</span>
+                    </div>
                 `;
             }
 
             membership = `
-                <div class="flex justify-between items-center">
-                    <h5 class="font-semibold">${item.title}</h5>
+                <div class="flex justify-between gap-2 items-start">
+                    <h6 class="font-semibold leading-tight">${item.title}</h6>
                     ${rating}
                 </div>
             `;
         }
 
         const element = `
-            <div class="bg-white rounded-xl p-2 flex gap-3">
-                <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-[100px] max-w-[100px] aspect-square rounded-xl h-full object-cover">
-                <div class="grow flex flex-col">
+            <div class="bg-white rounded-xl p-2 flex gap-3 w-full h-full">
+                <div class="w-[100px] shrink-0">
+                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full rounded-xl object-cover">
+                </div>
+                <div class="grow flex flex-col min-w-0">
                     ${freeGuest}
                     ${membership}
-                    <p class="text-[#808080] text-[10px]">${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}</p>
-                    <div class="flex gap-2 justify-between my-1">
+                    <p class="text-[#808080] text-[10px] line-clamp-2 mt-1">${item.description}</p>
+                    <div class="flex flex-wrap gap-1 my-1">
                         ${specHtml}
                     </div>
                     <div class="grow"></div>
                     <div class="flex justify-between items-center">
-                        <h5 class="font-semibold">${item.price}</h5>
-                        <div class="rounded-full bg-[#AEEF8B] text-[12px] px-3 py-1">Edit</div>
+                        <h6 class="font-semibold whitespace-nowrap">${item.price}</h6>
+                        <div class="rounded-full bg-[#AEEF8B] text-[12px] px-3 py-1 cursor-pointer whitespace-nowrap" onclick="editData('${item.id}')">Edit</div>
                     </div>
                 </div>
             </div>
