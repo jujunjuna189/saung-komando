@@ -5,10 +5,10 @@
     <div class="grow">
         <x-public.navbar.navbar2 />
         <div class="mt-5 md:mt-10 px-5 md:pl-20 md:pr-10">
-            <h1 class="font-semibold text-2xl md:text-4xl md:leading-12">#1 Penginapan dan <br />Tempat Wisata di Ciwidey</h1>
-            <p class="mt-5 md:mt-8 text-[#808391]">Liburan terasa lebih bermakna di tempat di mana udara dingin, suasana tenang, <br />pemandangan hijau, serta fasilitas penginapan yang lengkap. Setiap momen terasa lebih <br />damai, lebih segar, dan juga lebih berkesan.</p>
+            <h1 class="font-semibold text-2xl md:text-4xl md:leading-12 fade-up">#1 Penginapan dan <br />Tempat Wisata di Ciwidey</h1>
+            <p class="mt-5 md:mt-8 text-[#808391] fade-up">Liburan terasa lebih bermakna di tempat di mana udara dingin, suasana tenang, <br />pemandangan hijau, serta fasilitas penginapan yang lengkap. Setiap momen terasa lebih <br />damai, lebih segar, dan juga lebih berkesan.</p>
             <div class="mt-5 md:mt-10 flex justify-start">
-                <a href="{{ route('facility') }}" class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer">
+                <a href="{{ route('facility') }}" class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center">
                         <span>Lihat Semua Fasilitas</span>
                     </div>
@@ -17,19 +17,22 @@
         </div>
         <div class="mt-10 grid grid-cols-2 md:flex md:justify-between gap-10 px-5 md:pl-20 md:pr-10">
             <div class="text-center">
-                <h2 class="text-2xl md:text-3xl font-semibold">1500+</h2>
+                <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="1500">0</h2>
                 <span class="text-[#808391]">Penginapan</span>
             </div>
+
             <div class="text-center">
-                <h2 class="text-2xl md:text-3xl font-semibold">2500+</h2>
+                <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="2500">0</h2>
                 <span class="text-[#808391]">Pengunjung</span>
             </div>
+
             <div class="text-center">
-                <h2 class="text-2xl md:text-3xl font-semibold">800+</h2>
+                <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="800">0</h2>
                 <span class="text-[#808391]">Review (Google)</span>
             </div>
+
             <div class="text-center">
-                <h2 class="text-2xl md:text-3xl font-semibold">13+</h2>
+                <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="13">0</h2>
                 <span class="text-[#808391]">Fasilitas Nyaman & Seru</span>
             </div>
         </div>
@@ -52,7 +55,7 @@
                     <h6 class="font-semibold">02 Kamar</h6>
                 </div>
                 <div class="col-span-2">
-                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl">
+                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                         <div class="flex gap-3 justify-center items-center">
                             <span>Cari Penginapan</span>
                         </div>
@@ -61,11 +64,14 @@
             </div>
         </div>
     </div>
-    <div class="relative w-[40%] max-w-[40%] min-w-[40%] hidden md:flex">
+    <div class="relative w-[40%] max-w-[40%] min-w-[40%] hidden md:flex fade">
         <div class="absolute right-20 left-10 top-6 flex justify-end items-center">
-            <a href="https://wa.link/u8ov80" target="_blank" class="bg-white px-5 py-3 rounded-full">
+            <a href="https://wa.link/u8ov80" target="_blank"
+                class="group bg-white px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                 <div class="flex gap-3 items-center">
-                    <img src="{{ asset('assets/icon/headset.png') }}" alt="cs" class="h-[21px]">
+                    <img src="{{ asset('assets/icon/headset.png') }}"
+                        alt="cs"
+                        class="h-[21px] transition duration-200 group-hover:invert">
                     <span>Tanya Admin</span>
                 </div>
             </a>
@@ -118,7 +124,7 @@
             </div>
         </div>
         <div>
-            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="w-full rounded-lg md:rounded-3xl h-full object-cover">
+            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="w-full rounded-lg md:rounded-3xl h-full object-cover fade">
         </div>
     </div>
 </div>
@@ -143,9 +149,11 @@
 <div class="mt-7 md:mt-12 px-5">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5" id="container-facilitys">
         @foreach($facility as $val)
-        <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
-            <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50">
-                <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}" alt="" class="w-full h-full object-cover">
+        <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col opacity-0 fade-up-scroll">
+            <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
+                <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
             </div>
             <div class="p-3 md:p-5 grow flex flex-col">
                 @if($val->is_free_for_guest == 1)
@@ -197,7 +205,7 @@
                 <div class="md:grow"></div>
                 <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                     <label for="price" class="font-semibold text-sm md:text-xl">{{ $val->price }}</label>
-                    <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full">
+                    <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                         <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                             <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                             <span class="md:hidden flex">Lihat Detail</span>
@@ -222,9 +230,9 @@
             <h5 class="text-xl md:text-3xl font-semibold">Menikmati Senja dan Pagi langsung di kawasan kaki gunung</h5>
             <p class="text-[#808080] mt-6">Menghadirkan suasana yang tenang, hangat, dan penuh keteduhan. Cahaya lembut matahari, udara segar pegunungan, serta pemandangan alami yang terbentang membuat setiap momen terasa lebih dekat dengan alam dan jauh lebih menenangkan.</p>
             <div class="mt-6 flex justify-start">
-                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
+                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center">
-                        <span>Lihat Detail Fasilitas</span>
+                        <span>Lihat Lokasi</span>
                     </div>
                 </div>
             </div>
@@ -241,6 +249,7 @@
     let category = [];
     let categoryActive = "";
     $(document).ready(function() {
+        startCounter();
         getCategory({
             onSuccess: function(response) {
                 $.each(response.data, function(i, item) {

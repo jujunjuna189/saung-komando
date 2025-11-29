@@ -20,9 +20,12 @@
         </ul>
     </div>
     <div class="items-center hidden md:flex">
-        <a href="https://wa.link/u8ov80" target="_blank" class="bg-[#AEEF8B] px-5 py-3 rounded-full">
+        <a href="https://wa.link/u8ov80" target="_blank"
+            class="group bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
             <div class="flex gap-3 items-center">
-                <img src="{{ asset('assets/icon/headset.png') }}" alt="cs" class="h-[21px]">
+                <img src="{{ asset('assets/icon/headset.png') }}"
+                    alt="cs"
+                    class="h-[21px] transition duration-200 group-hover:invert">
                 <span>Tanya Admin</span>
             </div>
         </a>

@@ -7,41 +7,65 @@
     </div>
     <div class="mt-12 px-5 md:px-20">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}" alt="" class="w-full h-full object-cover">
+            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
+                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                    alt=""
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
         </div>
     </div>
@@ -51,9 +75,9 @@
                 <h5 class="text-xl md:text-3xl font-semibold">Menikmati Senja dan Pagi langsung di kawasan kaki gunung</h5>
                 <p class="text-[#808080] mt-6">Menghadirkan suasana yang tenang, hangat, dan penuh keteduhan. Cahaya lembut matahari, udara segar pegunungan, serta pemandangan alami yang terbentang membuat setiap momen terasa lebih dekat dengan alam dan jauh lebih menenangkan.</p>
                 <div class="mt-6 flex justify-start">
-                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
+                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                         <div class="flex gap-3 items-center">
-                            <span>Lihat Detail Fasilitas</span>
+                            <span>Lihat Lokasi</span>
                         </div>
                     </div>
                 </div>

@@ -26,9 +26,11 @@
     <div class="mt-7 md:mt-12 px-5">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5" id="container-facilitys">
             @foreach($facility as $val)
-            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
-                <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50">
-                    <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}" alt="" class="w-full h-full object-cover">
+            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col opacity-0 fade-up-scroll">
+                <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
+                    <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
+                        alt=""
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
                 <div class="p-3 md:p-5 grow flex flex-col">
                     @if($val->is_free_for_guest == 1)
@@ -80,7 +82,7 @@
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                         <label for="price" class="font-semibold text-sm md:text-xl">{{ $val->price }}</label>
-                        <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full">
+                        <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
@@ -99,9 +101,9 @@
                 <h5 class="text-xl md:text-3xl font-semibold">Menikmati Senja dan Pagi langsung di kawasan kaki gunung</h5>
                 <p class="text-[#808080] mt-6">Menghadirkan suasana yang tenang, hangat, dan penuh keteduhan. Cahaya lembut matahari, udara segar pegunungan, serta pemandangan alami yang terbentang membuat setiap momen terasa lebih dekat dengan alam dan jauh lebih menenangkan.</p>
                 <div class="mt-6 flex justify-start">
-                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
+                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                         <div class="flex gap-3 items-center">
-                            <span>Lihat Detail Fasilitas</span>
+                            <span>Lihat Lokasi</span>
                         </div>
                     </div>
                 </div>

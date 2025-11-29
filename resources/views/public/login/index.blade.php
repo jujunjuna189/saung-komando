@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="h-screen flex justify-center items-center">
-    <div class="bg-white rounded-3xl p-10 w-100 shadow-lg">
+    <div class="bg-white rounded-lg md:rounded-3xl p-10 w-100 shadow-lg">
         <div class="flex justify-center mt-5">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Saung Komando" class="h-20">
         </div>
