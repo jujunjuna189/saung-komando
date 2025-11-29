@@ -2,13 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('public.home.index');
-})->name('home');
+Route::get('/', [App\Http\Controllers\Public\Home\HomeController::class, "index"])->name('home');
 
-Route::get('/facility', function () {
-    return view('public.facility.index');
-})->name('facility');
+Route::get('/facility', [App\Http\Controllers\Public\Facility\FacilityController::class, "index"])->name('facility');
 
 Route::get('/gallery', function () {
     return view('public.gallery.index');

@@ -1,15 +1,15 @@
 @extends('components.public.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="py-10">
-    <div class="px-20">
-        <h1 class="font-semibold text-[35px]">Kontak Kami</h1>
+<div class="py-5 md:py-10">
+    <div class="px-5 md:px-20">
+        <h1 class="font-semibold text-xl md:text-[35px]">Kontak Kami</h1>
     </div>
-    <div class="my-12 px-20">
-        <div class="bg-white p-7 rounded-3xl flex gap-7">
+    <div class="my-5 md:my-12 px-0 md:px-20">
+        <div class="bg-white p-7 rounded-lg md:rounded-3xl flex flex-col-reverse md:flex-row gap-7">
             <div class="">
-                <iframe class="rounded-3xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" width="715" height="334" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="grid grid-cols-3 w-[715px] max-w-[715px] min-w-[715px]">
+                <iframe class="rounded-lg md:rounded-3xl w-full md:w-[715px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" height="334" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="grid grid-cols-1 md:grid-cols-3 md:w-[715px] md:max-w-[715px] md:min-w-[715px]">
                     <div class="py-7 px-3 text-center">
                         <div class="flex justify-center">
                             <div class="bg-[#AEEF8B] rounded-full h-10 w-10 flex justify-center items-center">
@@ -54,9 +54,9 @@
                 <div class="mt-5">
                     <textarea name="message" id="message" rows="5" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">Tulis Pesan</textarea>
                 </div>
-                <div class="mt-5 flex justify-between">
-                    <button type="button" class="bg-[#AEEF8B] px-5 py-3 rounded-full">
-                        <div class="flex gap-3 items-center">
+                <div class="mt-5 space-y-3 md:space-y-0  md:flex md:justify-between">
+                    <button type="button" class="bg-[#AEEF8B] px-5 py-3 rounded-full w-full md:w-auto">
+                        <div class="flex gap-3 items-center justify-center md:justify-start">
                             <span>Kirim ke WhatsApp Admin</span>
                         </div>
                     </button>
