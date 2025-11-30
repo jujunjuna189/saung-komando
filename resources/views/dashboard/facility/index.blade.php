@@ -487,10 +487,10 @@
         }
 
         // Images
-        for(let i=1; i<=6; i++) {
-             $(`#editImageUpload${i}`).attr('src', '').addClass('hidden');
-             $(`#noImageText-editImageUpload${i}`).removeClass('hidden');
-             $(`#edit_image_upload${i}`).val('');
+        for (let i = 1; i <= 6; i++) {
+            $(`#editImageUpload${i}`).attr('src', '').addClass('hidden');
+            $(`#noImageText-editImageUpload${i}`).removeClass('hidden');
+            $(`#edit_image_upload${i}`).val('');
         }
 
         if (item.thumbnails) {

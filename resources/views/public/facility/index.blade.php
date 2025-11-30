@@ -137,12 +137,12 @@
     function renderCategory() {
         $('#filter-category').empty();
         var element = `
-            <li class="px-4 py-2 border rounded-full ${categoryActive == "" ? 'bg-black text-white' : ""} cursor-pointer" onclick="onFilter('')">Semua Fasilitas</li>
+            <li class="px-4 py-2 border rounded-full ${categoryActive == "" ? 'bg-black text-white' : ""} cursor-pointer whitespace-pre" onclick="onFilter('')">Semua Fasilitas</li>
         `;
         $('#filter-category').append(element);
         $.each(category, function(i, item) {
             element = `
-                <li class="px-4 py-2 border rounded-full ${categoryActive == item.category ? 'bg-black text-white' : ""} cursor-pointer" onclick="onFilter('${item.category}')">${item.category}</li>
+                <li class="px-4 py-2 border rounded-full ${categoryActive == item.category ? 'bg-black text-white' : ""} cursor-pointer whitespace-pre" onclick="onFilter('${item.category}')">${item.category}</li>
             `;
             $('#filter-category').append(element);
         });
@@ -161,9 +161,9 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="flex gap-2 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
+                <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="md:text-[10px]">${itemChild.value}</span>
+                    <span class="text-[10px] whitespace-pre">${itemChild.value}</span>
                 </div>
             `;
         });
@@ -173,14 +173,14 @@
             freeGuest = `
                 <div class="flex justify-between items-center">
                     <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                        <span class="text-[14px]"><strong class="text-red-500">FREE</strong> untuk tamu menginap</span>
+                        <span class="text-[10px] md:text-[14px]"><strong class="text-red-500">FREE</strong> untuk tamu menginap</span>
                     </div>
-                    <div class="flex gap-1 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
-                        <svg xmlns="https://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E]">
+                    <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
+                        <svg xmlns="https://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[18px] h-[13px] md:h-[18px]">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="font-semibold">${item.rating}</span>
+                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}</span>
                     </div>
                 </div>
             `;
@@ -190,9 +190,9 @@
         if (item.is_membership == 1) {
             membership = `
                 <div class="flex justify-between items-center">
-                    <h5 class="text-2xl font-semibold">${item.title}</h5>
+                    <h5 class="text-md md:text-2xl font-semibold">${item.title}</h5>
                     <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                        <span class="text-[14px]">Membership 325rb/bln</span>
+                        <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
                     </div>
                 </div>
             `;
@@ -200,46 +200,47 @@
             let rating = "";
             if (item.is_free_for_guest == 0) {
                 rating = `
-                    <div class="flex gap-1 items-center px-4 py-2 rounded-full bg-[#EDEFF1]">
-                        <svg xmlns="https://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E]">
+                    <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
+                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[18px] h-[13px] md:h-[18px]">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="font-semibold">${item.rating}</span>
+                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}<</span>
                     </div>
                 `;
             }
 
             membership = `
                 <div class="flex justify-between items-center">
-                    <h5 class="text-2xl font-semibold">${item.title}</h5>
+                    <h5 class="text-md md:text-2xl font-semibold">${item.title}</h5>
                     ${rating}
                 </div>
             `;
         }
 
         const element = `
-            <div class="rounded-4xl overflow-hidden bg-white flex flex-col">
-                <div class="h-[405px] bg-gray-50">
-                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full object-cover">
+            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
+                <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
+                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
-                <div class="p-5 grow flex flex-col">
+                <div class="p-3 md:p-5 grow flex flex-col">
                     ${freeGuest}
                     ${membership}
-                    <p class="mt-3 text-[#808080]">
+                    <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description}
                     </p>
-                    <div class="mt-5 flex justify-between">
+                    <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
                         ${specHtml}
                     </div>
-                    <div class="grow"></div>
-                    <div class="flex justify-between items-center mt-4">
-                        <label for="price" class="font-semibold text-xl">${item.price}</label>
-                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-full">
-                            <div class="flex gap-3 items-center">
-                                <span>Lihat Detail Fasilitas</span>
+                    <div class="md:grow"></div>
+                    <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
+                        <label for="price" class="font-semibold text-sm md:text-xl">${item.price}</label>
+                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                            <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
+                                <span class="hidden md:flex">Lihat Detail Fasilitas</span>
+                                <span class="md:hidden flex">Lihat Detail</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
