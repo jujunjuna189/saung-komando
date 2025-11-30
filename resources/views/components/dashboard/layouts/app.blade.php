@@ -32,7 +32,7 @@
         <div class="md:hidden flex justify-between items-center p-5 bg-[#F2F4F7]">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo" class="h-10">
             <button @click="mobileMenuOpen = true" class="focus:outline-none bg-black text-white rounded p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
@@ -67,7 +67,7 @@
                 <div class="flex justify-between items-center mb-8">
                     <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo" class="h-10">
                     <button @click="mobileMenuOpen = false" class="focus:outline-none bg-black text-white rounded p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
