@@ -1,4 +1,4 @@
-<div class="w-[20rem] p-5 sticky top-0">
+<div class="w-[20rem] pt-5 pl-5 pb-5 sticky top-0">
     <div class="bg-white rounded-2xl p-5">
         <div class="flex justify-center">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="" class="h-15">
