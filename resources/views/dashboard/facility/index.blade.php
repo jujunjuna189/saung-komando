@@ -35,7 +35,7 @@
 
 <!-- Add -->
 <x-dashboard.modal id="modalAdd" title="Tambah Fasilitas" btn_text="Tambah Fasilitas" justify="justify-center md:justify-end">
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
             <input type="text" name="title" id="title" placeholder="Masukan Nama Fasilitas" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -51,7 +51,7 @@
         <label for="" class="font-semibold text-[12px]">Deskripsi<span class="text-red-500">*</span></label>
         <textarea name="description" id="description" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
     </div>
-    <div class="flex gap-2 mt-3">
+    <div class="md:flex gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Maxs. Kapasitas<span class="text-red-500">*</span></label>
             <input type="text" name="max-capasity" id="max-capasity" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -65,7 +65,7 @@
             <input type="text" name="rating" id="rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
     </div>
-    <div class="flex gap-2 mt-3">
+    <div class="md:flex gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
             <input type="text" name="bedroom" id="bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -119,7 +119,7 @@
 
 <!-- Edit -->
 <x-dashboard.modal id="modalEdit" title="Edit Fasilitas" btn_text="Simpan Perubahan" justify="justify-center md:justify-end">
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
             <input type="text" name="title" id="edit-title" placeholder="Masukan Nama Fasilitas" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -135,7 +135,7 @@
         <label for="" class="font-semibold text-[12px]">Deskripsi<span class="text-red-500">*</span></label>
         <textarea name="description" id="edit-description" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
     </div>
-    <div class="flex gap-2 mt-3">
+    <div class="md:flex gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Maxs. Kapasitas<span class="text-red-500">*</span></label>
             <input type="text" name="max-capasity" id="edit-max-capasity" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -149,7 +149,7 @@
             <input type="text" name="rating" id="edit-rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
     </div>
-    <div class="flex gap-2 mt-3">
+    <div class="md:flex gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
             <input type="text" name="bedroom" id="edit-bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -239,7 +239,7 @@
             modal.removeClass('opacity-0');
             box.removeClass('scale-95');
             box.removeClass('-mx-[100px]');
-            box.addClass('mx-4');
+            box.addClass('md:mx-4');
         }, 10);
     }
 

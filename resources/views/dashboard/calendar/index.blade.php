@@ -84,8 +84,8 @@
 </div>
 
 <!-- Add -->
-<x-dashboard.modal id="modalAdd" title="Tambah Reservasi" footer="false" justify="justify-center md:justify-end">
-    <div class="grid grid-cols-2 gap-2">
+<x-dashboard.modal id="modalAdd" title="Tambah Reservasi" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
             <input type="text" name="name" id="name" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -97,7 +97,7 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
             <input type="text" name="telp" id="telp" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -107,7 +107,7 @@
             <input type="text" name="extra_bed" id="extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
             <input type="number" name="total_guest" id="total_guest" placeholder="0" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -121,7 +121,7 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Check In<span class="text-red-500">*</span></label>
             <input type="date" name="check_in" id="check_in" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -135,14 +135,16 @@
         <label for="" class="font-semibold text-[12px]">Catatan <i class="text-[#808080]">(Optional)</i></label>
         <textarea name="note" id="note" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
     </div>
-    <div class="mt-3">
-        <button type="button" onclick="onSubmit()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full" data-id="modalAdd">Tambah Reservasi</button>
-    </div>
+    <x-slot:footer>
+        <div class="flex justify-start items-center px-5 py-4 border-t border-slate-200 gap-2">
+            <button type="button" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer" onclick="onSubmit()">Tambah Reservasi</button>
+        </div>
+    </x-slot:footer>
 </x-dashboard.modal>
 
 <!-- Edit -->
-<x-dashboard.modal id="modalEdit" title="Edit Reservasi" footer="false" justify="justify-center md:justify-end">
-    <div class="grid grid-cols-2 gap-2">
+<x-dashboard.modal id="modalEdit" title="Edit Reservasi" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
             <input type="text" name="name" id="edit-name" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -154,7 +156,7 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
             <input type="text" name="telp" id="edit-telp" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -164,7 +166,7 @@
             <input type="text" name="extra_bed" id="edit-extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
             <input type="number" name="total_guest" id="edit-total_guest" placeholder="0" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -178,7 +180,7 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Check In<span class="text-red-500">*</span></label>
             <input type="date" name="check_in" id="edit-check_in" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -192,9 +194,11 @@
         <label for="" class="font-semibold text-[12px]">Catatan <i class="text-[#808080]">(Optional)</i></label>
         <textarea name="note" id="edit-note" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
     </div>
-    <div class="mt-3">
-        <button type="button" onclick="onUpdate()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full">Simpan Perubahan</button>
-    </div>
+    <x-slot:footer>
+        <div class="flex justify-start items-center px-5 py-4 border-t border-slate-200 gap-2">
+            <button type="button" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer" onclick="onUpdate()">Simpan Perubahan</button>
+        </div>
+    </x-slot:footer>
 </x-dashboard.modal>
 
 <!-- Delete -->
@@ -620,7 +624,7 @@
             modal.removeClass('opacity-0');
             box.removeClass('scale-95');
             box.removeClass('-mx-[100px]');
-            box.addClass('mx-4');
+            box.addClass('md:mx-4');
         }, 10);
     }
 

@@ -1,7 +1,7 @@
 @extends('components.public.layouts.app3', ['nav_bar' => false])
 
 @section('content')
-<div class="h-screen flex justify-center items-center">
+<div class="mt-20 md:mt-0 md:h-screen px-2 md:px-0 flex justify-center md:items-center">
     <div class="bg-white rounded-lg md:rounded-3xl p-10 w-100 shadow-lg">
         <div class="flex justify-center mt-5">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Saung Komando" class="h-20">

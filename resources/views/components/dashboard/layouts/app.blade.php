@@ -62,7 +62,7 @@
                 modal.removeClass('opacity-0');
                 box.removeClass('scale-95');
                 box.removeClass('-mx-[100px]');
-                box.addClass('mx-4');
+                box.addClass('md:mx-4');
             }, 10); // small delay to trigger animation
         });
 

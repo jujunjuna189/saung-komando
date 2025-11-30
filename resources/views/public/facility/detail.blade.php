@@ -4,7 +4,7 @@
 <div class="py-5 md:py-10">
     <div class="md:mt-12 px-0 md:px-20">
         <div class="bg-white rounded-xl md:rounded-3xl p-7">
-            <div class="md:flex md:justify-between items-center">
+            <div class="flex justify-between items-center">
                 <h1 class="font-semibold text-xl md:text-[35px]">{{ $detail->title }}</h1>
                 <div class="flex gap-2">
                     <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
@@ -27,7 +27,7 @@
             <div class="md:grid md:grid-cols-3 md:flex-row gap-5 mt-5">
                 <div class="col-span-2">
                     <div>
-                        <img src="{{ asset('storage/' . $detail->thumbnails[0]->path) }}" alt="" class="w-full rounded-lg md:rounded-3xl h-128 object-cover fade">
+                        <img src="{{ asset('storage/' . $detail->thumbnails[0]->path) }}" alt="" class="w-full rounded-lg md:rounded-3xl aspect-square md:aspect-auto md:h-128 object-cover fade">
                         <div class="hidden md:flex gap-2 mt-3 overflow-x-auto no-scrollbar">
                             @foreach($detail->thumbnails as $val)
                             <img src="{{ asset('storage/' . $val->path) }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
