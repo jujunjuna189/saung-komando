@@ -5,14 +5,14 @@
     <div class="md:mt-12 px-0 md:px-20">
         <div class="bg-white rounded-xl md:rounded-3xl p-7">
             <div class="md:flex md:justify-between items-center">
-                <h1 class="font-semibold text-xl md:text-[35px]">Saung Tabibuya</h1>
+                <h1 class="font-semibold text-xl md:text-[35px]">{{ $detail->title }}</h1>
                 <div class="flex gap-2">
                     <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[18px] h-[13px] md:h-[18px]">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="font-semibold text-[10px] md:text-[14px]">4.45</span>
+                        <span class="font-semibold text-[10px] md:text-[14px]">{{ $detail->rating }}</span>
                     </div>
                     <div class="flex gap-1 items-center px-2 md:px-2 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-share-2">
@@ -27,13 +27,11 @@
             <div class="md:grid md:grid-cols-3 md:flex-row gap-5 mt-5">
                 <div class="col-span-2">
                     <div>
-                        <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="w-full rounded-lg md:rounded-3xl h-full object-cover fade">
+                        <img src="{{ asset('storage/' . $detail->thumbnails[0]->path) }}" alt="" class="w-full rounded-lg md:rounded-3xl h-128 object-cover fade">
                         <div class="hidden md:flex gap-2 mt-3 overflow-x-auto no-scrollbar">
-                            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
-                            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
-                            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
-                            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
-                            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
+                            @foreach($detail->thumbnails as $val)
+                            <img src="{{ asset('storage/' . $val->path) }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -44,20 +42,14 @@
                             <h6 class="font-semibold text-lg">Deskripsi</h6>
                             <h6 class="font-semibold text-lg">Fasilitas</h6>
                         </div>
-                        <p class="text-justify mt-3">Dibangun di atas permukaan air, setiap unit menghadirkan udara segar dan cahaya alami yang mengalir masuk sepanjang hari. Suasana tenang, pemandangan yang menyejukkan, dan kenyamanan ruang yang hangat menjadikan pengalaman menginap.</p>
+                        <p class="text-justify mt-3">{{ $detail->description }}</p>
                         <div class="flex gap-2 justify-between mt-4">
+                            @foreach($detail->specification as $val)
                             <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
-                                <img src="{{ asset('assets/icon/facility.png') }}" alt="" class="h-4">
-                                <span class="text-[10px] whitespace-pre">20 Orang</span>
+                                <img src="{{ url($val->icon) }}" alt="" class="h-4">
+                                <span class="text-[10px] whitespace-pre">{{ $val->value }}</span>
                             </div>
-                            <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
-                                <img src="{{ asset('assets/icon/facility.png') }}" alt="" class="h-4">
-                                <span class="text-[10px] whitespace-pre">20 Orang</span>
-                            </div>
-                            <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
-                                <img src="{{ asset('assets/icon/facility.png') }}" alt="" class="h-4">
-                                <span class="text-[10px] whitespace-pre">20 Orang</span>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="flex flex-wrap gap-3 justify-evenly md:justify-between my-5">
                             <div class="text-center">
@@ -87,11 +79,11 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <div>
-                                <del class="text-[#808080] text-[12px]">Rp2.500.000</del>
-                                <h4 class="font-semibold text-lg">Rp2.500.000</h4>
+                                <!-- <del class="text-[#808080] text-[12px]">Rp2.500.000</del> -->
+                                <h4 class="font-semibold text-lg">{{ $detail->price }}</h4>
                             </div>
                             <div>
-                                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                                <div onclick="" class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                                     <div class="flex gap-3 items-center">
                                         <span>Pesan Sekarang</span>
                                     </div>
@@ -180,12 +172,12 @@
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                         <label for="price" class="font-semibold text-sm md:text-xl">{{ $val->price }}</label>
-                        <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -218,4 +210,19 @@
         </div>
     </div>
 </div>
+
+<x-dashboard.modal id="modalAdd" title="Pesan" footer="false" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-2 gap-2">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
+            <input type="text" name="name" id="name" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
+            <select name="facility_id" id="facility_id" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <!-- From data facility -->
+            </select>
+        </div>
+    </div>
+</x-dashboard.modal>
 @endsection
