@@ -27,7 +27,7 @@
         </div>
         <div class="mt-7 w-full overflow-x-auto" style="max-width: calc(100vw - 60px);">
             <div class="min-w-[800px]">
-                <div class="grid grid-cols-8 bg-[#F2F4F7] rounded-xl font-semibold text-sm">
+                <div class="grid grid-cols-8 bg-[#F2F4F7] rounded-xl font-semibold text-xs md:text-sm">
                     <div class="py-3 px-3 text-center">#</div>
                     <div class="py-3 px-3 text-start">Fasilitas</div>
                     <div class="py-3 px-3 text-start">Kode</div>
@@ -101,7 +101,7 @@
 
     function renderPromotion(i, item) {
         const element = `
-            <div class="grid grid-cols-8 items-center text-sm even:bg-[#F2F4F7]">
+            <div class="grid grid-cols-8 items-center text-xs md:text-sm even:bg-[#F2F4F7]">
                 <div class="py-3 px-3 text-center">
                     ${i + 1}
                 </div>

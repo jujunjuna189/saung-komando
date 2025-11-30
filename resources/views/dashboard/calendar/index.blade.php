@@ -11,7 +11,7 @@
                     <div class="flex gap-2 w-full md:w-auto justify-between">
                         <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition">
                             <div class="flex gap-1 items-center">
-                                <span class="text-sm font-semibold">Export To Excel</span>
+                                <span class="text-xs md:text-sm font-semibold">Export To Excel</span>
                             </div>
                         </div>
                         <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal" data-id="modalAdd">
@@ -21,7 +21,7 @@
                                     <path d="M12 5l0 14" />
                                     <path d="M5 12l14 0" />
                                 </svg>
-                                <span class="text-sm font-semibold">Tambah Reservasi</span>
+                                <span class="text-xs md:text-sm font-semibold">Tambah Reservasi</span>
                             </div>
                         </button>
                     </div>
@@ -42,7 +42,8 @@
             </div>
 
             <!-- Legend -->
-            <div class="mt-6 flex flex-wrap gap-4 text-xs font-medium">
+            <!-- Legend -->
+            <div class="mt-6 flex flex-wrap justify-between md:justify-end gap-4 text-xs font-medium">
                 <div class="flex items-center gap-2">
                     <div class="w-3 h-3 rounded bg-green-300"></div>
                     <span>Lunas</span>
@@ -73,7 +74,7 @@
                     </select>
                 </div>
                 <button type="button" onclick="filterStatus()" class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center hover:bg-slate-200 transition">
-                    <span class="font-semibold">Filter</span>
+                    <span class="font-semibold text-xs md:text-base">Filter</span>
                 </button>
             </div>
             <div class="mt-4 overflow-y-auto max-h-[600px] space-y-3 pr-1" id="container-reservation">
@@ -84,7 +85,7 @@
 </div>
 
 <!-- Add -->
-<x-dashboard.modal id="modalAdd" title="Tambah Reservasi" footer="false">
+<x-dashboard.modal id="modalAdd" title="Tambah Reservasi" footer="false" justify="justify-center md:justify-end">
     <div class="grid grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
@@ -171,7 +172,7 @@
         const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
         days.forEach(d => {
             const el = document.createElement("div");
-            el.className = "text-center font-semibold py-2 text-sm md:text-base";
+            el.className = "text-center font-semibold py-2 text-xs md:text-base";
             el.innerHTML = d;
             grid.appendChild(el);
         });
@@ -182,7 +183,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg text-gray-400 bg-gray-100";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-xs md:text-lg text-gray-400 bg-gray-100";
 
             el.innerHTML = num;
             grid.appendChild(el);
@@ -195,7 +196,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg cursor-pointer hover:bg-[#AEEF8B] transition relative";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-xs md:text-lg cursor-pointer hover:bg-[#AEEF8B] transition relative";
 
             events.forEach(ev => {
 
@@ -255,7 +256,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-sm md:text-lg text-gray-400 bg-gray-100";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-xs md:text-lg text-gray-400 bg-gray-100";
 
             el.innerHTML = i;
             grid.appendChild(el);
@@ -335,7 +336,7 @@
         const element = `
             <div class="bg-[#F2F4F7] rounded-lg p-5 relative">
                 <div class="flex justify-between items-center">
-                    <h6 class="font-semibold text-lg">${item.facility?.title ?? ""}</h6>
+                    <h6 class="font-semibold text-base md:text-lg">${item.facility?.title ?? ""}</h6>
                     <div class="relative dropdown-container">
                         <div class="flex justify-end items-center cursor-pointer p-1 rounded-full hover:bg-gray-200 transition" onclick="toggleDropdown('${item.id}')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
@@ -352,11 +353,11 @@
                     </div>
                 </div>
                 <hr class="border-[#808080] my-3" />
-                <div class="flex justify-between">
+                <div class="flex justify-between text-sm md:text-base">
                     <span class="font-semibold">${item.name}</span>
                     <span class="font-semibold text-end">${item.telp}</span>
                 </div>
-                <div class="mt-3 grid grid-cols-2">
+                <div class="mt-3 grid grid-cols-2 text-sm md:text-base">
                     <div>
                         <p>Check In :</p>
                         <p class="font-semibold">${dateFormat(item.check_in)}</p>
@@ -366,11 +367,11 @@
                         <p class="font-semibold">${dateFormat(item.check_out)}</p>
                     </div>
                 </div>
-                <div class="mt-3">
+                <div class="mt-3 text-sm md:text-base">
                     <p>Catatan :</p>
                     <p>${item.note}</p>
                 </div>
-                <div class="mt-3 flex gap-2">
+                <div class="mt-3 flex gap-2 text-sm md:text-base">
                     <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
                         <select name="" id="" class="border-none focus:outline-none w-full bg-transparent">
                             <option value="${item.status}">${item.status}</option>
