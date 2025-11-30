@@ -27,11 +27,18 @@
             <div class="md:grid md:grid-cols-3 md:flex-row gap-5 mt-5">
                 <div class="col-span-2">
                     <div>
-                        <img src="{{ asset('storage/' . $detail->thumbnails[0]->path) }}" alt="" class="w-full rounded-lg md:rounded-3xl aspect-square md:aspect-auto md:h-128 object-cover fade">
+                        <img id="main-image"
+                            src="{{ asset('storage/' . $detail->thumbnails[0]->path) }}"
+                            class="w-full rounded-lg md:rounded-3xl aspect-square md:aspect-auto md:h-128 object-cover fade">
+
                         <div class="hidden md:flex gap-2 mt-3 overflow-x-auto no-scrollbar">
-                            @foreach($detail->thumbnails as $val)
-                            <img src="{{ asset('storage/' . $val->path) }}" alt="" class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade">
+
+                            @foreach($detail->thumbnails as $i => $val)
+                            <img src="{{ asset('storage/' . $val->path) }}"
+                                class="h-28 aspect-video rounded-lg md:rounded-2xl object-cover fade thumb-item cursor-pointer"
+                                data-index="{{ $i }}">
                             @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -272,6 +279,33 @@
 <script>
     $(document).ready(function() {
         getFacility({});
+
+        // Set default: index 0 aktif
+        $(".thumb-item").eq(0).css({
+            border: "2px solid #000000",
+            borderRadius: "12px"
+        });
+
+        // Klik thumbnail
+        $(".thumb-item").on("click", function() {
+            const newSrc = $(this).attr("src");
+
+            // ganti gambar utama
+            $("#main-image").fadeOut(150, function() {
+                $(this).attr("src", newSrc).fadeIn(150);
+            });
+
+            // reset border semua thumbnail
+            $(".thumb-item").css({
+                border: "none"
+            });
+
+            // tambahkan border ke yang diklik
+            $(this).css({
+                border: "2px solid #000000",
+                borderRadius: "12px"
+            });
+        });
     });
 
     function renderFasility({

@@ -20,7 +20,6 @@
                 <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="1500">0</h2>
                 <span class="text-[#808391]">Penginapan</span>
             </div>
-
             <div class="text-center">
                 <h2 class="counter text-2xl md:text-3xl font-semibold" data-count="2500">0</h2>
                 <span class="text-[#808391]">Pengunjung</span>
@@ -37,28 +36,126 @@
             </div>
         </div>
         <div class="mt-10 px-5 md:pl-20 md:pr-10">
-            <div class="bg-white shadow-lg grid grid-cols-2 md:flex gap-5 py-4 pl-5 pr-4 rounded-xl">
+            <div class="bg-white shadow-lg grid grid-cols-2 md:flex gap-5 py-4 pl-5 pr-4 rounded-xl relative dropdown-container">
                 <div class="grow">
                     <span>Check In:</span>
                     <h6 class="font-semibold">15 Nov 2025</h6>
                 </div>
+                <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow">
                     <span>Check Out:</span>
                     <h6 class="font-semibold">15 Nov 2025</h6>
                 </div>
+                <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow">
                     <span>Kapasitas</span>
                     <h6 class="font-semibold">02 Orang</h6>
                 </div>
+                <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow">
                     <span>Kamar Tidur</span>
                     <h6 class="font-semibold">02 Kamar</h6>
                 </div>
                 <div class="col-span-2">
-                    <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                        <div class="flex gap-3 justify-center items-center">
-                            <span>Cari Penginapan</span>
+                    <div class="relative">
+                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="toggleDropdown('search')">
+                            <div class="flex gap-3 justify-center items-center">
+                                <span>Cari Penginapan</span>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <!-- Dropdown Menu -->
+                <div id="dropdown-search" class="dropdown-menu hidden absolute right-0 top-52 md:top-22 left-0 bg-white shadow-lg rounded-xl p-4 z-10 flex-col gap-2 w-full border border-slate-100">
+                    <div class="md:flex justify-between">
+                        <div class="p-2">
+                            <h6 class="grow md:text-lg">Rekomendasi Terbaik</h6>
+                        </div>
+                        <div class="w-full md:w-auto">
+                            <a href="{{ route('facility') }}" class="bg-[#AEEF8B] inline-block md:flex px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                                <div class="flex gap-3 items-center text-[12px] md:text-[14px]">
+                                    <span>Lihat Semua Fasilitas</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- list -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-3">
+                        @foreach($facility as $val)
+                        <div class="rounded-xl overflow-hidden bg-white flex flex-row opacity-0 fade-up-scroll">
+                            <div class="w-[90px] aspect-square bg-gray-50 overflow-hidden group">
+                                <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
+                                    alt=""
+                                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            </div>
+
+                            <div class="p-3 grow flex flex-col">
+                                @if($val->is_free_for_guest == 1)
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
+                                        <span class="text-[10px]">
+                                            <strong class="text-red-500">FREE</strong> untuk tamu menginap
+                                        </span>
+                                    </div>
+                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
+                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                        </svg>
+                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if($val->is_membership == 1)
+                                <div class="flex justify-between items-center">
+                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
+                                    <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
+                                        <span class="text-[10px]">Membership 325rb/bln</span>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="flex justify-between items-center">
+                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
+                                    @if($val->is_free_for_guest == 0)
+                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
+                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                        </svg>
+                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
+                                    </div>
+                                    @endif
+                                </div>
+                                @endif
+
+                                <p class="mt-1 text-[#808080] text-[10px]">
+                                    {{ $val->description }}
+                                </p>
+
+                                <div class="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
+                                    @foreach($val->specification as $child)
+                                    <div class="flex gap-2 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                        <img src="{{ url($child->icon) }}" alt="" class="h-4">
+                                        <span class="text-[10px] whitespace-pre">{{ $child->value }}</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+
+                                <div class="flex flex-row justify-between items-center mt-1">
+                                    <label class="font-semibold text-sm">{{ $val->price }}</label>
+                                    <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
+                                        class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                                        <div class="flex gap-3 items-center text-[10px]">
+                                            <span>Lihat Detail</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -262,6 +359,13 @@
             }
         });
     });
+
+    function toggleDropdown(id) {
+        // Hide all other dropdowns
+        $('.dropdown-menu').not(`#dropdown-${id}`).addClass('hidden');
+        // Toggle current
+        $(`#dropdown-${id}`).toggleClass('hidden');
+    }
 
     function renderCategory() {
         $('#filter-category').empty();
