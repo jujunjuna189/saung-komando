@@ -2,9 +2,10 @@
 'id' => 'modal-id',
 'title' => 'Modal Title',
 'btn_text' => '',
+'justify' => 'justify-center',
 ])
 
-<div id="{{ $id }}" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300">
+<div id="{{ $id }}" class="fixed inset-0 z-50 hidden items-center {{ $justify }} bg-black/50 opacity-0 transition-opacity duration-300">
     <div class="bg-white rounded-3xl shadow-lg w-full max-w-xl relative scale-95 transition-all duration-300">
         <!-- Header -->
         <div class="flex justify-between items-center px-5 py-4 border-b border-slate-200">
