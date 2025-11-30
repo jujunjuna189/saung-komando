@@ -7,20 +7,20 @@
             <h1 class="text-2xl font-semibold">Fasilitas Saung Komando</h1>
         </div>
         <div class="mt-5">
-            <div class="flex justify-between items-center">
-                <div class="px-4 py-2 border rounded-full bg-[#F2F4F7]">
-                    <select name="filter-category" id="filter-category" onchange="filterCategoryChange(event)" class="border-none focus:outline-none">
+            <div class="flex gap-2 md:justify-between items-center">
+                <div class="px-4 py-2 border rounded-full bg-[#F2F4F7] flex-1 md:flex-none md:w-auto">
+                    <select name="filter-category" id="filter-category" onchange="filterCategoryChange(event)" class="border-none focus:outline-none w-full">
                         <!-- option filter category -->
                     </select>
                 </div>
-                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal" data-id="modalAdd">
-                    <div class="flex gap-1 items-center">
-                        <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal flex-1 md:flex-none md:w-auto" data-id="modalAdd">
+                    <div class="flex gap-1 items-center justify-center">
+                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus w-5 h-5 md:w-6 md:h-6">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        <span>Tambah Fasilitas</span>
+                        <span class="whitespace-nowrap">Tambah Fasilitas</span>
                     </div>
                 </button>
             </div>
@@ -158,9 +158,9 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-3">
-                    <span class="text-[9px]">${itemChild.value}</span>
+                <div class="bg-[#EDEFF1] flex items-center justify-center gap-0.5 rounded-full px-1 py-0.5 w-full">
+                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-3 w-3 object-contain">
+                    <span class="text-[8px] whitespace-nowrap">${itemChild.value}</span>
                 </div>
             `;
         });
@@ -237,7 +237,7 @@
                     ${freeGuest}
                     ${membership}
                     <p class="text-[#808080] text-[10px] mt-1">${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}</p>
-                    <div class="flex flex-wrap gap-1 my-2">
+                    <div class="grid grid-cols-3 gap-1 my-2">
                         ${specHtml}
                     </div>
                     <div class="grow"></div>

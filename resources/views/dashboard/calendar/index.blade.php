@@ -3,40 +3,40 @@
 @section('content')
 <div class="px-3 py-3 md:px-5 md:py-5">
     <div class="flex flex-col xl:flex-row gap-4">
-        <div class="bg-white rounded-2xl p-4 md:p-5 grow w-full min-w-0">
+        <div class="bg-white rounded-2xl p-4 md:p-5 w-full min-w-0 xl:flex-[7]">
             <div class="flex flex-col gap-4">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <h1 class="text-xl md:text-2xl font-semibold">Kalender Penginapan</h1>
+                <h1 class="text-xl md:text-2xl font-semibold">Kalender Penginapan</h1>
 
-                    <div class="flex gap-2 w-full md:w-auto justify-between">
-                        <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition">
+                <div class="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+                    <div class="flex gap-2 w-full md:w-auto md:order-2">
+                        <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition flex-[3] md:flex-none flex justify-center">
                             <div class="flex gap-1 items-center">
-                                <span class="text-xs md:text-sm font-semibold">Export To Excel</span>
+                                <span class="text-xs md:text-sm whitespace-nowrap">Export To Excel</span>
                             </div>
                         </div>
-                        <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal" data-id="modalAdd">
+                        <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal flex-[7] md:flex-none flex justify-center" data-id="modalAdd">
                             <div class="flex gap-1 items-center">
                                 <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M12 5l0 14" />
                                     <path d="M5 12l14 0" />
                                 </svg>
-                                <span class="text-xs md:text-sm font-semibold">Tambah Reservasi</span>
+                                <span class="text-xs md:text-sm whitespace-nowrap">Tambah Reservasi</span>
                             </div>
                         </button>
                     </div>
-                </div>
 
-                <div class="grid grid-cols-2 gap-2 items-center">
-                    <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full">
-                        <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent w-full" onchange="filterMonthChange(event)">
-                            <!-- Generate -->
-                        </select>
-                    </div>
-                    <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full">
-                        <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none bg-transparent w-full" onchange="filterFacilityChange(event)">
-                            <option value="">Saung Damar</option>
-                        </select>
+                    <div class="grid grid-cols-2 gap-2 items-center w-full md:w-auto md:flex md:order-1">
+                        <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full md:w-auto">
+                            <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent w-full" onchange="filterMonthChange(event)">
+                                <!-- Generate -->
+                            </select>
+                        </div>
+                        <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full md:w-auto">
+                            <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none bg-transparent w-full" onchange="filterFacilityChange(event)">
+                                <option value="">Saung Damar</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div id="calendar" class="w-full flex-wrap"></div>
             </div>
         </div>
-        <div class="bg-white rounded-2xl p-5 w-full xl:w-[24rem] shrink-0">
+        <div class="bg-white rounded-2xl p-5 w-full xl:flex-[3] shrink-0">
             <h4 class="font-semibold text-xl md:text-2xl">List Pesanan</h4>
             <div class="mt-5 flex gap-2">
                 <div class="px-4 py-2 border rounded-lg bg-[#F2F4F7] grow">
@@ -74,7 +74,7 @@
                     </select>
                 </div>
                 <button type="button" onclick="filterStatus()" class="px-4 py-2 border rounded-lg bg-[#F2F4F7] flex items-center justify-center hover:bg-slate-200 transition">
-                    <span class="font-semibold text-xs md:text-base">Filter</span>
+                    <span class="text-xs md:text-base">Filter</span>
                 </button>
             </div>
             <div class="mt-4 overflow-y-auto max-h-[600px] space-y-3 pr-1" id="container-reservation">
@@ -372,7 +372,7 @@
                     <p>${item.note}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
-                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] grow">
+                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] flex-[7]">
                         <select name="" id="" class="border-none focus:outline-none w-full bg-transparent">
                             <option value="${item.status}">${item.status}</option>
                             <option value="DP">DP</option>
@@ -380,7 +380,7 @@
                             <option value="Dilokasi">Dilokasi</option>
                         </select>
                     </div>
-                    <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED]">
+                    <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED] flex-[3]">
                         <p>${dateDiff(item.check_in, item.check_out)} Hari</p>
                     </div>
                 </div>
