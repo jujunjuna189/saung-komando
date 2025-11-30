@@ -1,20 +1,20 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="px-3 py-3 md:px-5 md:py-5">
+<div class="py-3 md:px-5 md:py-5">
     <div class="flex flex-col xl:flex-row gap-4">
-        <div class="bg-white rounded-2xl p-4 md:p-5 w-full min-w-0 xl:flex-[7]">
+        <div class="bg-white md:rounded-2xl p-4 md:p-5 w-full min-w-0 xl:flex-7">
             <div class="flex flex-col gap-4">
                 <h1 class="text-xl md:text-2xl font-semibold">Kalender Penginapan</h1>
 
                 <div class="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
                     <div class="flex gap-2 w-full md:w-auto md:order-2">
-                        <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition flex-[3] md:flex-none flex justify-center">
+                        <div class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition flex-3 md:flex-none flex justify-center">
                             <div class="flex gap-1 items-center">
                                 <span class="text-xs md:text-sm whitespace-nowrap">Export To Excel</span>
                             </div>
                         </div>
-                        <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal flex-[7] md:flex-none flex justify-center" data-id="modalAdd">
+                        <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9de07a] transition open-modal flex-7 md:flex-none flex justify-center" data-id="modalAdd">
                             <div class="flex gap-1 items-center">
                                 <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -34,35 +34,34 @@
                         </div>
                         <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full md:w-auto">
                             <select name="filter-facility" id="filter-facility" class="border-none focus:outline-none bg-transparent w-full" onchange="filterFacilityChange(event)">
-                                <option value="">Saung Damar</option>
+                                <!-- Genrate -->
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Legend -->
-            <!-- Legend -->
-            <div class="mt-6 flex flex-wrap justify-between md:justify-end gap-4 text-xs font-medium">
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 rounded bg-green-300"></div>
-                    <span>Lunas</span>
+            <div class="flex flex-col-reverse md:flex-col">
+                <div class="mt-4 overflow-x-auto">
+                    <div id="calendar" class="w-full flex-wrap"></div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 rounded bg-yellow-300"></div>
-                    <span>Baru DP</span>
+                <div class="mt-5 md:mt-3 flex flex-wrap justify-end md:justify-end gap-4 text-xs font-medium">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded bg-green-300"></div>
+                        <span>Lunas</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded bg-yellow-300"></div>
+                        <span>Baru DP</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded bg-blue-300"></div>
+                        <span>Di Lokasi</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 rounded bg-blue-300"></div>
-                    <span>Di Lokasi</span>
-                </div>
-            </div>
-
-            <div class="mt-4 overflow-x-auto">
-                <div id="calendar" class="w-full flex-wrap"></div>
             </div>
         </div>
-        <div class="bg-white rounded-2xl p-5 w-full xl:flex-[3] shrink-0">
+        <div class="bg-white rounded-2xl p-5 w-full xl:flex-3 shrink-0">
             <h4 class="font-semibold text-xl md:text-2xl">List Pesanan</h4>
             <div class="mt-5 flex gap-2">
                 <div class="px-4 py-2 border rounded-lg bg-[#F2F4F7] grow">
