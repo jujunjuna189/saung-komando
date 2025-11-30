@@ -1,8 +1,8 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="px-5 py-5">
-    <div class="bg-white rounded-2xl p-5">
+<div class="md:px-5 py-5">
+    <div class="bg-white md:rounded-2xl p-5">
         <div class="">
             <h1 class="text-2xl font-semibold">Fasilitas Saung Komando</h1>
         </div>

@@ -1,8 +1,8 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="px-3 py-3 md:px-5 md:py-5">
-    <div class="bg-white rounded-2xl p-4 md:p-5 w-full">
+<div class="py-3 md:px-5 md:py-5">
+    <div class="bg-white md:rounded-2xl p-4 md:p-5 w-full">
         <div class="">
             <h1 class="text-xl md:text-2xl font-semibold">Kode Promo</h1>
         </div>
@@ -13,8 +13,8 @@
                         <option value="">November 2025</option>
                     </select>
                 </div>
-                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal w-1/2 md:w-auto" data-id="modalAdd">
-                    <div class="flex gap-1 items-center justify-center">
+                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer open-modal md:w-auto" data-id="modalAdd">
+                    <div class="flex gap-1 items-center justify-center text-[12px] md:text-base">
                         <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5l0 14" />
@@ -25,7 +25,7 @@
                 </button>
             </div>
         </div>
-        <div class="mt-7 w-full overflow-x-auto" style="max-width: calc(100vw - 60px);">
+        <div class="mt-7 w-full overflow-x-auto" style="max-width: calc(100vw - 40px);">
             <div class="min-w-[800px]">
                 <div class="grid grid-cols-8 bg-[#F2F4F7] rounded-xl font-semibold text-xs md:text-sm">
                     <div class="py-3 px-3 text-center">#</div>

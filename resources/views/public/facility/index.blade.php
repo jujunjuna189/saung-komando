@@ -82,12 +82,12 @@
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                         <label for="price" class="font-semibold text-sm md:text-xl">{{ $val->price }}</label>
-                        <div class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
