@@ -17,14 +17,14 @@ class FacilityController extends Controller
 {
     public function show(Request $request)
     {
-        $model = FacilityModel::when(!empty($request->category), function ($q) use ($request) {
+        $model = FacilityModel::when(! empty($request->category), function ($q) use ($request) {
             $q->where('category', $request->category);
         })->with('thumbnails', 'specification')->get();
 
         return response()->json([
-            "status" => 'success',
-            "message" => 'Berhasil mengambil fasilitas',
-            "data" => $model,
+            'status' => 'success',
+            'message' => 'Berhasil mengambil fasilitas',
+            'data' => $model,
         ]);
     }
 
@@ -50,45 +50,93 @@ class FacilityController extends Controller
             if (count($request->file('files')) > 0) {
                 FacilityThumbnailModel::where('facility_id', $model->id)->delete();
                 foreach ($request->file('files') as $file) {
-                    $filename = Str::uuid() . '.webp';
+                    $filename = Str::uuid().'.webp';
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($file);
                     $encoded = $image->toWebp(60);
-                    Storage::disk('public')->put('fasility/' . $filename, $encoded);
+                    Storage::disk('public')->put('fasility/'.$filename, $encoded);
                     $spec = new FacilityThumbnailModel();
                     $spec->facility_id = $model->id;
-                    $spec->path = 'fasility/' . $filename;
+                    $spec->path = 'fasility/'.$filename;
                     $spec->save();
                 }
             }
 
             DB::commit();
+
             return response()->json([
-                "status" => 'success',
-                "message" => 'Berhasil membuat fasilitas',
-                "data" => $model,
+                'status' => 'success',
+                'message' => 'Berhasil membuat fasilitas',
+                'data' => $model,
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return response()->json([
-                "status" => 'failed',
-                "message" => $th,
-                "data" => [],
+                'status' => 'failed',
+                'message' => $th,
+                'data' => [],
             ]);
         }
     }
 
     public function update(Request $request)
     {
-        $model = FacilityModel::find($request->id);
-        $model->fill($request->except('id'));
-        $model->save();
+        try {
+            DB::beginTransaction();
+            $model = FacilityModel::find($request->id);
+            if (! $model) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Fasilitas tidak ditemukan',
+                    'data' => [],
+                ]);
+            }
 
-        return response()->json([
-            "status" => 'success',
-            "message" => 'Berhasil mengubah fasilitas',
-            "data" => $model,
-        ]);
+            $model->fill($request->except('spesification', 'files', 'id'));
+            $model->save();
+
+            if ($request->has('spesification') && count(json_decode($request->spesification)) > 0) {
+                FacilitySpecificationModel::where('facility_id', $model->id)->delete();
+                foreach (json_decode($request->spesification) as $val) {
+                    $spec = new FacilitySpecificationModel();
+                    $spec->facility_id = $model->id;
+                    $spec->icon = $val->icon;
+                    $spec->value = $val->value;
+                    $spec->save();
+                }
+            }
+
+            if ($request->hasFile('files') && count($request->file('files')) > 0) {
+                foreach ($request->file('files') as $file) {
+                    $filename = Str::uuid().'.webp';
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($file);
+                    $encoded = $image->toWebp(60);
+                    Storage::disk('public')->put('fasility/'.$filename, $encoded);
+                    $spec = new FacilityThumbnailModel();
+                    $spec->facility_id = $model->id;
+                    $spec->path = 'fasility/'.$filename;
+                    $spec->save();
+                }
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Berhasil mengubah fasilitas',
+                'data' => $model,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 'failed',
+                'message' => $th->getMessage(),
+                'data' => [],
+            ]);
+        }
     }
 
     public function delete(Request $request)
@@ -97,9 +145,9 @@ class FacilityController extends Controller
         $model->delete();
 
         return response()->json([
-            "status" => 'success',
-            "message" => 'Berhasil menghapus fasilitas',
-            "data" => $model,
+            'status' => 'success',
+            'message' => 'Berhasil menghapus fasilitas',
+            'data' => $model,
         ]);
     }
 }

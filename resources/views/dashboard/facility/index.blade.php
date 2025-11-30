@@ -115,10 +115,97 @@
         </div>
     </x-slot:footer>
 </x-dashboard.modal>
+
+
+<!-- Edit -->
+<x-dashboard.modal id="modalEdit" title="Edit Fasilitas" btn_text="Simpan Perubahan" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-2 gap-2">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
+            <input type="text" name="title" id="edit-title" placeholder="Masukan Nama Fasilitas" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Kategori<span class="text-red-500">*</span></label>
+            <select name="category" id="edit-category" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <!-- Option in database section -->
+            </select>
+        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Deskripsi<span class="text-red-500">*</span></label>
+        <textarea name="description" id="edit-description" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
+    </div>
+    <div class="flex gap-2 mt-3">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Maxs. Kapasitas<span class="text-red-500">*</span></label>
+            <input type="text" name="max-capasity" id="edit-max-capasity" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Harga Per Item<span class="text-red-500">*</span></label>
+            <input type="text" name="price" id="edit-price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="">
+            <label for="" class="font-semibold text-[12px]">Rating<span class="text-red-500">*</span></label>
+            <input type="text" name="rating" id="edit-rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="flex gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
+            <input type="text" name="bedroom" id="edit-bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div>
+            <label for="" class="font-semibold text-[12px]">K. Mandi<span class="text-red-500">*</span></label>
+            <input type="text" name="bathroom" id="edit-bathroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Link Video Youtube<span class="text-red-500">*</span></label>
+            <input type="text" name="link" id="edit-link" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
+        <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-6">
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload1" previewId="editImageUpload1" required />
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload2" previewId="editImageUpload2" required />
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload3" previewId="editImageUpload3" required />
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload4" previewId="editImageUpload4" required />
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload5" previewId="editImageUpload5" required />
+            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload6" previewId="editImageUpload6" required />
+        </div>
+    </div>
+    <div class="mt-5 border p-4 rounded-xl">
+        <div class="grid grid-cols-2 gap-2">
+            <div>
+                <label for="" class="font-semibold text-[12px]">Fasilitas Olahraga</label>
+                <div class="flex gap-2 items-center mt-4">
+                    <input type="checkbox" name="free-for-guest" id="edit-free-for-guest" class="border rounded-sm bg-[#F1F3F6] w-4 h-4">
+                    <label for="" class="text-[12px]">FREE untuk tamu</label>
+                </div>
+                <div class="flex gap-2 items-center mt-2">
+                    <input type="checkbox" name="membership" id="edit-membership" class="border rounded-sm bg-[#F1F3F6] w-4 h-4">
+                    <label for="" class="text-[12px]">Membership</label>
+                </div>
+            </div>
+            <div class="flex flex-col justify-start items-center">
+                <label for="" class="font-semibold text-[12px]">Luas Area Terbuka</label>
+                <input type="text" name="area" id="edit-area" placeholder="-" class="border rounded-xl bg-[#F1F3F6] w-full px-5 py-3 mt-4">
+            </div>
+        </div>
+    </div>
+    <x-slot:footer>
+        <div class="flex justify-start items-center px-5 py-4 border-t border-slate-200 gap-2">
+            <button type="button" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer" onclick="onUpdate()">Simpan Perubahan</button>
+        </div>
+    </x-slot:footer>
+</x-dashboard.modal>
 @endsection
 
 @section('script')
 <script>
+    var facilitiesData = [];
+    var currentEditId = null;
+
     $(document).ready(function() {
         getCategory({
             onSuccess: function(response) {
@@ -136,11 +223,25 @@
                     });
                     $("#filter-category").append(element);
                     $("#modalAdd #category").append(element);
+                    $("#modalEdit #edit-category").append(element);
                 });
             }
         });
         getData({});
     });
+
+    function openModal(id) {
+        const modal = $('#' + id);
+        const box = modal.find('> div');
+
+        modal.removeClass('hidden').addClass('flex');
+        setTimeout(() => {
+            modal.removeClass('opacity-0');
+            box.removeClass('scale-95');
+            box.removeClass('-mx-[100px]');
+            box.addClass('mx-4');
+        }, 10);
+    }
 
     function renderCategory({
         value,
@@ -267,6 +368,7 @@
             data: header,
             onLoader: false,
             onSuccess: function(response) {
+                facilitiesData = response.data;
                 $("#container-facilitys").empty();
                 $.each(response.data, function(i, item) {
                     const element = renderFasility(item);
@@ -276,21 +378,21 @@
         });
     }
 
-    function form() {
-        const title = $('#title').val();
-        const category = $('#category').val();
-        const description = $('#description').val();
-        const price = $('#price').val();
-        const rating = $('#rating').val();
-        const link = $('#link').val();
-        const freeForGuest = $('#free-for-guest').prop('checked');
-        const membership = $('#membership').prop('checked');
+    function getFormData(prefix = "") {
+        const title = $('#' + prefix + 'title').val();
+        const category = $('#' + prefix + 'category').val();
+        const description = $('#' + prefix + 'description').val();
+        const price = $('#' + prefix + 'price').val();
+        const rating = $('#' + prefix + 'rating').val();
+        const link = $('#' + prefix + 'link').val();
+        const freeForGuest = $('#' + prefix + 'free-for-guest').prop('checked');
+        const membership = $('#' + prefix + 'membership').prop('checked');
 
         // Spesification
-        const maxCapasity = $('#max-capasity').val();
-        const bedroom = $('#bedroom').val();
-        const bathroom = $('#bathroom').val();
-        const area = $('#area').val();
+        const maxCapasity = $('#' + prefix + 'max-capasity').val();
+        const bedroom = $('#' + prefix + 'bedroom').val();
+        const bathroom = $('#' + prefix + 'bathroom').val();
+        const area = $('#' + prefix + 'area').val();
 
         const spesificationItem = [];
         if (maxCapasity !== null && maxCapasity !== undefined && maxCapasity !== "") {
@@ -323,24 +425,15 @@
 
         // Files
         const files = [];
+        // Adjust ID for image upload based on prefix
+        // The modalAdd uses image_upload1, modalEdit uses edit_image_upload1
+        const idPrefix = prefix === "edit-" ? "edit_image_upload" : "image_upload";
 
-        if ($('#image_upload1')[0].files[0] != undefined && $('#image_upload1')[0].files[0] != null && $('#image_upload1')[0].files[0] != "") {
-            files.push($('#image_upload1')[0].files[0]);
-        }
-        if ($('#image_upload2')[0].files[0] != undefined && $('#image_upload2')[0].files[0] != null && $('#image_upload2')[0].files[0] != "") {
-            files.push($('#image_upload2')[0].files[0]);
-        }
-        if ($('#image_upload3')[0].files[0] != undefined && $('#image_upload3')[0].files[0] != null && $('#image_upload3')[0].files[0] != "") {
-            files.push($('#image_upload3')[0].files[0]);
-        }
-        if ($('#image_upload4')[0].files[0] != undefined && $('#image_upload4')[0].files[0] != null && $('#image_upload4')[0].files[0] != "") {
-            files.push($('#image_upload4')[0].files[0]);
-        }
-        if ($('#image_upload5')[0].files[0] != undefined && $('#image_upload5')[0].files[0] != null && $('#image_upload5')[0].files[0] != "") {
-            files.push($('#image_upload5')[0].files[0]);
-        }
-        if ($('#image_upload6')[0].files[0] != undefined && $('#image_upload6')[0].files[0] != null && $('#image_upload6')[0].files[0] != "") {
-            files.push($('#image_upload6')[0].files[0]);
+        for (let i = 1; i <= 6; i++) {
+            const el = $('#' + idPrefix + i)[0];
+            if (el && el.files[0]) {
+                files.push(el.files[0]);
+            }
         }
 
         const data = {
@@ -349,6 +442,7 @@
             description: description,
             price: price,
             rating: rating,
+            link: link,
             freeForGuest: freeForGuest,
             membership: membership,
             spesification: spesificationItem,
@@ -356,6 +450,90 @@
         };
 
         return data;
+    }
+
+    function form() {
+        return getFormData("");
+    }
+
+    function editData(id) {
+        currentEditId = id;
+        const item = facilitiesData.find(x => x.id == id);
+        if (!item) return;
+
+        $('#edit-title').val(item.title);
+        $('#edit-category').val(item.category);
+        $('#edit-description').val(item.description);
+        $('#edit-price').val(item.price);
+        $('#edit-rating').val(item.rating);
+        $('#edit-link').val(item.link || "");
+
+        $('#edit-free-for-guest').prop('checked', item.is_free_for_guest == 1);
+        $('#edit-membership').prop('checked', item.is_membership == 1);
+
+        // Reset specs
+        $('#edit-max-capasity').val('');
+        $('#edit-bedroom').val('');
+        $('#edit-bathroom').val('');
+        $('#edit-area').val('');
+
+        if (item.specification) {
+            $.each(item.specification, function(i, spec) {
+                if (spec.icon.includes('person')) $('#edit-max-capasity').val(parseFloat(spec.value));
+                if (spec.icon.includes('bedroom')) $('#edit-bedroom').val(parseFloat(spec.value));
+                if (spec.icon.includes('bathroom')) $('#edit-bathroom').val(parseFloat(spec.value));
+                if (spec.icon.includes('area')) $('#edit-area').val(spec.value);
+            });
+        }
+
+        // Images
+        for(let i=1; i<=6; i++) {
+             $(`#editImageUpload${i}`).attr('src', '').addClass('hidden');
+             $(`#noImageText-editImageUpload${i}`).removeClass('hidden');
+             $(`#edit_image_upload${i}`).val('');
+        }
+
+        if (item.thumbnails) {
+            $.each(item.thumbnails, function(i, img) {
+                if (i < 6) {
+                    $(`#editImageUpload${i+1}`).attr('src', `{{ asset('storage') }}/${img.path}`).removeClass('hidden');
+                    $(`#noImageText-editImageUpload${i+1}`).addClass('hidden');
+                }
+            });
+        }
+
+        openModal('modalEdit');
+    }
+
+    function onUpdate() {
+        const data = getFormData("edit-");
+        const formData = new FormData();
+        formData.append('id', currentEditId);
+        formData.append('title', data.title);
+        formData.append('category', data.category);
+        formData.append('description', data.description);
+        formData.append('price', data.price);
+        formData.append('rating', data.rating);
+        formData.append('link', data.link);
+        formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
+        formData.append('is_membership', data.membership ? 1 : 0);
+        // Spesification
+        formData.append('spesification', JSON.stringify(data.spesification));
+        $.each(Object.keys(data.files), function(i, item) {
+            formData.append('files[]', data.files[item]);
+        });
+
+        // Save
+        requestServer({
+            url: url + '/api/facility/update',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", value.message);
+                getData({});
+                closeModal('modalEdit');
+            },
+        });
     }
 
     function onSubmit() {
@@ -366,6 +544,7 @@
         formData.append('description', data.description);
         formData.append('price', data.price);
         formData.append('rating', data.rating);
+        formData.append('link', data.link);
         formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
         formData.append('is_membership', data.membership ? 1 : 0);
         // Spesification

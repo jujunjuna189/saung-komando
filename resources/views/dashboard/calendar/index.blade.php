@@ -139,6 +139,74 @@
         <button type="button" onclick="onSubmit()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full" data-id="modalAdd">Tambah Reservasi</button>
     </div>
 </x-dashboard.modal>
+
+<!-- Edit -->
+<x-dashboard.modal id="modalEdit" title="Edit Reservasi" footer="false" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-2 gap-2">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
+            <input type="text" name="name" id="edit-name" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
+            <select name="facility_id" id="edit-facility_id" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <!-- From data facility -->
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
+            <input type="text" name="telp" id="edit-telp" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow w-full">
+            <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
+            <input type="text" name="extra_bed" id="edit-extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
+            <input type="number" name="total_guest" id="edit-total_guest" placeholder="0" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="">
+            <label for="" class="font-semibold text-[12px]">Pembayaran<span class="text-red-500">*</span></label>
+            <select name="status" id="edit-status" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="DP">DP</option>
+                <option value="Lunas">Lunas</option>
+                <option value="Dilokasi">Dilokasi</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check In<span class="text-red-500">*</span></label>
+            <input type="date" name="check_in" id="edit-check_in" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check Out<span class="text-red-500">*</span></label>
+            <input type="date" name="check_out" id="edit-check_out" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Catatan <i class="text-[#808080]">(Optional)</i></label>
+        <textarea name="note" id="edit-note" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
+    </div>
+    <div class="mt-3">
+        <button type="button" onclick="onUpdate()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full">Simpan Perubahan</button>
+    </div>
+</x-dashboard.modal>
+
+<!-- Delete -->
+<x-dashboard.modal id="modalDelete" title="Hapus Reservasi" footer="false" justify="justify-center md:justify-center">
+    <div class="text-center md:text-left">
+        <p>Apakah anda yakin ingin menghapus data ini?</p>
+    </div>
+    <div class="mt-5 flex gap-2 justify-end">
+        <button type="button" class="px-4 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 transition close-modal" data-id="modalDelete">Batal</button>
+        <button type="button" onclick="onDelete()" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition">Hapus</button>
+    </div>
+</x-dashboard.modal>
 @endsection
 
 @section('script')
@@ -149,6 +217,9 @@
     let endDate = null;
 
     let events = [];
+    let reservationsData = [];
+    let currentEditId = null;
+    let currentDeleteId = null;
 
     const categoryColor = {
         A: "bg-green-300",
@@ -342,10 +413,10 @@
                         </div>
                         <!-- Dropdown Menu -->
                         <div id="dropdown-${item.id}" class="dropdown-menu hidden absolute right-0 top-8 bg-white shadow-lg rounded-xl p-2 z-10 flex flex-col gap-2 min-w-[150px] border border-slate-100">
-                            <button class="bg-[#F2F4F7] hover:bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition">
+                            <button class="bg-[#F2F4F7] hover:bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition" onclick="editData('${item.id}')">
                                 Edit Reservasi
                             </button>
-                            <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition">
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm w-full text-left transition" onclick="deleteData('${item.id}')">
                                 Hapus
                             </button>
                         </div>
@@ -458,6 +529,7 @@
             onLoader: false,
             onSuccess: function(response) {
                 $('#modalAdd #facility_id').empty();
+                $('#modalEdit #edit-facility_id').empty();
                 $('#filter-facility').empty();
                 var element = renderFasility({
                     value: "",
@@ -470,6 +542,7 @@
                         category: item.title,
                     });
                     $('#modalAdd #facility_id').append(element);
+                    $('#modalEdit #edit-facility_id').append(element);
                     $('#filter-facility').append(element);
                 });
             },
@@ -485,6 +558,7 @@
             data: header,
             onLoader: false,
             onSuccess: function(response) {
+                reservationsData = response.data;
                 renderEvents(response.data);
                 $('#container-reservation').empty();
                 $.each(response.data, function(i, item) {
@@ -507,16 +581,16 @@
         renderCalendar();
     }
 
-    function form() {
-        const name = $('#name').val();
-        const facilityId = $('#facility_id').val();
-        const telp = $('#telp').val();
-        const totalGuest = $('#total_guest').val();
-        const status = $('#status').val();
-        const checkIn = $('#check_in').val();
-        const checkOut = $('#check_out').val();
-        const note = $('#note').val();
-        const extraBed = $('#extra_bed').val();
+    function getFormData(prefix = "") {
+        const name = $('#' + prefix + 'name').val();
+        const facilityId = $('#' + prefix + 'facility_id').val();
+        const telp = $('#' + prefix + 'telp').val();
+        const totalGuest = $('#' + prefix + 'total_guest').val();
+        const status = $('#' + prefix + 'status').val();
+        const checkIn = $('#' + prefix + 'check_in').val();
+        const checkOut = $('#' + prefix + 'check_out').val();
+        const note = $('#' + prefix + 'note').val();
+        const extraBed = $('#' + prefix + 'extra_bed').val();
 
         const data = {
             name: name,
@@ -531,6 +605,97 @@
         };
 
         return data;
+    }
+
+    function form() {
+        return getFormData("");
+    }
+
+    function openModal(id) {
+        const modal = $('#' + id);
+        const box = modal.find('> div');
+
+        modal.removeClass('hidden').addClass('flex');
+        setTimeout(() => {
+            modal.removeClass('opacity-0');
+            box.removeClass('scale-95');
+            box.removeClass('-mx-[100px]');
+            box.addClass('mx-4');
+        }, 10);
+    }
+
+    function editData(id) {
+        currentEditId = id;
+        const item = reservationsData.find(x => x.id == id);
+        if (!item) return;
+
+        $('#edit-name').val(item.name);
+        $('#edit-facility_id').val(item.facility_id);
+        $('#edit-telp').val(item.telp);
+        $('#edit-total_guest').val(item.total_guest);
+        $('#edit-status').val(item.status);
+        $('#edit-check_in').val(item.check_in.split(' ')[0]);
+        $('#edit-check_out').val(item.check_out.split(' ')[0]);
+        $('#edit-note').val(item.note);
+        $('#edit-extra_bed').val(item.extra_bed);
+
+        // Hide dropdown
+        $('.dropdown-menu').addClass('hidden');
+
+        openModal('modalEdit');
+    }
+
+    function onUpdate() {
+        const data = getFormData("edit-");
+        const formData = new FormData();
+        formData.append('id', currentEditId);
+        formData.append('name', data.name);
+        formData.append('facility_id', data.facilityId);
+        formData.append('telp', data.telp);
+        formData.append('total_guest', data.totalGuest);
+        formData.append('status', data.status);
+        formData.append('check_in', data.checkIn);
+        formData.append('check_out', data.checkOut);
+        formData.append('note', data.note);
+        formData.append('extra_bed', data.extraBed);
+
+        // Save
+        requestServer({
+            url: url + '/api/reservation/update',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", value.message);
+                getData({
+                    header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+                });
+                closeModal('modalEdit');
+            },
+        });
+    }
+
+    function deleteData(id) {
+        currentDeleteId = id;
+        $('.dropdown-menu').addClass('hidden');
+        openModal('modalDelete');
+    }
+
+    function onDelete() {
+        const formData = new FormData();
+        formData.append('id', currentDeleteId);
+
+        requestServer({
+            url: url + '/api/reservation/delete',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", value.message);
+                getData({
+                    header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+                });
+                closeModal('modalDelete');
+            },
+        });
     }
 
     function onSubmit() {
