@@ -1,27 +1,27 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="px-5 py-5">
-    <div class="bg-white rounded-2xl p-5">
+<div class="md:px-5 py-5">
+    <div class="bg-white md:rounded-2xl p-5">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
             <div class="w-full md:w-auto flex justify-between items-center">
                 <div>
-                    <h1 class="text-xl md:text-2xl font-semibold">Overview</h1>
-                    <p class="text-sm md:text-base">Selasa, 15 November 2025</p>
+                    <h1 class="text-lg md:text-2xl font-semibold">Overview</h1>
+                    <p class="text-[12px] md:text-base">Selasa, 15 November 2025</p>
                 </div>
                 <div class="md:hidden">
-                    <div class="px-4 py-4 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer text-xs">Export to Excel</div>
+                    <div class="px-3 py-3 md:px-4 md:py-4 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer text-[10px] md:text-base">Export to Excel</div>
                 </div>
             </div>
 
             <div class="w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
                 <ul class="flex justify-between md:justify-end gap-2 md:min-w-max w-full">
-                    <li class="px-4 py-2 border rounded-full flex-[6] md:flex-none md:w-auto">
+                    <li class="grow px-4 py-2 border rounded-full flex items-center md:w-auto">
                         <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent w-full" onchange="filterMonthChange(event)">
                             <!-- Render generate -->
                         </select>
                     </li>
-                    <li class="px-4 py-2 border rounded-full flex-[4] md:flex-none md:w-auto">
+                    <li class="px-4 py-2 border rounded-full flex items-center md:w-auto">
                         <select name="status" id="status" class="border-none focus:outline-none bg-transparent w-full" onchange="filterStatusChange(event)">
                             <option value="">Semua</option>
                             <option value="DP">DP</option>
@@ -29,7 +29,9 @@
                             <option value="Dilokasi">Dilokasi</option>
                         </select>
                     </li>
-                    <li class="hidden md:block px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer">Export To Excel</li>
+                    <li class="hidden px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full items-center cursor-pointer md:flex">
+                        <span>Export To Excel</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -105,7 +107,7 @@
                     <p>${item.note}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
-                    <div class="px-4 py-4 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] flex-[6] md:grow md:basis-auto">
+                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] flex-[6] md:grow md:basis-auto">
                         <select name="" id="" class="border-none focus:outline-none w-full">
                             <option value="${item.status}">${item.status}</option>
                             <option value="DP">DP</option>
@@ -113,7 +115,7 @@
                             <option value="Dilokasi">Dilokasi</option>
                         </select>
                     </div>
-                    <div class="px-4 py-4 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED] flex-[4] md:flex-initial">
+                    <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED] flex-[4] md:flex-initial">
                         <p>${dateDiff(item.check_in, item.check_out)} Hari</p>
                     </div>
                 </div>
