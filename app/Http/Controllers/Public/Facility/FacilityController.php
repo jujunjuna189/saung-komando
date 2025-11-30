@@ -20,7 +20,7 @@ class FacilityController extends Controller
         return view('public.facility.index', $data);
     }
 
-    public function FunctionName(Request $request)
+    public function detail(Request $request)
     {
         $category = FacilityCategoryModel::all();
         $facility = FacilityModel::with('thumbnails', 'specification')->get();
