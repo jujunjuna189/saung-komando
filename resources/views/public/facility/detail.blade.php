@@ -83,7 +83,7 @@
                                 <h4 class="font-semibold text-lg">{{ $detail->price }}</h4>
                             </div>
                             <div>
-                                <div onclick="" class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 open-modal" data-id="modalCheckout">
                                     <div class="flex gap-3 items-center">
                                         <span>Pesan Sekarang</span>
                                     </div>
@@ -211,8 +211,8 @@
     </div>
 </div>
 
-<x-dashboard.modal id="modalAdd" title="Pesan" footer="false" justify="justify-center md:justify-end">
-    <div class="grid grid-cols-2 gap-2">
+<x-public.modal id="modalCheckout" title="Tambah Reservasi" footer="false" justify="justify-center md:justify-end">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Nama Pemesan<span class="text-red-500">*</span></label>
             <input type="text" name="name" id="name" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -224,5 +224,139 @@
             </select>
         </div>
     </div>
-</x-dashboard.modal>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">No WhatsApp<span class="text-red-500">*</span></label>
+            <input type="text" name="telp" id="telp" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow w-full">
+            <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
+            <input type="text" name="extra_bed" id="extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+        <div>
+            <label for="" class="font-semibold text-[12px]">Jumlah Penginap<span class="text-red-500">*</span></label>
+            <input type="number" name="total_guest" id="total_guest" placeholder="0" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="">
+            <label for="" class="font-semibold text-[12px]">Pembayaran<span class="text-red-500">*</span></label>
+            <select name="status" id="status" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="DP">DP</option>
+                <option value="Lunas">Lunas</option>
+                <option value="Dilokasi">Dilokasi</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check In<span class="text-red-500">*</span></label>
+            <input type="date" name="check_in" id="check_in" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Check Out<span class="text-red-500">*</span></label>
+            <input type="date" name="check_out" id="check_out" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Catatan <i class="text-[#808080]">(Optional)</i></label>
+        <textarea name="note" id="note" cols="30" rows="3" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2" placeholder="Masukan deskripsi"></textarea>
+    </div>
+    <div class="mt-3">
+        <button type="button" onclick="onSubmit()" class="bg-[#AEEF8B] text-gray-700 px-5 py-3 rounded-xl hover:bg-black hover:text-white close-modal cursor-pointer w-full" data-id="modalAdd">Tambah Reservasi</button>
+    </div>
+</x-public.modal>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        getFacility({});
+    });
+
+    function renderFasility({
+        value,
+        category
+    }) {
+        const element = `
+            <option value="${value}">${category}</option>
+        `;
+
+        return element;
+    }
+
+    function getFacility({
+        header = {},
+    }) {
+        requestServer({
+            url: url + '/api/facility/show',
+            type: "GET",
+            data: header,
+            onLoader: false,
+            onSuccess: function(response) {
+                $('#modalCheckout #facility_id').empty();
+                $.each(response.data, function(i, item) {
+                    const element = renderFasility({
+                        value: item.id,
+                        category: item.title,
+                    });
+                    $('#modalCheckout #facility_id').append(element);
+                });
+            },
+        });
+    }
+
+    function form() {
+        const name = $('#name').val();
+        const facilityId = $('#facility_id').val();
+        const telp = $('#telp').val();
+        const totalGuest = $('#total_guest').val();
+        const status = $('#status').val();
+        const checkIn = $('#check_in').val();
+        const checkOut = $('#check_out').val();
+        const note = $('#note').val();
+        const extraBed = $('#extra_bed').val();
+
+        const data = {
+            name: name,
+            facilityId: facilityId,
+            telp: telp,
+            totalGuest: totalGuest,
+            status: status,
+            checkIn: checkIn,
+            checkOut: checkOut,
+            note: note,
+            extraBed: extraBed,
+        };
+
+        return data;
+    }
+
+    function onSubmit() {
+        const data = form();
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('facility_id', data.facilityId);
+        formData.append('telp', data.telp);
+        formData.append('total_guest', data.totalGuest);
+        formData.append('status', data.status);
+        formData.append('check_in', data.checkIn);
+        formData.append('check_out', data.checkOut);
+        formData.append('note', data.note);
+        formData.append('extra_bed', data.extraBed);
+        // Save
+        requestServer({
+            url: url + '/api/reservation/create',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", value.message);
+                getData({
+                    header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+                });
+                closeModal('modalAdd');
+            },
+        });
+    }
+</script>
 @endsection

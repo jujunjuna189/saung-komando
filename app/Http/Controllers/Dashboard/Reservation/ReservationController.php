@@ -53,7 +53,7 @@ class ReservationController extends Controller
 
         return response()->json([
             "status" => 'success',
-            "message" => 'Berhasil mengambil reservasi',
+            "message" => 'Berhasil membuat reservasi',
             "data" => $model,
         ]);
     }
