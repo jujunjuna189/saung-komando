@@ -132,7 +132,7 @@
                                 @endif
 
                                 <p class="mt-1 text-[#808080] text-[10px]">
-                                    {{ $val->description }}
+                                    {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                                 </p>
 
                                 <div class="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
@@ -289,7 +289,7 @@
                 </div>
                 @endif
                 <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
-                    {{ $val->description }}
+                    {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                 </p>
                 <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
                     @foreach($val->specification as $child)
@@ -460,7 +460,7 @@
                     ${freeGuest}
                     ${membership}
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
-                        ${item.description}
+                        ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
                     <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
                         ${specHtml}
