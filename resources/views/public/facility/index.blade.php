@@ -7,7 +7,7 @@
             <div>
                 <h1 class="font-semibold text-center md:text-start text-xl md:text-[35px]">Pilihan Terbaik Keluarga</h1>
                 <div class="text-center my-3 md:text-end md:text-[20px] md:hidden flex gap-1">
-                    <span><span class="font-bold">Akses Gratis</span> kesemua fasilitas bagi tamu yang menginap.</span>
+                    <span><span class="font-bold">Akses Gratis</span> ke semua fasilitas bagi tamu yang menginap.</span>
                 </div>
                 <div class="flex overflow-x-auto no-scrollbar">
                     <ul class="flex gap-2" id="filter-category">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="text-end text-[20px] hidden md:block">
-                <span class="font-bold">Akses Gratis</span> kesemua fasilitas<br />bagi tamu yang menginap.
+                <span class="font-bold">Akses Gratis</span> ke semua fasilitas<br />bagi tamu yang menginap.
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@
             <div>
                 <ul class="mt-5 md:mt-12 text-[#808080] space-y-1">
                     <li>Graha Aula</li>
-                    <li>Rumput Sitetis</li>
+                    <li>Rumput Sintetis</li>
                     <li>Mini Zoo Aviary</li>
                     <li>Camping Ground</li>
                     <li class="font-semibold">Lihat Semua Fasilitas</li>
