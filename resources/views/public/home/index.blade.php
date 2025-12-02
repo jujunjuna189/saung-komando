@@ -137,9 +137,9 @@
 
                                 <div class="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
                                     @foreach($val->specification as $child)
-                                    <div class="flex gap-2 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                                        <span class="text-[10px] whitespace-pre">{{ $child->value }}</span>
+                                        <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
                                     </div>
                                     @endforeach
                                 </div>
@@ -291,11 +291,11 @@
                 <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                     {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                 </p>
-                <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
+                <div class="mt-2 md:mt-5 flex gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                     @foreach($val->specification as $child)
-                    <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
+                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                        <span class="text-[10px] whitespace-pre">{{ $child->value }}</span>
+                        <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
                     </div>
                     @endforeach
                 </div>
@@ -394,9 +394,9 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
+                <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] whitespace-pre">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[14px] whitespace-pre">${itemChild.value}</span>
                 </div>
             `;
         });
@@ -462,7 +462,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
+                    <div class="mt-2 md:mt-5 flex gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>
