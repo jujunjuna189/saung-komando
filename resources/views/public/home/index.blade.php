@@ -137,9 +137,9 @@
 
                                 <div class="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
                                     @foreach($val->specification as $child)
-                                    <div class="flex gap-2 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                                        <span class="text-[10px] whitespace-pre">{{ $child->value }}</span>
+                                        <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
                                     </div>
                                     @endforeach
                                 </div>
@@ -291,11 +291,12 @@
                 <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                     {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                 </p>
-                <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
+                <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                     @foreach($val->specification as $child)
-                    <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
+                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                        <span class="text-[10px] whitespace-pre">{{ $child->value }}</span>
+                        <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                        <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
                     </div>
                     @endforeach
                 </div>
@@ -327,11 +328,11 @@
             <h5 class="text-xl md:text-3xl font-semibold">Menikmati Senja dan Pagi langsung di kawasan kaki gunung</h5>
             <p class="text-[#808080] mt-6">Menghadirkan suasana yang tenang, hangat, dan penuh keteduhan. Cahaya lembut matahari, udara segar pegunungan, serta pemandangan alami yang terbentang membuat setiap momen terasa lebih dekat dengan alam dan jauh lebih menenangkan.</p>
             <div class="mt-6 flex justify-start">
-                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                <a href="https://maps.app.goo.gl/WCTHp36moSKsW3TbA" target="_blank" class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center">
                         <span>Lihat Lokasi</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div>
@@ -394,9 +395,10 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="flex gap-2 items-center px-2 py-1 md:px-4 md:py-2 rounded-full bg-[#EDEFF1]">
+                <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] whitespace-pre">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${itemChild.value_md}</span>
                 </div>
             `;
         });
@@ -438,7 +440,7 @@
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}<</span>
+                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}</span>
                     </div>
                 `;
             }
@@ -462,7 +464,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex md:justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>

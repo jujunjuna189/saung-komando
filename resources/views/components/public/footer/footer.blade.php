@@ -19,11 +19,21 @@
             <div>
                 <h6 class="font-semibold text-xl">Menu</h6>
                 <ul class="mt-2 md:mt-5 text-[#808080] space-y-1">
-                    <li>Beranda</li>
-                    <li>Fasilitas</li>
-                    <li>Geleri</li>
-                    <li>Kontak</li>
-                    <li>Google Maps</li>
+                    <li>
+                        <a href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('facility') }}">Fasilitas</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('gallery') }}">Galeri</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('contact') }}">Kontak</a>
+                    </li>
+                    <li>
+                        <a href="https://maps.app.goo.gl/WCTHp36moSKsW3TbA" target="_blank">Google Maps</a>
+                    </li>
                 </ul>
             </div>
             <div>
@@ -39,10 +49,10 @@
             <div>
                 <ul class="mt-5 md:mt-12 text-[#808080] space-y-1">
                     <li>Graha Aula</li>
-                    <li>Rumput Sitetis</li>
+                    <li>Rumput Sintetis</li>
                     <li>Mini Zoo Aviary</li>
                     <li>Camping Ground</li>
-                    <li class="font-semibold">Lihat Semua Fasilitas</li>
+                    <li class="font-semibold">Lihat Fasilitas</li>
                 </ul>
             </div>
         </div>
