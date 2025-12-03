@@ -26,6 +26,7 @@
             font-style: normal;
         }
     </style>
+    @stack('styles')
 </head>
 
 <body style="scroll-behavior: smooth;">

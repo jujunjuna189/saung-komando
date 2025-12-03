@@ -36,28 +36,28 @@
             </div>
         </div>
         <div class="mt-10 px-5 md:pl-20 md:pr-10">
-            <div class="bg-white shadow-lg grid grid-cols-2 md:flex gap-5 py-4 pl-5 pr-4 rounded-xl relative dropdown-container">
-                <div class="grow">
+            <div class="bg-white shadow-lg grid grid-cols-2 md:flex md:items-center p-3 md:py-1 md:px-1 rounded-xl relative dropdown-container">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
                     <span>Check In:</span>
-                    <h6 class="font-semibold">15 Nov 2025</h6>
+                    <h6 class="font-semibold" id="checkinDisplay">{{ \Carbon\Carbon::now()->locale('id')->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
                     <span>Check Out:</span>
-                    <h6 class="font-semibold">15 Nov 2025</h6>
+                    <h6 class="font-semibold" id="checkoutDisplay">{{ \Carbon\Carbon::now()->locale('id')->addDays()->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kapasitas</span>
                     <h6 class="font-semibold">02 Orang</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kamar Tidur</span>
                     <h6 class="font-semibold">02 Kamar</h6>
                 </div>
                 <div class="col-span-2">
-                    <div class="relative">
+                    <div class="relative md:px-3">
                         <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="toggleDropdown('search')">
                             <div class="flex gap-3 justify-center items-center">
                                 <span>Cari Penginapan</span>
@@ -65,6 +65,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- Dropdown calendar -->
+                <x-public.calendar.calendar2 />
                 <!-- Dropdown Menu -->
                 <div id="dropdown-search" class="dropdown-menu hidden absolute right-0 top-52 md:top-22 left-0 bg-white shadow-lg rounded-xl p-4 z-10 flex-col gap-2 w-full border border-slate-100">
                     <div class="md:flex justify-between">
