@@ -71,11 +71,12 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                     </p>
-                    <div class="mt-2 md:mt-5 flex gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         @foreach($val->specification as $child)
                         <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                             <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                            <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
+                            <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                            <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
                         </div>
                         @endforeach
                     </div>
@@ -163,7 +164,8 @@
             specHtml += `
                 <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] md:text-[14px] whitespace-pre">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${itemChild.value_md}</span>
                 </div>
             `;
         });
@@ -229,7 +231,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>

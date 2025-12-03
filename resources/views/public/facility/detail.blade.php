@@ -50,11 +50,12 @@
                             <h6 class="font-semibold text-lg">Fasilitas</h6>
                         </div>
                         <p class="text-justify mt-3">{{ $detail->description }}</p>
-                        <div class="flex gap-2 mt-4 flex-wrap">
+                        <div class="flex justify-between gap-2 mt-4 flex-wrap">
                             @foreach($detail->specification as $val)
                             <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                                 <img src="{{ url($val->icon) }}" alt="" class="h-4">
-                                <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $val->value }}</span>
+                                <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $val->value }}</span>
+                                <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $val->value_md }}</span>
                             </div>
                             @endforeach
                         </div>
@@ -168,11 +169,12 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         {{ $val->description }}
                     </p>
-                    <div class="mt-2 md:mt-5 flex gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         @foreach($val->specification as $child)
                         <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                             <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                            <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
+                            <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                            <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
                         </div>
                         @endforeach
                     </div>
