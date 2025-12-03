@@ -406,6 +406,7 @@
             spesificationItem.push({
                 icon: "assets/icon/bedroom.png",
                 value: bedroom + " KT",
+                value_md: bedroom + " Kamar Tidur",
             });
         }
 
@@ -413,6 +414,7 @@
             spesificationItem.push({
                 icon: "assets/icon/bathroom.png",
                 value: bathroom + " KM",
+                value_md: bedroom + " Kamar Mandi"
             });
         }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('facility_id');
             $table->string('icon');
             $table->string('value');
+            $table->string('value_md');
             $table->timestamps();
         });
     }
