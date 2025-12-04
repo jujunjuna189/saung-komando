@@ -51,7 +51,7 @@
                         <span>Lunas</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-yellow-300"></div>
+                        <div class="w-3 h-3 rounded bg-orange-300"></div>
                         <span>Baru DP</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -227,8 +227,9 @@
 
 @section('script')
 <script>
-    let currentYear = 2025;
-    let currentMonth = 10; // November (0 = Jan)
+    const now = new Date();
+    let currentYear = now.getFullYear();
+    let currentMonth = now.getMonth();
     let startDate = null;
     let endDate = null;
 
@@ -240,8 +241,36 @@
     const categoryColor = {
         A: "bg-green-300",
         B: "bg-blue-300",
-        C: "bg-yellow-300",
+        C: "bg-orange-300",
     };
+
+    function dateDiff(start, end) {
+        const date1 = new Date(start);
+        const date2 = new Date(end);
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+    }
+
+    function getCountdown(date) {
+        const today = new Date();
+        const checkIn = new Date(date);
+
+        // Set to midnight for accurate day calculation
+        today.setHours(0, 0, 0, 0);
+        checkIn.setHours(0, 0, 0, 0);
+
+        const diffTime = checkIn - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 0) {
+            return `H-${diffDays}`;
+        } else if (diffDays === 0) {
+            return 'Hari H';
+        } else {
+            return `H+${Math.abs(diffDays)}`;
+        }
+    }
 
     function renderCalendar() {
         const calendar = document.getElementById("calendar");
@@ -315,16 +344,7 @@
                 }
             });
 
-            // Highlight range
-            if (startDate && endDate && dateObj >= startDate && dateObj <= endDate) {
-                el.classList.add("bg-blue-400", "text-white");
-            }
-
             if (startDate && dateObj.getTime() === startDate.getTime()) {
-                el.classList.add("bg-blue-600", "text-white");
-            }
-
-            if (endDate && dateObj.getTime() === endDate.getTime()) {
                 el.classList.add("bg-blue-600", "text-white");
             }
 
@@ -352,34 +372,37 @@
     }
 
     function selectDate(selected) {
-        if (!startDate) {
-            startDate = selected;
-            endDate = null;
-        } else if (startDate && !endDate) {
-            if (selected < startDate) {
-                endDate = startDate;
-                startDate = selected;
-            } else {
-                endDate = selected;
-            }
-        } else if (startDate && endDate) {
-            if (selected < startDate) {
-                startDate = selected;
-            } else if (selected > endDate) {
-                endDate = selected;
-            } else {
-                startDate = selected;
-                endDate = null;
-            }
-        }
+        startDate = selected;
+        endDate = null;
 
         renderCalendar();
+
+        // Filter List
+        const selectedStr = selected.getFullYear() + '-' + String(selected.getMonth() + 1).padStart(2, '0') + '-' + String(selected.getDate()).padStart(2, '0');
+
+        const filteredData = reservationsData.filter(item => {
+            const checkInStr = String(item.check_in).substring(0, 10);
+            const checkOutStr = String(item.check_out).substring(0, 10);
+            const match = selectedStr >= checkInStr && selectedStr <= checkOutStr;
+            return match;
+        });
+
+        $('#container-reservation').empty();
+        if (filteredData.length > 0) {
+            $.each(filteredData, function(i, item) {
+                const element = renderReservation(item);
+                $('#container-reservation').append(element);
+            });
+        } else {
+            $('#container-reservation').html('<div class="text-center text-gray-500 py-5">Tidak ada reservasi pada tanggal ini</div>');
+        }
     }
 
     function rerenderCalendar(date) {
-        const dateData = new Date(date);
-        currentYear = dateData.getFullYear();
-        currentMonth = dateData.getMonth();
+        // Parse "YYYY-MM" manually to avoid timezone issues
+        const parts = date.split('-');
+        currentYear = parseInt(parts[0]);
+        currentMonth = parseInt(parts[1]) - 1;
 
         renderCalendar();
     }
@@ -458,16 +481,15 @@
                     <p>${item.note}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
-                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] flex-[7]">
-                        <select name="" id="" class="border-none focus:outline-none w-full bg-transparent">
-                            <option value="${item.status}">${item.status}</option>
-                            <option value="DP">DP</option>
-                            <option value="Lunas">Lunas</option>
-                            <option value="Dilokasi">Dilokasi</option>
+                    <div class="px-4 py-2 border rounded-xl flex-[7] ${item.status == 'Lunas' ? 'bg-green-300 border-green-300' : item.status == 'DP' ? 'bg-orange-300 border-orange-300' : 'bg-blue-300 border-blue-300'}">
+                        <select name="" id="" class="border-none focus:outline-none w-full bg-transparent" onchange="updateStatus('${item.id}', this.value)">
+                            <option value="DP" ${item.status == 'DP' ? 'selected' : ''}>DP</option>
+                            <option value="Lunas" ${item.status == 'Lunas' ? 'selected' : ''}>Lunas</option>
+                            <option value="Dilokasi" ${item.status == 'Dilokasi' ? 'selected' : ''}>Dilokasi</option>
                         </select>
                     </div>
                     <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED] flex-[3]">
-                        <p>${dateDiff(item.check_in, item.check_out)} Hari</p>
+                        <p>${getCountdown(item.check_in)}</p>
                     </div>
                 </div>
             </div>
@@ -686,6 +708,36 @@
                     header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
                 });
                 closeModal('modalEdit');
+            },
+        });
+    }
+
+    function updateStatus(id, newStatus) {
+        const item = reservationsData.find(x => x.id == id);
+        if (!item) return;
+
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('name', item.name);
+        formData.append('facility_id', item.facility_id);
+        formData.append('telp', item.telp);
+        formData.append('total_guest', item.total_guest);
+        formData.append('status', newStatus);
+        // Ensure date format matches what the API expects (YYYY-MM-DD)
+        formData.append('check_in', item.check_in.split(' ')[0]);
+        formData.append('check_out', item.check_out.split(' ')[0]);
+        formData.append('note', item.note || '');
+        formData.append('extra_bed', item.extra_bed || '');
+
+        requestServer({
+            url: url + '/api/reservation/update',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", "Status berhasil diperbarui");
+                getData({
+                    header: `filter_month=${dataFilter.month}&facility_id=${dataFilter.facility}&status=${dataFilter.status}`,
+                });
             },
         });
     }
