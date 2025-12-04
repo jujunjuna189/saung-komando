@@ -20,7 +20,7 @@ class ReservationController extends Controller
             $query->where('status', $request->status);
         }
 
-        if ($request->filter_month && $request->filter_month !== "Semua") {
+        if ($request->filter_month && $request->filter_month !== 'Semua') {
 
             // Ambil tahun dan bulan
             [$year, $month] = explode('-', $request->filter_month);
@@ -36,7 +36,10 @@ class ReservationController extends Controller
                 ->whereMonth('check_in', $nowMonth);
         }
 
-        $model = $query->get();
+        $model = $query
+            ->orderBy('is_pinned', 'desc')
+            ->orderBy('check_in', 'desc')
+            ->get();
 
         return response()->json([
             "status" => 'success',
@@ -80,6 +83,28 @@ class ReservationController extends Controller
             "status" => 'success',
             "message" => 'Berhasil menghapus reservasi',
             "data" => $model,
+        ]);
+    }
+
+    public function pin(Request $request)
+    {
+        $model = ReservationModel::find($request->id);
+
+        if (! $model) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Reservation not found',
+                'debug' => $request->all()
+            ], 404);
+        }
+
+        $model->is_pinned = $request->is_pinned;
+        $model->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Berhasil mengubah status pin',
+            'data' => $model,
         ]);
     }
 }

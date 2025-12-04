@@ -60,12 +60,16 @@
             <label for="" class="font-semibold text-[12px]">Harga Per Item<span class="text-red-500">*</span></label>
             <input type="text" name="price" id="price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Harga Markup (Opsional)</label>
+            <input type="text" name="markup_price" id="markup_price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="md:flex gap-2 mt-3">
         <div class="">
             <label for="" class="font-semibold text-[12px]">Rating<span class="text-red-500">*</span></label>
             <input type="text" name="rating" id="rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
-    </div>
-    <div class="md:flex gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
             <input type="text" name="bedroom" id="bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -74,10 +78,10 @@
             <label for="" class="font-semibold text-[12px]">K. Mandi<span class="text-red-500">*</span></label>
             <input type="text" name="bathroom" id="bathroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
-        <div class="grow">
-            <label for="" class="font-semibold text-[12px]">Link Video Youtube<span class="text-red-500">*</span></label>
-            <input type="text" name="link" id="link" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Link Video Youtube<span class="text-red-500">*</span></label>
+        <input type="text" name="link" id="link" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
     </div>
     <div class="mt-3">
         <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
@@ -144,12 +148,16 @@
             <label for="" class="font-semibold text-[12px]">Harga Per Item<span class="text-red-500">*</span></label>
             <input type="text" name="price" id="edit-price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
+        <div class="grow">
+            <label for="" class="font-semibold text-[12px]">Harga Markup (Opsional)</label>
+            <input type="text" name="markup_price" id="edit-markup_price" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+        </div>
+    </div>
+    <div class="md:flex gap-2 mt-3">
         <div class="">
             <label for="" class="font-semibold text-[12px]">Rating<span class="text-red-500">*</span></label>
             <input type="text" name="rating" id="edit-rating" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
-    </div>
-    <div class="md:flex gap-2 mt-3">
         <div>
             <label for="" class="font-semibold text-[12px]">K. Tidur<span class="text-red-500">*</span></label>
             <input type="text" name="bedroom" id="edit-bedroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
@@ -158,21 +166,34 @@
             <label for="" class="font-semibold text-[12px]">K. Mandi<span class="text-red-500">*</span></label>
             <input type="text" name="bathroom" id="edit-bathroom" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
-        <div class="grow">
-            <label for="" class="font-semibold text-[12px]">Link Video Youtube<span class="text-red-500">*</span></label>
-            <input type="text" name="link" id="edit-link" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-        </div>
+    </div>
+    <div class="mt-3">
+        <label for="" class="font-semibold text-[12px]">Link Video Youtube<span class="text-red-500">*</span></label>
+        <input type="text" name="link" id="edit-link" placeholder="-" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
     </div>
     <div class="mt-3">
         <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
         <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-6">
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload1" previewId="editImageUpload1" required />
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload2" previewId="editImageUpload2" required />
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload3" previewId="editImageUpload3" required />
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload4" previewId="editImageUpload4" required />
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload5" previewId="editImageUpload5" required />
-            <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload6" previewId="editImageUpload6" required />
+            @for ($i = 1; $i <= 6; $i++)
+                <div class="relative group">
+                <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload{{ $i }}" previewId="editImageUpload{{ $i }}" required />
+                <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
+                    <button type="button" onclick="moveImage('{{ $i }}', -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
+                    <button type="button" onclick="moveImage('{{ $i }}', 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
         </div>
+        @endfor
+    </div>
     </div>
     <div class="mt-5 border p-4 rounded-xl">
         <div class="grid grid-cols-2 gap-2">
@@ -383,6 +404,7 @@
         const category = $('#' + prefix + 'category').val();
         const description = $('#' + prefix + 'description').val();
         const price = $('#' + prefix + 'price').val();
+        const markupPrice = $('#' + prefix + 'markup_price').val();
         const rating = $('#' + prefix + 'rating').val();
         const link = $('#' + prefix + 'link').val();
         const freeForGuest = $('#' + prefix + 'free-for-guest').prop('checked');
@@ -443,6 +465,7 @@
             category: category,
             description: description,
             price: price,
+            markup_price: markupPrice,
             rating: rating,
             link: link,
             freeForGuest: freeForGuest,
@@ -468,6 +491,7 @@
         $('#edit-description').val(item.description);
         $('#edit-price').val(item.price);
         $('#edit-rating').val(item.rating);
+        $('#edit-markup_price').val(item.markup_price || "");
         $('#edit-link').val(item.link || "");
 
         $('#edit-free-for-guest').prop('checked', item.is_free_for_guest == 1);
@@ -490,9 +514,8 @@
 
         // Images
         for (let i = 1; i <= 6; i++) {
-            $(`#editImageUpload${i}`).attr('src', '').addClass('hidden');
-            $(`#noImageText-editImageUpload${i}`).removeClass('hidden');
-            $(`#edit_image_upload${i}`).val('');
+            $(`#editImageUpload${i+1}`).attr('src', `{{ asset('storage') }}/${img.path}`).removeClass('hidden').attr('data-id', img.id);
+            $(`#noImageText-editImageUpload${i}`).removeClass('hidden').attr('data-id', img.id);
         }
 
         if (item.thumbnails) {
@@ -507,6 +530,39 @@
         openModal('modalEdit');
     }
 
+    function moveImage(index, direction) {
+        const targetIndex = index + direction;
+        if (targetIndex < 1 || targetIndex > 6) return;
+        const currentImg = $(`#editImageUpload${index}`);
+        const targetImg = $(`#editImageUpload${targetIndex}`);
+        const currentSrc = currentImg.attr('src');
+        const currentId = currentImg.attr('data-id');
+        const currentHidden = currentImg.hasClass('hidden');
+        const targetSrc = targetImg.attr('src');
+        const targetId = targetImg.attr('data-id');
+        const targetHidden = targetImg.hasClass('hidden');
+        // Swap src
+        currentImg.attr('src', targetSrc);
+        targetImg.attr('src', currentSrc);
+        // Swap data-id
+        if (targetId) currentImg.attr('data-id', targetId);
+        else currentImg.removeAttr('data-id');
+        if (currentId) targetImg.attr('data-id', currentId);
+        else targetImg.removeAttr('data-id');
+        // Swap visibility
+        if (targetHidden) currentImg.addClass('hidden');
+        else currentImg.removeClass('hidden');
+        if (currentHidden) targetImg.addClass('hidden');
+        else targetImg.removeClass('hidden');
+        // Swap no-image text visibility
+        const currentText = $(`#noImageText-editImageUpload${index}`);
+        const targetText = $(`#noImageText-editImageUpload${targetIndex}`);
+        if (targetHidden) currentText.removeClass('hidden');
+        else currentText.addClass('hidden');
+        if (currentHidden) targetText.removeClass('hidden');
+        else targetText.addClass('hidden');
+    }
+
     function onUpdate() {
         const data = getFormData("edit-");
         const formData = new FormData();
@@ -515,6 +571,7 @@
         formData.append('category', data.category);
         formData.append('description', data.description);
         formData.append('price', data.price);
+        formData.append('markup_price', data.markup_price);
         formData.append('rating', data.rating);
         formData.append('link', data.link);
         formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
@@ -524,6 +581,16 @@
         $.each(Object.keys(data.files), function(i, item) {
             formData.append('files[]', data.files[item]);
         });
+
+        // Collect thumbnail order
+        const thumbnailOrder = [];
+        for (let i = 1; i <= 6; i++) {
+            const id = $(`#editImageUpload${i}`).attr('data-id');
+            if (id) {
+                thumbnailOrder.push(id);
+            }
+        }
+        formData.append('thumbnail_order', JSON.stringify(thumbnailOrder));
 
         // Save
         requestServer({
@@ -545,6 +612,7 @@
         formData.append('category', data.category);
         formData.append('description', data.description);
         formData.append('price', data.price);
+        formData.append('markup_price', data.markup_price);
         formData.append('rating', data.rating);
         formData.append('link', data.link);
         formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
