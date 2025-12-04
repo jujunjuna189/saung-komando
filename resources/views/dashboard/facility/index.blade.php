@@ -85,7 +85,7 @@
     </div>
     <div class="mt-3">
         <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
-        <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-6">
+        <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-3">
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload1" previewId="imageUpload1" required />
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload2" previewId="imageUpload2" required />
             <x-dashboard.field.image-input label="Gambar" name="image" id="image_upload3" previewId="imageUpload3" required />
@@ -173,19 +173,19 @@
     </div>
     <div class="mt-3">
         <label for="" class="font-semibold text-[12px]">Galeri Foto<span class="text-red-500">*</span></label>
-        <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-6">
+        <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-3">
             @for ($i = 1; $i <= 6; $i++)
                 <div class="relative group">
                 <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload{{ $i }}" previewId="editImageUpload{{ $i }}" required />
                 <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
-                    <button type="button" onclick="moveImage('{{ $i }}', -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                    <button type="button" onclick="moveImage(<?= $i ?>, -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
                 </div>
                 <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
-                    <button type="button" onclick="moveImage('{{ $i }}', 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                    <button type="button" onclick="moveImage(<?= $i ?>, 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -514,14 +514,14 @@
 
         // Images
         for (let i = 1; i <= 6; i++) {
-            $(`#editImageUpload${i+1}`).attr('src', `{{ asset('storage') }}/${img.path}`).removeClass('hidden').attr('data-id', img.id);
-            $(`#noImageText-editImageUpload${i}`).removeClass('hidden').attr('data-id', img.id);
+            $(`#editImageUpload${i}`).attr('src', '').addClass('hidden');
+            $(`#noImageText-editImageUpload${i}`).removeClass('hidden');
+            $(`#edit_image_upload${i}`).val('');
         }
-
         if (item.thumbnails) {
             $.each(item.thumbnails, function(i, img) {
                 if (i < 6) {
-                    $(`#editImageUpload${i+1}`).attr('src', `{{ asset('storage') }}/${img.path}`).removeClass('hidden');
+                    $(`#editImageUpload${i+1}`).attr('src', `{{ asset('storage') }}/${img.path}`).removeClass('hidden').attr('data-id', img.id);
                     $(`#noImageText-editImageUpload${i+1}`).addClass('hidden');
                 }
             });
