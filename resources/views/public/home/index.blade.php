@@ -326,8 +326,8 @@
             specHtml += `
                 <div class="flex gap-2 items-center px-2 py-1 md:py-1.5 rounded-full bg-[#EDEFF1] overflow-hidden">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] whitespace-pre md:hidden">${itemChild.value}</span>
-                    <span class="text-[10px] md:text-[14px] lg:text-[11px] whitespace-pre hidden lg:flex">${itemChild.value_md}</span>
+                    <span class="text-[10px] whitespace-pre flex 2xl:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[14px] lg:text-[11px] whitespace-pre hidden 2xl:flex">${itemChild.value_md}</span>
                 </div>
             `;
         });
