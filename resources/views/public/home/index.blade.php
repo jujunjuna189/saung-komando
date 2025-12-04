@@ -55,7 +55,22 @@
                             ['value' => '2 Orang', 'display' => '2 Orang'],
                             ['value' => '3 Orang', 'display' => '3 Orang'],
                             ['value' => '4 Orang', 'display' => '4 Orang'],
-                            ['value' => '5 Orang', 'display' => '5 Orang']
+                            ['value' => '5 Orang', 'display' => '5 Orang'],
+                            ['value' => '6 Orang', 'display' => '6 Orang'],
+                            ['value' => '7 Orang', 'display' => '7 Orang'],
+                            ['value' => '8 Orang', 'display' => '8 Orang'],
+                            ['value' => '9 Orang', 'display' => '9 Orang'],
+                            ['value' => '10 Orang', 'display' => '10 Orang'],
+                            ['value' => '11 Orang', 'display' => '11 Orang'],
+                            ['value' => '12 Orang', 'display' => '12 Orang'],
+                            ['value' => '13 Orang', 'display' => '13 Orang'],
+                            ['value' => '14 Orang', 'display' => '14 Orang'],
+                            ['value' => '15 Orang', 'display' => '15 Orang'],
+                            ['value' => '16 Orang', 'display' => '16 Orang'],
+                            ['value' => '17 Orang', 'display' => '17 Orang'],
+                            ['value' => '18 Orang', 'display' => '18 Orang'],
+                            ['value' => '19 Orang', 'display' => '19 Orang'],
+                            ['value' => '20 Orang', 'display' => '20 Orang']
                         ]" class_container="border-none text-semibold px-[0px] lg:pr-10 py-[0px] w-full whitespace-pre" class_list="w-full lg:right-10" />
                     </div>
                 </div>
