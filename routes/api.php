@@ -16,6 +16,7 @@ Route::get('/reservation/show', [App\Http\Controllers\Dashboard\Reservation\Rese
 Route::post('/reservation/create', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'create']);
 Route::post('/reservation/update', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'update']);
 Route::post('/reservation/delete', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'delete']);
+Route::post('/reservation/pin', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'pin']);
 
 // Promotion
 Route::get('/promotion/show', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, 'show']);

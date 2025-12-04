@@ -37,28 +37,40 @@
         </div>
         <div class="mt-10 px-5 md:pl-20 md:pr-10">
             <div class="bg-white shadow-lg grid grid-cols-2 md:flex md:items-center p-3 md:py-1 md:px-1 rounded-xl relative dropdown-container">
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
+                <div class="flex-1 basis-0 hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
                     <span>Check In:</span>
                     <h6 class="font-semibold" id="checkinDisplay">{{ \Carbon\Carbon::now()->locale('id')->format('d M y') }}</h6>
+                    <input type="hidden" id="checkinInput" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
+                <div class="flex-1 basis-0 hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
                     <span>Check Out:</span>
                     <h6 class="font-semibold" id="checkoutDisplay">{{ \Carbon\Carbon::now()->locale('id')->addDays()->format('d M y') }}</h6>
+                    <input type="hidden" id="checkoutInput" value="{{ \Carbon\Carbon::now()->addDays()->format('Y-m-d') }}">
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
+                <div class="flex-1 basis-0 hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kapasitas</span>
-                    <h6 class="font-semibold">02 Orang</h6>
+                    <select id="capacitySelect" class="w-full font-semibold bg-transparent focus:outline-none cursor-pointer">
+                        <option value="">Pilih Kapasitas</option>
+                        @foreach($capacities as $cap)
+                            <option value="{{ $cap->value }}">{{ $cap->value }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
+                <div class="flex-1 basis-0 hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kamar Tidur</span>
-                    <h6 class="font-semibold">02 Kamar</h6>
+                    <select id="bedroomSelect" class="w-full font-semibold bg-transparent focus:outline-none cursor-pointer">
+                        <option value="">Pilih Kamar</option>
+                        @foreach($bedrooms as $bed)
+                            <option value="{{ $bed->value }}">{{ $bed->value }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-span-2">
                     <div class="relative md:px-3">
-                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="toggleDropdown('search')">
+                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="searchFacilities()">
                             <div class="flex gap-3 justify-center items-center">
                                 <span>Cari Penginapan</span>
                             </div>
@@ -68,7 +80,7 @@
                 <!-- Dropdown calendar -->
                 <x-public.calendar.calendar2 />
                 <!-- Dropdown Menu -->
-                <div id="dropdown-search" class="dropdown-menu hidden absolute right-0 top-52 md:top-22 left-0 bg-white shadow-lg rounded-xl p-4 z-10 flex-col gap-2 w-full border border-slate-100">
+                <div id="dropdown-search" class="dropdown-menu hidden absolute right-0 top-52 md:top-22 left-0 md:w-[160%] bg-white shadow-lg rounded-xl p-4 z-50 flex-col gap-2 w-full border border-slate-100">
                     <div class="md:flex justify-between">
                         <div class="p-2">
                             <h6 class="grow md:text-lg">Rekomendasi Terbaik</h6>
@@ -85,73 +97,64 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-3">
                         @foreach($facility as $val)
                         <div class="rounded-xl overflow-hidden bg-white flex flex-row opacity-0 fade-up-scroll">
-                            <div class="w-[90px] aspect-square bg-gray-50 overflow-hidden group">
+                            <div class="w-[110px] md:w-[220px] aspect-[4/5] md:aspect-auto bg-gray-50 overflow-hidden group relative">
                                 <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
                                     alt=""
                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                             </div>
-
-                            <div class="p-3 grow flex flex-col">
-                                @if($val->is_free_for_guest == 1)
-                                <div class="flex justify-between items-center">
-                                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                                        <span class="text-[10px]">
-                                            <strong class="text-red-500">FREE</strong> untuk tamu menginap
-                                        </span>
-                                    </div>
-                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                                        </svg>
-                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
-                                    </div>
-                                </div>
-                                @endif
-
-                                @if($val->is_membership == 1)
-                                <div class="flex justify-between items-center">
-                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
-                                    <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                                        <span class="text-[10px]">Membership 325rb/bln</span>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="flex justify-between items-center">
-                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
-                                    @if($val->is_free_for_guest == 0)
-                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                                        </svg>
-                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
+                            <div class="p-3 md:p-5 grow flex flex-col justify-between">
+                                <div>
+                                    @if($val->is_free_for_guest == 1)
+                                    <div class="flex justify-between items-start md:items-center flex-col md:flex-row gap-2 md:gap-0">
+                                        <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
+                                            <span class="text-[10px] md:text-[12px]"><strong class="text-red-500">FREE</strong> untuk tamu menginap</span>
+                                        </div>
+                                        <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[12px] md:w-[16px] h-[12px] md:h-[16px]">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                            </svg>
+                                            <span class="font-semibold text-[10px] md:text-[12px]">{{ $val->rating }}</span>
+                                        </div>
                                     </div>
                                     @endif
-                                </div>
-                                @endif
-
-                                <p class="mt-1 text-[#808080] text-[10px]">
-                                    {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
-                                </p>
-
-                                <div class="mt-2 flex justify-start gap-2 overflow-x-auto no-scrollbar">
-                                    @foreach($val->specification as $child)
-                                    <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
-                                        <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                                        <span class="text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
-                                        <span class="text-[10px] md:text-[14px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
+                                    @if($val->is_membership == 1)
+                                    <div class="flex justify-between items-center mt-2">
+                                        <h5 class="text-md md:text-xl font-semibold line-clamp-1">{{ $val->title }}</h5>
+                                        <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1 shrink-0">
+                                            <span class="text-[10px] md:text-[12px]">Membership 325rb/bln</span>
+                                        </div>
                                     </div>
-                                    @endforeach
+                                    @else
+                                    <div class="flex justify-between items-center mt-2">
+                                        <h5 class="text-md md:text-xl font-semibold line-clamp-1">{{ $val->title }}</h5>
+                                        @if($val->is_free_for_guest == 0)
+                                        <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1] shrink-0">
+                                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[12px] md:w-[16px] h-[12px] md:h-[16px]">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                            </svg>
+                                            <span class="font-semibold text-[10px] md:text-[12px]">{{ $val->rating }}</span>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    @endif
+                                    <p class="mt-1 text-[#808080] text-[10px] md:text-[12px] line-clamp-2">
+                                        {{ $val->description }}
+                                    </p>
+                                    <div class="mt-2 md:mt-3 flex justify-start gap-2 overflow-x-auto no-scrollbar">
+                                        @foreach($val->specification as $child)
+                                        <div class="flex gap-2 items-center px-2 py-1 rounded-full bg-[#EDEFF1] shrink-0">
+                                            <img src="{{ url($child->icon) }}" alt="" class="h-3 md:h-4">
+                                            <span class="text-[10px] md:text-[11px] whitespace-pre">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-
-                                <div class="flex flex-row justify-between items-center mt-1">
-                                    <label class="font-semibold text-sm">{{ $val->price }}</label>
-                                    <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
-                                        class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                                        <div class="flex gap-3 items-center text-[10px]">
+                                <div class="flex flex-row justify-between items-center mt-3">
+                                    <label for="price" class="font-semibold text-sm md:text-lg">{{ $val->price }}</label>
+                                    <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-2 px-4 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                                        <div class="flex gap-2 items-center text-[10px] md:text-[12px]">
                                             <span>Lihat Detail</span>
                                         </div>
                                     </a>
@@ -503,6 +506,49 @@
                     $("#container-facilitys").append(element);
                 });
             },
+        });
+    }
+
+    function searchFacilities() {
+        let capacity = $('#capacitySelect').val();
+        let bedroom = $('#bedroomSelect').val();
+
+        // Parse dates from display if needed, or use hidden inputs if updated.
+        // For now, let's assume we send what we have.
+        // Ideally we'd update hidden inputs when calendar changes.
+        // Since we can't easily touch the calendar component right now, let's try to parse the text.
+        // Format: '04 Dec 25'
+        let checkinText = $('#checkinDisplay').text();
+        let checkoutText = $('#checkoutDisplay').text();
+
+        $.ajax({
+            url: "{{ route('home.search') }}",
+            type: "GET",
+            data: {
+                capacity: capacity,
+                bedroom: bedroom,
+                checkin: checkinText, // Send text, handle parsing in backend or just pass through
+                checkout: checkoutText
+            },
+            success: function(response) {
+                // Show dropdown
+                $('#dropdown-search').removeClass('hidden').addClass('flex');
+
+                // Clear list
+                $('#dropdown-search .grid').empty();
+
+                if (response.length > 0) {
+                    $.each(response, function(i, item) {
+                        let element = renderFasility(item);
+                        $('#dropdown-search .grid').append(element);
+                    });
+                } else {
+                    $('#dropdown-search .grid').append('<div class="col-span-2 text-center py-5 text-gray-500">Tidak ada penginapan yang sesuai kriteria.</div>');
+                }
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
         });
     }
 </script>

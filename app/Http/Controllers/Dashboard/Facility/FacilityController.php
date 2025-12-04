@@ -19,7 +19,9 @@ class FacilityController extends Controller
     {
         $model = FacilityModel::when(! empty($request->category), function ($q) use ($request) {
             $q->where('category', $request->category);
-        })->with('thumbnails', 'specification')->get();
+        })->with(['thumbnails' => function ($q) {
+            $q->orderBy('sort_order', 'asc');
+        }, 'specification'])->get();
 
         return response()->json([
             'status' => 'success',
@@ -43,6 +45,7 @@ class FacilityController extends Controller
                     $spec->facility_id = $model->id;
                     $spec->icon = $val->icon;
                     $spec->value = $val->value;
+                    $spec->value_md = $val->value;
                     $spec->save();
                 }
             }
@@ -103,6 +106,7 @@ class FacilityController extends Controller
                     $spec->facility_id = $model->id;
                     $spec->icon = $val->icon;
                     $spec->value = $val->value;
+                    $spec->value_md = $val->value;
                     $spec->save();
                 }
             }
@@ -118,6 +122,15 @@ class FacilityController extends Controller
                     $spec->facility_id = $model->id;
                     $spec->path = 'fasility/'.$filename;
                     $spec->save();
+                }
+            }
+
+            if ($request->has('thumbnail_order')) {
+                $order = json_decode($request->thumbnail_order);
+                if (is_array($order)) {
+                    foreach ($order as $index => $thumbnailId) {
+                        FacilityThumbnailModel::where('id', $thumbnailId)->update(['sort_order' => $index]);
+                    }
                 }
             }
 

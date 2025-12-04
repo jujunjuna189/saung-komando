@@ -229,6 +229,13 @@
                 $('#endDate').val('');
                 $('#startLabel').text(pickStart);
                 $('#endLabel').text('-');
+
+                // Update Home Page Elements
+                const d = new Date(pickStart);
+                const formatted = d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: '2-digit' });
+                $('#checkinDisplay').text(formatted);
+                $('#checkinInput').val(pickStart);
+
                 return;
             }
             if (pickStart && pickEnd) {
@@ -238,6 +245,17 @@
                 $('#endDate').val(e);
                 $('#startLabel').text(s);
                 $('#endLabel').text(e);
+
+                // Update Home Page Elements
+                const sd = new Date(s);
+                const ed = new Date(e);
+                const sFormatted = sd.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: '2-digit' });
+                const eFormatted = ed.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: '2-digit' });
+
+                $('#checkinDisplay').text(sFormatted);
+                $('#checkinInput').val(s);
+                $('#checkoutDisplay').text(eFormatted);
+                $('#checkoutInput').val(e);
             }
         }
 

@@ -104,7 +104,13 @@
         </div>
         <div class="grow w-full">
             <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
-            <input type="text" name="extra_bed" id="extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <select name="extra_bed" id="extra_bed" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="">-</option>
+                <option value="1 kasur kecil = 150rb">1 kasur kecil = 150rb</option>
+                <option value="1 kasur besar = 250rb">1 kasur besar = 250rb</option>
+                <option value="2 kasur kecil = 300rb">2 kasur kecil = 300rb</option>
+                <option value="2 kasur besar = 500rb">2 kasur besar = 500rb</option>
+            </select>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
@@ -163,7 +169,13 @@
         </div>
         <div class="grow w-full">
             <label for="" class="font-semibold text-[12px]">Extra Bed <i class="text-[#808080]">(Optional)</i></label>
-            <input type="text" name="extra_bed" id="edit-extra_bed" placeholder="1 Kasur Besar = 250rb" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <select name="extra_bed" id="edit-extra_bed" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <option value="">-</option>
+                <option value="1 kasur kecil = 150rb">1 kasur kecil = 150rb</option>
+                <option value="1 kasur besar = 250rb">1 kasur besar = 250rb</option>
+                <option value="2 kasur kecil = 300rb">2 kasur kecil = 300rb</option>
+                <option value="2 kasur besar = 500rb">2 kasur besar = 500rb</option>
+            </select>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">

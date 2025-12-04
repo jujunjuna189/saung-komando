@@ -1,8 +1,8 @@
 @extends('components.dashboard.layouts.app', ['nav_bar' => false])
 
 @section('content')
-<div class="md:px-5 py-5">
-    <div class="bg-white md:rounded-2xl p-5">
+<div class="md:px-5 py-5 h-full">
+    <div class="bg-white md:rounded-2xl p-5 h-full">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
             <div class="w-full md:w-auto flex justify-between items-center">
                 <div>
@@ -79,12 +79,16 @@
     }
 
     function renderReservation(item) {
+        const isPinned = item.is_pinned == 1;
+        const pinBg = isPinned ? 'bg-[#AEEF8B]' : 'bg-gray-100';
+        const pinIcon = isPinned ? '' : 'grayscale opacity-50';
+
         const element = `
             <div class="bg-[#F2F4F7] rounded-lg p-5">
                 <div class="flex justify-between items-center">
                     <h6 class="font-semibold text-base md:text-lg">${item.facility?.title ?? ""}</h6>
-                    <div class="bg-[#AEEF8B] rounded-full w-7 h-7 p-1.5 flex justify-center items-center">
-                        <img src="{{ asset('assets/icon/pin.svg') }}" alt="Pin">
+                    <div class="${pinBg} rounded-full w-7 h-7 p-1.5 flex justify-center items-center cursor-pointer hover:scale-110 transition-transform" onclick="togglePin(${item.id}, ${isPinned ? 0 : 1})">
+                        <img src="{{ asset('assets/icon/pin.svg') }}" alt="Pin" class="${pinIcon}">
                     </div>
                 </div>
                 <hr class="border-[#808080] my-3" />
@@ -132,15 +136,35 @@
 
     function filterMonthChange(target) {
         dataFilter.month = target.target.value;
+        onFilter();
     }
 
     function filterStatusChange(target) {
         dataFilter.status = target.target.value;
+        onFilter();
     }
 
     function onFilter() {
         getData({
             header: `filter_month=${dataFilter.month}&status=${dataFilter.status}`,
+        });
+    }
+
+    function togglePin(id, status) {
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('is_pinned', status);
+
+        requestServer({
+            url: url + '/api/reservation/pin',
+            type: "POST",
+            data: formData,
+            onSuccess: function(response) {
+                showToast("success", "Berhasil", "Status pin diperbarui");
+                getData({
+                    header: `filter_month=${dataFilter.month}&status=${dataFilter.status}`,
+                });
+            },
         });
     }
 
