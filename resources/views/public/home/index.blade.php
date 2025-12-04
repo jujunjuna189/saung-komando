@@ -137,11 +137,12 @@
                                     {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                                 </p>
 
-                                <div class="mt-2 flex gap-2 overflow-x-auto no-scrollbar">
+                                <div class="mt-2 flex justify-start gap-2 overflow-x-auto no-scrollbar">
                                     @foreach($val->specification as $child)
-                                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
+                                    <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                                        <span class="text-[10px] md:text-[14px] whitespace-pre">{{ $child->value }}</span>
+                                        <span class="text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                                        <span class="text-[10px] md:text-[14px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
                                     </div>
                                     @endforeach
                                 </div>
@@ -210,12 +211,12 @@
                 </div>
             </div>
             <div class="mt-6 space-y-2 md:space-y-0 md:flex gap-5">
-                <div class="bg-[#AEEF8B] text-black px-5 py-3 rounded-full">
+                <div class="bg-[#AEEF8B] text-black px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center justify-center text-center">
-                        <span>+ FREE Akses Semua Fasiitas Komando</span>
+                        <span>+ FREE Akses Semua Fasilitas Komando</span>
                     </div>
                 </div>
-                <div class="bg-[#000000] text-white px-5 py-3 rounded-full">
+                <div class="bg-[#000000] text-white px-5 py-3 rounded-full hover:bg-[#AEEF8B] hover:text-black cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center justify-center text-center">
                         <span>Cari Penginapan Sekarang</span>
                     </div>
@@ -228,7 +229,7 @@
     </div>
 </div>
 <div class="px-5 md:px-20">
-    <h1 class="font-semibold text-xl md:text-[35px]">Pilihan Terbaik Keluarga</h1>
+    <h1 class="font-semibold text-xl md:text-[35px] mb-5">Pilihan Terbaik Keluarga</h1>
     <div class="flex justify-between items-center gap-2 overflow-x-auto no-scrollbar">
         <ul class="flex gap-2" id="filter-category">
             <li class="px-4 py-2 border rounded-full bg-black text-white cursor-pointer whitespace-pre" onclick="onFilter('')">Semua Fasilitas</li>
@@ -293,12 +294,12 @@
                 <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                     {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                 </p>
-                <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar">
                     @foreach($val->specification as $child)
-                    <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
+                    <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                        <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $child->value }}</span>
-                        <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
+                        <span class="text-[10px] md:text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                        <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
                     </div>
                     @endforeach
                 </div>
@@ -326,7 +327,7 @@
 </div>
 <div class="my-8 md:my-14 px-0 md:px-24">
     <div class="bg-white p-3 md:p-7 rounded-lg md:rounded-3xl flex flex-col-reverse md:flex-row gap-5 md:items-center">
-        <div class="grow md:pr-20">
+        <div class="w-full md:flex-1 md:pr-20">
             <h5 class="text-xl md:text-3xl font-semibold">Menikmati Senja dan Pagi langsung di kawasan kaki gunung</h5>
             <p class="text-[#808080] mt-6">Menghadirkan suasana yang tenang, hangat, dan penuh keteduhan. Cahaya lembut matahari, udara segar pegunungan, serta pemandangan alami yang terbentang membuat setiap momen terasa lebih dekat dengan alam dan jauh lebih menenangkan.</p>
             <div class="mt-6 flex justify-start">
@@ -337,8 +338,8 @@
                 </a>
             </div>
         </div>
-        <div>
-            <iframe class="rounded-lg md:rounded-3xl w-full md:w-[610px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" height="309" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="w-full md:flex-1">
+            <iframe class="rounded-lg md:rounded-3xl w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2696886817916!2d107.43621367590866!3d-7.0947066695567695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68f30628e4c0bf%3A0xa062e8e408652003!2sVilla%20Komando!5e0!3m2!1sid!2sid!4v1763647930577!5m2!1sid!2sid" height="309" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </div>
@@ -396,11 +397,12 @@
         let specHtml = "";
 
         $.each(item.specification, function(i, itemChild) {
+            let valueMd = itemChild.value_md || itemChild.value.replace('KT', 'Kamar Tidur').replace('KM', 'Kamar Mandi');
             specHtml += `
-                <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
+                <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">${itemChild.value}</span>
-                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${itemChild.value_md}</span>
+                    <span class="text-[10px] whitespace-pre md:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${valueMd}</span>
                 </div>
             `;
         });
@@ -466,7 +468,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>

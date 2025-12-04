@@ -52,16 +52,16 @@
                     <li>Rumput Sintetis</li>
                     <li>Mini Zoo Aviary</li>
                     <li>Camping Ground</li>
-                    <li class="font-semibold">Lihat Fasilitas</li>
+                    <li class="font-semibold"><a href="{{ route('facility') }}">Lihat Fasilitas</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="flex flex-col md:flex-row md:justify-between">
-        <p class="text-[#000000] mt-4 font-semibold text-center md:text-start">© 2025 Saung Komando Ciwidey. Hak Cipta Dilindungi.</p>
+        <p class="text-[#000000] mt-4 font-medium text-center md:text-start">© 2025 Saung Komando Ciwidey. Hak Cipta Dilindungi.</p>
         <div class="flex gap-10">
-            <p class="text-[#000000] mt-4 font-semibold">Syarat dan ketentuan</p>
-            <p class="text-[#000000] mt-4 font-semibold">Kebijakan Privasi</p>
+            <p class="text-[#000000] mt-4 font-medium">Syarat dan ketentuan</p>
+            <p class="text-[#000000] mt-4 font-medium">Kebijakan Privasi</p>
         </div>
     </div>
 </div>

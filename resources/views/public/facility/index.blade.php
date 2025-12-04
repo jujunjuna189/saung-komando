@@ -71,12 +71,12 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                     </p>
-                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar">
                         @foreach($val->specification as $child)
-                        <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
+                        <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                             <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                            <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">{{ $child->value }}</span>
-                            <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
+                            <span class="text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
+                            <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
                         </div>
                         @endforeach
                     </div>
@@ -161,11 +161,12 @@
         let specHtml = "";
 
         $.each(item.specification, function(i, itemChild) {
+            let valueMd = itemChild.value_md || itemChild.value.replace('KT', 'Kamar Tidur').replace('KM', 'Kamar Mandi');
             specHtml += `
-                <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
+                <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
-                    <span class="text-[10px] md:text-[12px] whitespace-pre md:hidden">${itemChild.value}</span>
-                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${itemChild.value_md}</span>
+                    <span class="text-[10px] whitespace-pre md:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${valueMd}</span>
                 </div>
             `;
         });
@@ -231,7 +232,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>
