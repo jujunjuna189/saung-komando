@@ -229,6 +229,8 @@
                 $('#endDate').val('');
                 $('#startLabel').text(pickStart);
                 $('#endLabel').text('-');
+                $('#checkinDisplay').text(pickStart);
+                $('#checkoutDisplay').text('-');
                 return;
             }
             if (pickStart && pickEnd) {
@@ -238,6 +240,8 @@
                 $('#endDate').val(e);
                 $('#startLabel').text(s);
                 $('#endLabel').text(e);
+                $('#checkinDisplay').text(s);
+                $('#checkoutDisplay').text(e);
             }
         }
 

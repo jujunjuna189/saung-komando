@@ -19,7 +19,21 @@ class FacilityController extends Controller
     {
         $model = FacilityModel::when(! empty($request->category), function ($q) use ($request) {
             $q->where('category', $request->category);
-        })->with('thumbnails', 'specification')->get();
+        })
+            ->when(! empty($request->specs), function ($q) use ($request) {
+                $specs = $request->specs;
+                $q->whereHas('specification', function ($query) use ($specs) {
+                    $query->whereIn('value_md', $specs);
+                });
+                if (count($specs) > 1) {
+                    // AND: harus match semua
+                    $q->withCount(['specification as match_count' => function ($query) use ($specs) {
+                        $query->whereIn('value_md', $specs);
+                    }])->having('match_count', '=', count($specs));
+                }
+            })
+            ->with('thumbnails', 'specification')
+            ->get();
 
         return response()->json([
             'status' => 'success',
@@ -50,14 +64,14 @@ class FacilityController extends Controller
             if (count($request->file('files')) > 0) {
                 FacilityThumbnailModel::where('facility_id', $model->id)->delete();
                 foreach ($request->file('files') as $file) {
-                    $filename = Str::uuid().'.webp';
+                    $filename = Str::uuid() . '.webp';
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($file);
                     $encoded = $image->toWebp(60);
-                    Storage::disk('public')->put('fasility/'.$filename, $encoded);
+                    Storage::disk('public')->put('fasility/' . $filename, $encoded);
                     $spec = new FacilityThumbnailModel();
                     $spec->facility_id = $model->id;
-                    $spec->path = 'fasility/'.$filename;
+                    $spec->path = 'fasility/' . $filename;
                     $spec->save();
                 }
             }
@@ -109,14 +123,14 @@ class FacilityController extends Controller
 
             if ($request->hasFile('files') && count($request->file('files')) > 0) {
                 foreach ($request->file('files') as $file) {
-                    $filename = Str::uuid().'.webp';
+                    $filename = Str::uuid() . '.webp';
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($file);
                     $encoded = $image->toWebp(60);
-                    Storage::disk('public')->put('fasility/'.$filename, $encoded);
+                    Storage::disk('public')->put('fasility/' . $filename, $encoded);
                     $spec = new FacilityThumbnailModel();
                     $spec->facility_id = $model->id;
-                    $spec->path = 'fasility/'.$filename;
+                    $spec->path = 'fasility/' . $filename;
                     $spec->save();
                 }
             }

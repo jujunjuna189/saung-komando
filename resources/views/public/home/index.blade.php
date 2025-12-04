@@ -37,28 +37,42 @@
         </div>
         <div class="mt-10 px-5 md:pl-20 md:pr-10">
             <div class="bg-white shadow-lg grid grid-cols-2 md:flex md:items-center p-3 md:py-1 md:px-1 rounded-xl relative dropdown-container">
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3 dropdown-btn" onclick="toggleDropdown('calendar')">
                     <span>Check In:</span>
                     <h6 class="font-semibold" id="checkinDisplay">{{ \Carbon\Carbon::now()->locale('id')->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
-                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3" onclick="toggleDropdown('calendar')">
+                <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3 dropdown-btn" onclick="toggleDropdown('calendar')">
                     <span>Check Out:</span>
                     <h6 class="font-semibold" id="checkoutDisplay">{{ \Carbon\Carbon::now()->locale('id')->addDays()->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kapasitas</span>
-                    <h6 class="font-semibold">02 Orang</h6>
+                    <div class="md:w-[150px]">
+                        <x-public.field.select-input default="2 Orang" id="select_orang" :options="[
+                            ['value' => '1 Orang', 'display' => '1 Orang'],
+                            ['value' => '2 Orang', 'display' => '2 Orang'],
+                            ['value' => '3 Orang', 'display' => '3 Orang'],
+                            ['value' => '4 Orang', 'display' => '4 Orang'],
+                            ['value' => '5 Orang', 'display' => '5 Orang']
+                        ]" class_container="border-none text-semibold px-[0px] pr-10 py-[0px] md:w-full" class_list="w-[100px] md:w-auto md:right-10" />
+                    </div>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kamar Tidur</span>
-                    <h6 class="font-semibold">02 Kamar</h6>
+                    <div class="md:w-[150px]">
+                        <x-public.field.select-input default="2 Kamar Tidur" id="select_kamar" :options="[
+                            ['value' => '1 Kamar Tidur', 'display' => '1 Kamar Tidur'],
+                            ['value' => '2 Kamar Tidur', 'display' => '2 Kamar Tidur'],
+                            ['value' => '3 Kamar Tidur', 'display' => '3 Kamar Tidur']
+                        ]" class_container="border-none text-semibold px-[0px] pr-10 py-[0px] md:w-full" class_list="w-[150px] md:w-auto md:right-10" />
+                    </div>
                 </div>
                 <div class="col-span-2">
                     <div class="relative md:px-3">
-                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="toggleDropdown('search')">
+                        <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 dropdown-btn" onclick="toggleDropdown('search')">
                             <div class="flex gap-3 justify-center items-center">
                                 <span>Cari Penginapan</span>
                             </div>
@@ -82,84 +96,7 @@
                         </div>
                     </div>
                     <!-- list -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-3">
-                        @foreach($facility as $val)
-                        <div class="rounded-xl overflow-hidden bg-white flex flex-row opacity-0 fade-up-scroll">
-                            <div class="w-[90px] aspect-square bg-gray-50 overflow-hidden group">
-                                <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
-                                    alt=""
-                                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            </div>
-
-                            <div class="p-3 grow flex flex-col">
-                                @if($val->is_free_for_guest == 1)
-                                <div class="flex justify-between items-center">
-                                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                                        <span class="text-[10px]">
-                                            <strong class="text-red-500">FREE</strong> untuk tamu menginap
-                                        </span>
-                                    </div>
-                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                                        </svg>
-                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
-                                    </div>
-                                </div>
-                                @endif
-
-                                @if($val->is_membership == 1)
-                                <div class="flex justify-between items-center">
-                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
-                                    <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                                        <span class="text-[10px]">Membership 325rb/bln</span>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="flex justify-between items-center">
-                                    <h5 class="text-md font-semibold">{{ $val->title }}</h5>
-                                    @if($val->is_free_for_guest == 0)
-                                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="currentColor" class="text-[#F4C01E] w-[13px] h-[13px]">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                                        </svg>
-                                        <span class="font-semibold text-[10px]">{{ $val->rating }}</span>
-                                    </div>
-                                    @endif
-                                </div>
-                                @endif
-
-                                <p class="mt-1 text-[#808080] text-[10px]">
-                                    {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
-                                </p>
-
-                                <div class="mt-2 flex justify-start gap-2 overflow-x-auto no-scrollbar">
-                                    @foreach($val->specification as $child)
-                                    <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
-                                        <img src="{{ url($child->icon) }}" alt="" class="h-4">
-                                        <span class="text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
-                                        <span class="text-[10px] md:text-[14px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
-                                    </div>
-                                    @endforeach
-                                </div>
-
-                                <div class="flex flex-row justify-between items-center mt-1">
-                                    <label class="font-semibold text-sm">{{ $val->price }}</label>
-                                    <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
-                                        class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                                        <div class="flex gap-3 items-center text-[10px]">
-                                            <span>Lihat Detail</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
+                    <div id="dropdown-list" class="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5 mt-3 bg-gray-300 p-2 md:p-3 rounded-lg md:rounded-xl"></div>
                 </div>
             </div>
         </div>
@@ -294,12 +231,12 @@
                 <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                     {{ strlen($val->description) > 75 ? substr($val->description, 0, 75) . "..." : $val->description; }}
                 </p>
-                <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar">
+                <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar">
                     @foreach($val->specification as $child)
                     <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                         <img src="{{ url($child->icon) }}" alt="" class="h-4">
                         <span class="text-[10px] md:text-[10px] whitespace-pre md:hidden">{{ $child->value }}</span>
-                        <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md ?? str_replace(['KT', 'KM'], ['Kamar Tidur', 'Kamar Mandi'], $child->value) }}</span>
+                        <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">{{ $child->value_md }}</span>
                     </div>
                     @endforeach
                 </div>
@@ -365,11 +302,146 @@
     });
 
     function toggleDropdown(id) {
-        // Hide all other dropdowns
-        $('.dropdown-menu').not(`#dropdown-${id}`).addClass('hidden');
-        // Toggle current
-        $(`#dropdown-${id}`).toggleClass('hidden');
+        const dropdown = $(`#dropdown-${id}`);
+
+        $('.dropdown-menu').not(dropdown).addClass('hidden');
+        dropdown.toggleClass('hidden');
+        const isOpen = !dropdown.hasClass('hidden');
+
+        if (isOpen) {
+            getFacility();
+        }
     }
+
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.dropdown-menu, .dropdown-btn').length) {
+            $('.dropdown-menu').addClass('hidden');
+        }
+    });
+
+    function renderFilterFasility(item) {
+        let specHtml = "";
+
+        $.each(item.specification, function(i, itemChild) {
+            specHtml += `
+                <div class="flex gap-2 items-center px-2 py-1 md:py-1.5 rounded-full bg-[#EDEFF1] overflow-hidden">
+                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
+                    <span class="text-[10px] whitespace-pre md:hidden">${itemChild.value}</span>
+                    <span class="text-[10px] md:text-[14px] lg:text-[11px] whitespace-pre hidden lg:flex">${itemChild.value_md}</span>
+                </div>
+            `;
+        });
+
+        let freeGuest = "";
+        if (item.is_free_for_guest == 1) {
+            freeGuest = `
+                <div class="flex justify-between items-center">
+                    <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
+                        <span class="text-[10px]">
+                            <strong class="text-red-500">FREE</strong> untuk tamu menginap
+                        </span>
+                    </div>
+                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                        <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[16px] h-[13px] md:h-[16px]">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                        </svg>
+                        <span class="font-semibold text-[10px]">${item.rating}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        let membership = "";
+        if (item.is_membership == 1) {
+            membership = `
+                <div class="flex justify-between items-center">
+                    <h5 class="text-md font-semibold">${item.title}</h5>
+                    <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
+                        <span class="text-[10px]">Membership 325rb/bln</span>
+                    </div>
+                </div>
+            `;
+        } else {
+            let rating = "";
+            if (item.is_free_for_guest == 0) {
+                rating = `
+                    <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
+                        <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[16px] h-[13px] md:h-[16px]">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                        </svg>
+                        <span class="font-semibold text-[10px]">${item.rating}</span>
+                    </div>
+                `;
+            }
+
+            membership = `
+                <div class="flex justify-between items-center">
+                    <h5 class="text-md font-semibold">${item.title}</h5>
+                    ${rating}
+                </div>
+            `;
+        }
+
+        const element = `
+            <div class="rounded-xl overflow-hidden bg-white flex flex-row">
+                <div class="w-[90px] aspect-square bg-gray-50 overflow-hidden group">
+                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}"
+                        alt=""
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                </div>
+
+                <div class="p-3 grow flex flex-col">
+                    ${freeGuest}
+                    ${membership}
+
+                    <p class="mt-1 text-[#808080] text-[10px]">
+                        ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
+                    </p>
+
+                    <div class="mt-2 flex justify-between gap-2 overflow-x-auto no-scrollbar">
+                        ${specHtml}
+                    </div>
+
+                    <div class="flex flex-row justify-between items-center mt-1">
+                        <label class="font-semibold text-sm">${item.price}</label>
+                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
+                            class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                            <div class="flex gap-3 items-center text-[10px]">
+                                <span>Lihat Detail</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        return element;
+    }
+
+    // Search render facility
+    function getFacility() {
+        let params = new URLSearchParams();
+        params.append('check_in', $('#checkinDisplay').text());
+        params.append('check_out', $('#checkoutDisplay').text());
+        params.append('specs[]', $('#select_orang .selected-text').text());
+        params.append('specs[]', $('#select_kamar .selected-text').text());
+        requestServer({
+            url: url + '/api/facility/show',
+            type: "GET",
+            data: params.toString(),
+            onLoader: false,
+            onSuccess: function(response) {
+                $("#dropdown-search #dropdown-list").empty();
+                $.each(response.data, function(i, item) {
+                    const element = renderFilterFasility(item);
+                    $("#dropdown-search #dropdown-list").append(element);
+                });
+            },
+        });
+    }
+
 
     function renderCategory() {
         $('#filter-category').empty();
@@ -397,12 +469,11 @@
         let specHtml = "";
 
         $.each(item.specification, function(i, itemChild) {
-            let valueMd = itemChild.value_md || itemChild.value.replace('KT', 'Kamar Tidur').replace('KM', 'Kamar Mandi');
             specHtml += `
                 <div class="flex gap-2 items-center px-2 py-1 md:px-2 md:py-1.5 rounded-full bg-[#EDEFF1]">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
                     <span class="text-[10px] whitespace-pre md:hidden">${itemChild.value}</span>
-                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${valueMd}</span>
+                    <span class="text-[10px] md:text-[12px] whitespace-pre hidden md:flex">${itemChild.value_md}</span>
                 </div>
             `;
         });
@@ -468,7 +539,7 @@
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex justify-start gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>
