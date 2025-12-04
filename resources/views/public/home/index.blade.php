@@ -38,43 +38,43 @@
         <div class="mt-10 px-5 md:pl-20 md:pr-10">
             <div class="bg-white shadow-lg grid grid-cols-2 md:flex md:items-center p-3 md:py-1 md:px-1 rounded-xl relative dropdown-container">
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3 dropdown-btn" onclick="toggleDropdown('calendar')">
-                    <span>Check In:</span>
-                    <h6 class="font-semibold" id="checkinDisplay">{{ \Carbon\Carbon::now()->locale('id')->format('d M y') }}</h6>
+                    <spa class="whitespace-pre">Check In:</spa>
+                    <h6 class="font-semibold whitespace-pre" id="checkinDisplay">{{ \Carbon\Carbon::now()->locale('id')->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3 dropdown-btn" onclick="toggleDropdown('calendar')">
-                    <span>Check Out:</span>
-                    <h6 class="font-semibold" id="checkoutDisplay">{{ \Carbon\Carbon::now()->locale('id')->addDays()->format('d M y') }}</h6>
+                    <span class="whitespace-pre">Check Out:</span>
+                    <h6 class="font-semibold whitespace-pre" id="checkoutDisplay">{{ \Carbon\Carbon::now()->locale('id')->addDays()->format('d M y') }}</h6>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kapasitas</span>
-                    <div class="md:w-[150px]">
+                    <div class="w-full">
                         <x-public.field.select-input default="2 Orang" id="select_orang" :options="[
                             ['value' => '1 Orang', 'display' => '1 Orang'],
                             ['value' => '2 Orang', 'display' => '2 Orang'],
                             ['value' => '3 Orang', 'display' => '3 Orang'],
                             ['value' => '4 Orang', 'display' => '4 Orang'],
                             ['value' => '5 Orang', 'display' => '5 Orang']
-                        ]" class_container="border-none text-semibold px-[0px] pr-10 py-[0px] md:w-full" class_list="w-[100px] md:w-auto md:right-10" />
+                        ]" class_container="border-none text-semibold px-[0px] lg:pr-10 py-[0px] w-full whitespace-pre" class_list="w-full lg:right-10" />
                     </div>
                 </div>
                 <div class="w-px h-10 bg-black hidden md:flex"></div>
                 <div class="grow hover:bg-gray-100 py-3 pl-4 pr-3">
                     <span>Kamar Tidur</span>
-                    <div class="md:w-[150px]">
+                    <div class="w-full">
                         <x-public.field.select-input default="2 Kamar Tidur" id="select_kamar" :options="[
                             ['value' => '1 Kamar Tidur', 'display' => '1 Kamar Tidur'],
                             ['value' => '2 Kamar Tidur', 'display' => '2 Kamar Tidur'],
                             ['value' => '3 Kamar Tidur', 'display' => '3 Kamar Tidur']
-                        ]" class_container="border-none text-semibold px-[0px] pr-10 py-[0px] md:w-full" class_list="w-[150px] md:w-auto md:right-10" />
+                        ]" class_container="border-none text-semibold px-[0px] lg:pr-10 py-[0px] w-full whitespace-pre" class_list="w-full lg:right-10" class_text="whitespace-pre" />
                     </div>
                 </div>
                 <div class="col-span-2">
                     <div class="relative md:px-3">
                         <div class="bg-[#AEEF8B] px-5 py-3 rounded-xl hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 dropdown-btn" onclick="toggleDropdown('search')">
                             <div class="flex gap-3 justify-center items-center">
-                                <span>Cari Penginapan</span>
+                                <span class="whitespace-pre">Cari Penginapan</span>
                             </div>
                         </div>
                     </div>

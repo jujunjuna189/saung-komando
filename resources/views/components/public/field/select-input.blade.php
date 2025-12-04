@@ -1,16 +1,17 @@
 @props([
 'class_container' => "",
 'class_list' => "",
+'class_text' => "",
 'default' => null,
 'options' => [],
 'id' => 'select-' . uniqid(),
 ])
 
-<div class="relative w-64" id="{{ $id }}">
+<div class="relative w-full" id="{{ $id }}">
 
     <!-- Trigger -->
-    <button class="select-btn flex justify-between items-center border-gray-300 
-        rounded-lg px-4 py-2 transition focus:outline-none {{ $class_container }}">
+    <button class="select-btn flex gap-3 justify-between items-center border-gray-300 
+        rounded-lg px-4 py-2 transition focus:outline-none w-full {{ $class_container }}">
         <span class="selected-text">{{ $default ?? "Pilih Item..." }}</span>
 
         <svg class="w-5 h-5 arrow-icon text-gray-500 transition-transform duration-200" fill="none"
@@ -26,7 +27,7 @@
         transition duration-200 z-20 {{ $class_list }}">
         <ul class="max-h-48 overflow-y-auto">
             @foreach($options as $val)
-            <li class="option px-4 py-2 cursor-pointer hover:bg-gray-100" data-value="{{ $val['value'] }}">{{ $val['display'] }}</li>
+            <li class="option px-4 py-2 cursor-pointer hover:bg-gray-100 {{ $class_text }}" data-value="{{ $val['value'] }}">{{ $val['display'] }}</li>
             @endforeach
         </ul>
     </div>
