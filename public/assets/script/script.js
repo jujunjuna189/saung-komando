@@ -186,3 +186,19 @@ function initFacilitySlider(trackId, prevId, nextId, dotsId) {
     // Inisialisasi
     updateSlider();
 }
+
+function getYouTubeCode(url) {
+    let videoCode = null;
+
+    // Untuk short link youtu.be
+    if (url.includes('youtu.be')) {
+        videoCode = url.split('/').pop().split('?')[0]; // ambil bagian setelah /
+    }
+    // Untuk full link youtube.com
+    else if (url.includes('youtube.com')) {
+        const urlObj = new URL(url);
+        videoCode = urlObj.searchParams.get('v');
+    }
+
+    return videoCode;
+}

@@ -44,7 +44,15 @@
                 </div>
                 <div>
                     <div>
-                        <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="w-full rounded-lg md:rounded-3xl h-full object-cover fade hidden md:flex">
+                        <div class="w-full rounded-lg md:rounded-3xl h-64 md:h-96 overflow-hidden relative fade hidden md:flex">
+                            <iframe 
+                                class="w-full h-full object-cover"
+                                src="https://www.youtube.com/embed/{{ $controller->getYouTubeCode($detail->link) }}?autoplay=1&mute=1&controls=0&loop=1&playlist={{ $controller->getYouTubeCode($detail->link) }}"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                         <div class="flex justify-between mt-3">
                             <h6 class="font-semibold text-lg">Deskripsi</h6>
                             <h6 class="font-semibold text-lg">Fasilitas</h6>
