@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('title');
             $table->text('description')->nullable();
+            $table->text('link')->nullable();
             $table->string('price');
             $table->string('rating')->nullable();
             $table->tinyInteger('is_free_for_guest')->default(0);
