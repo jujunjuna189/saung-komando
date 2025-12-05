@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Facility\FacilityCategoryModel;
 use App\Models\Dashboard\Facility\FacilityModel;
 use App\Models\Dashboard\Facility\FacilitySpecificationModel;
+use App\Models\Dashboard\Gallery\GalleryModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,10 +27,15 @@ class HomeController extends Controller
             ->distinct()
             ->get();
 
+        $sliders = GalleryModel::where('category', 'slider')
+            ->orderBy('sort_order', 'asc')
+            ->get();
+
         $data['category'] = $category;
         $data['facility'] = $facility;
         $data['capacities'] = $capacities;
         $data['bedrooms'] = $bedrooms;
+        $data['sliders'] = $sliders;
 
         return view('public.home.index', $data);
     }

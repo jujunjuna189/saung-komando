@@ -2,14 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\Public\Home\HomeController::class, "index"])->name('home');
+Route::get('/', [App\Http\Controllers\Public\Home\HomeController::class, 'index'])->name('home');
 
-Route::get('/facility', [App\Http\Controllers\Public\Facility\FacilityController::class, "index"])->name('facility');
-Route::get('/facility/detail', [App\Http\Controllers\Public\Facility\FacilityController::class, "detail"])->name('facility.detail');
+Route::get('/facility', [App\Http\Controllers\Public\Facility\FacilityController::class, 'index'])->name('facility');
+Route::get('/facility/detail', [App\Http\Controllers\Public\Facility\FacilityController::class, 'detail'])->name('facility.detail');
 
-Route::get('/gallery', function () {
-    return view('public.gallery.index');
-})->name('gallery');
+Route::get('/gallery', [App\Http\Controllers\Public\Gallery\GalleryController::class, 'index'])->name('gallery');
 
 Route::get('/contact', function () {
     return view('public.contact.index');

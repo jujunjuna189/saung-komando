@@ -7,66 +7,13 @@
     </div>
     <div class="mt-12 px-5 md:px-20">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            @foreach ($galleries as $item)
             <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
+                <img src="{{ asset('storage/' . $item->link) }}"
                     alt=""
                     class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
             </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
-            <div class="h-[200px] md:h-[482px] bg-amber-950 rounded-lg md:rounded-4xl overflow-hidden group opacity-0 fade-up-scroll">
-                <img src="{{ asset('assets/image/bg-main.jpg') }}"
-                    alt=""
-                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110">
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="mt-8 md:mt-14 px-0 md:px-24">

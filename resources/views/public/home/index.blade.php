@@ -133,7 +133,7 @@
 </div>
 <div class="my-5 md:my-14 px-0 md:px-20">
     <div class="bg-white p-3 md:p-7 rounded-lg md:rounded-3xl flex flex-col-reverse md:flex-row gap-5">
-        <div class="grow p-2 md:p-5">
+        <div class="w-full md:w-[50%] p-2 md:p-5">
             <h5 class="text-xl md:text-3xl font-semibold">Tempat staycation nyaman dengan Udara Sejuk Ciwidey</h5>
             <p class="text-[#808391] mt-6">Saung Komando Ciwidey menghadirkan pengalaman menginap yang dipenuhi hawa pegunungan yang dingin dan bersih. Setiap tamu merasakan ketenangan, kualitas tidur yang lebih baik, dan suasana alam yang membuat tubuh benar-benar rileks.</p>
             <div class="grid grid-cols-2 md:flex gap-10 py-10">
@@ -175,8 +175,28 @@
                 </div>
             </div>
         </div>
-        <div>
-            <img src="{{ asset('assets/image/image-main2.jpg') }}" alt="" class="w-full rounded-lg md:rounded-3xl h-full object-cover fade">
+        <div class="w-full md:w-[50%] relative min-h-[300px] md:min-h-0">
+            <div class="grid grid-cols-1 grid-rows-1 w-full h-full rounded-lg md:rounded-3xl overflow-hidden md:absolute md:inset-0 group">
+                @foreach($sliders as $key => $slider)
+                <img src="{{ asset('storage/' . $slider->link) }}"
+                     alt="Slider Image {{ $key + 1 }}"
+                     class="col-start-1 row-start-1 w-full h-full object-cover transition-opacity duration-1000 ease-in-out slider-image {{ $loop->first ? 'opacity-100 z-10' : 'opacity-0 z-0' }}">
+                @endforeach
+
+                <!-- Prev Button -->
+                <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white text-black p-2 rounded-full backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+
+                <!-- Next Button -->
+                <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white text-black p-2 rounded-full backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -314,6 +334,54 @@
                 });
             }
         });
+
+        // Home Slider Logic
+        const sliders = $('.slider-image');
+        let currentSliderIndex = 0;
+        let sliderInterval;
+
+        function showSlide(index) {
+            // Fade out current
+            $(sliders[currentSliderIndex]).removeClass('opacity-100 z-10').addClass('opacity-0 z-0');
+            // Fade in next
+            $(sliders[index]).removeClass('opacity-0 z-0').addClass('opacity-100 z-10');
+            currentSliderIndex = index;
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentSliderIndex + 1) % sliders.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            const prevIndex = (currentSliderIndex - 1 + sliders.length) % sliders.length;
+            showSlide(prevIndex);
+        }
+
+        function startSlider() {
+            sliderInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetSlider() {
+            clearInterval(sliderInterval);
+            startSlider();
+        }
+
+        if (sliders.length > 1) {
+            startSlider();
+
+            $('#slider-prev').click(function(e) {
+                e.preventDefault();
+                prevSlide();
+                resetSlider();
+            });
+
+            $('#slider-next').click(function(e) {
+                e.preventDefault();
+                nextSlide();
+                resetSlider();
+            });
+        }
     });
 
     function toggleDropdown(id) {
