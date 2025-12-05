@@ -57,7 +57,7 @@ class FacilityController extends Controller
                     $spec->facility_id = $model->id;
                     $spec->icon = $val->icon;
                     $spec->value = $val->value;
-                    $spec->value_md = $val->value;
+                    $spec->value_md = $val->value_md;
                     $spec->save();
                 }
             }
@@ -89,7 +89,7 @@ class FacilityController extends Controller
 
             return response()->json([
                 'status' => 'failed',
-                'message' => $th,
+                'message' => $th->getMessage(),
                 'data' => [],
             ]);
         }
@@ -118,7 +118,7 @@ class FacilityController extends Controller
                     $spec->facility_id = $model->id;
                     $spec->icon = $val->icon;
                     $spec->value = $val->value;
-                    $spec->value_md = $val->value;
+                    $spec->value_md = $val->value_md;
                     $spec->save();
                 }
             }

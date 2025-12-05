@@ -354,7 +354,7 @@
 
         const element = `
             <div class="bg-white rounded-xl p-2 flex gap-3 w-full h-full">
-                <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-[100px] max-w-[100px] aspect-square rounded-xl h-full object-cover">
+                <img src="{{ asset('storage/${item.thumbnails[0]?.path}') }}" alt="" class="w-[100px] max-w-[100px] aspect-square rounded-xl h-full object-cover">
                 <div class="grow flex flex-col min-w-0">
                     ${freeGuest}
                     ${membership}
@@ -421,6 +421,7 @@
             spesificationItem.push({
                 icon: "assets/icon/person.png",
                 value: maxCapasity + " Orang",
+                value_md: maxCapasity + " Orang",
             });
         }
 
