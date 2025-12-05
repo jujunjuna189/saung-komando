@@ -117,7 +117,7 @@
         </div>
     </div>
     <div class="relative w-[40%] max-w-[40%] min-w-[40%] hidden md:flex fade">
-        <div class="absolute right-20 left-10 top-6 flex justify-end items-center">
+        <div class="absolute right-20 left-10 top-6 flex justify-end items-center z-10">
             <a href="https://wa.link/u8ov80" target="_blank"
                 class="group bg-white px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                 <div class="flex gap-3 items-center">
@@ -140,7 +140,7 @@
 </div>
 <div class="my-5 md:my-14 px-0 md:px-20">
     <div class="bg-white p-3 md:p-7 rounded-lg md:rounded-3xl flex flex-col-reverse md:flex-row gap-5">
-        <div class="w-full md:w-[50%] p-2 md:p-5">
+        <div class="w-full md:w-[65%] 2xl:w-[50%] p-2 md:p-5">
             <h5 class="text-xl md:text-3xl font-semibold">Tempat staycation nyaman dengan Udara Sejuk Ciwidey</h5>
             <p class="text-[#808391] mt-6">Saung Komando Ciwidey menghadirkan pengalaman menginap yang dipenuhi hawa pegunungan yang dingin dan bersih. Setiap tamu merasakan ketenangan, kualitas tidur yang lebih baik, dan suasana alam yang membuat tubuh benar-benar rileks.</p>
             <div class="grid grid-cols-2 md:flex gap-10 py-10">
@@ -182,7 +182,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full md:w-[50%] relative min-h-[300px] md:min-h-0">
+        <div class="w-full md:w-[35%] 2xl:w-[50%] relative min-h-[300px] md:min-h-0">
             <div class="grid grid-cols-1 grid-rows-1 w-full h-full rounded-lg md:rounded-3xl overflow-hidden md:absolute md:inset-0 group">
                 @foreach($sliders as $key => $slider)
                 <img src="{{ asset('storage/' . $slider->link) }}"

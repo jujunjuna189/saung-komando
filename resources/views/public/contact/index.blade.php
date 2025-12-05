@@ -43,7 +43,7 @@
                 <h1 class="font-semibold text-4xl text-center">Informasi & Kerjasama</h1>
                 <div class="flex gap-5 mt-8">
                     <input type="text" name="name" id="name" placeholder="Masukkan Nama Lengkap" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
-                    <input type="text" name="email" id="email" placeholder="Email Aktif" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
+                    <input type="text" name="email" id="email" placeholder="Email Aktif" class="placeholder-[#808080] border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
                 </div>
                 <div class="flex gap-5 mt-5">
                     <select name="cooperation" id="cooperation" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
