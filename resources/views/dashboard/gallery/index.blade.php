@@ -99,9 +99,6 @@
         const uploadBtn = `
             <label class="cursor-pointer block w-full aspect-square overflow-hidden rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 flex flex-col justify-center items-center hover:bg-gray-100 transition group">
                 <input type="file" class="hidden" onchange="uploadImage(this, '${category}')" accept="image/*">
-                <div class="bg-white p-2 rounded-full shadow-sm group-hover:scale-110 transition mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path d="M7 9l5 -5l5 5"></path><path d="M12 4l0 12"></path></svg>
-                </div>
                 <span class="font-semibold text-sm text-gray-600">Upload</span>
             </label>
         `;

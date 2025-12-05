@@ -24,7 +24,7 @@
     <!-- Popup Dropdown -->
     <div class="dropdown hidden absolute left-0 right-0 mt-2 bg-white shadow-xl rounded-xl
         border border-gray-200 overflow-hidden origin-top transform scale-y-0 opacity-0 
-        transition duration-200 z-20 {{ $class_list }}">
+        transition duration-200 z-30 {{ $class_list }}">
         <ul class="max-h-48 overflow-y-auto">
             @foreach($options as $val)
             <li class="option px-4 py-2 cursor-pointer hover:bg-gray-100 {{ $class_text }}" data-value="{{ $val['value'] }}">{{ $val['display'] }}</li>

@@ -47,7 +47,7 @@
 </style>
 @endpush
 
-<div id="dropdown-calendar" class="dropdown-menu hidden max-w-5xl mx-auto p-6 bg-white rounded-3xl shadow-xl absolute left-0 right-0 top-52 md:top-22 z-10">
+<div id="dropdown-calendar" class="dropdown-menu hidden max-w-5xl mx-auto p-6 bg-white rounded-3xl shadow-xl absolute left-0 right-0 top-52 md:top-22 z-20">
     <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-2">
             <button id="prev" class="nav-btn text-pink-500">&lt;</button>
