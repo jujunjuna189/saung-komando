@@ -364,7 +364,7 @@
                     </div>
                     <div class="grow"></div>
                     <div class="flex justify-between items-center">
-                        <div class="flex gap-1 items-center">
+                        <div class="flex gap-1 items-center flex-wrap">
                             <h5 class="font-semibold whitespace-nowrap text-xs md:text-base">${item.price}</h5>
                             <h6 class="font-semibold whitespace-nowrap text-[10px] text-red-600 line-through">${item.markup_price ?? ''}</h6>
                         </div>
