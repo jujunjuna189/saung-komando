@@ -28,7 +28,7 @@
             @foreach($facility as $val)
             <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col opacity-0 fade-up-scroll">
                 <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
-                    <img src="{{ asset('storage/' . isset($val->thumbnails[0]) ? $val->thumbnails[0]->path : '') }}"
+                    <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
                         alt=""
                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
