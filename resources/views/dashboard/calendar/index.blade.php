@@ -483,7 +483,7 @@
                 </div>
                 <div class="mt-3 text-sm md:text-base">
                     <p>Catatan :</p>
-                    <p>${item.note}</p>
+                    <p>${item.note ?? '-'}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
                     <div class="px-4 py-2 border rounded-xl flex-[7] ${item.status == 'Lunas' ? 'bg-green-300 border-green-300' : item.status == 'DP' ? 'bg-orange-300 border-orange-300' : 'bg-blue-300 border-blue-300'}">
