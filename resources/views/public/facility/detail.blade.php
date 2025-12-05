@@ -28,7 +28,7 @@
                 <div class="col-span-2">
                     <div>
                         <img id="main-image"
-                            src="{{ asset('storage/' . $detail->thumbnails[0]->path ?? '') }}"
+                            src="{{ asset('storage/' . isset($detail->thumbnails[0]) ? $detail->thumbnails[0]->path : '') }}"
                             class="w-full rounded-lg md:rounded-3xl aspect-square md:aspect-auto md:h-128 object-cover fade">
 
                         <div class="hidden md:flex gap-2 mt-3 overflow-x-auto no-scrollbar">
@@ -136,7 +136,7 @@
                 <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
                     <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
                         <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
-                            <img src="{{ asset('storage/' . $val->thumbnails[0]->path ?? '') }}"
+                            <img src="{{ asset('storage/' . isset($detail->thumbnails[0]) ? $detail->thumbnails[0]->path : '') }}"
                                 alt=""
                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                         </div>
