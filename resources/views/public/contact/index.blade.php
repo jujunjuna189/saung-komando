@@ -42,17 +42,19 @@
             <div class="w-full md:w-[40%] pt-10">
                 <h1 class="font-semibold text-4xl text-center">Informasi & Kerjasama</h1>
                 <div class="flex gap-5 mt-8">
-                    <input type="text" name="name" id="name" placeholder="Masukkan Nama Lengkap" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
-                    <input type="text" name="email" id="email" placeholder="Email Aktif" class="placeholder-[#808080] border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
+                    <input type="text" name="name" id="name" placeholder="Masukkan Nama Lengkap" class="border rounded-xl px-5 py-3 w-full placeholder-[#808080] focus:outline-none">
+                    <input type="text" name="email" id="email" placeholder="Email Aktif" class="placeholder-[#808080] border rounded-xl px-5 py-3 w-full placeholder-[#808080] focus:outline-none">
                 </div>
                 <div class="flex gap-5 mt-5">
-                    <select name="cooperation" id="cooperation" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
-                        <option value="Kerjasama">Kerjasama</option>
-                    </select>
-                    <input type="text" name="link" id="link" placeholder="Link Akun  IG/TikTok" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">
+                    <div class="border rounded-xl px-5 w-full ">
+                        <select name="cooperation" id="cooperation" class="w-full py-3 placeholder-[#808080] focus:outline-none">
+                            <option value="Kerjasama">Kerjasama</option>
+                        </select>
+                    </div>
+                    <input type="text" name="link" id="link" placeholder="Link Akun  IG/TikTok" class="placeholder-[#808080] border rounded-xl px-5 py-3 w-full focus:outline-none">
                 </div>
                 <div class="mt-5">
-                    <textarea name="message" id="message" rows="5" class="border rounded-xl px-5 py-3 w-full placeholder-[#000000] focus:outline-none">Tulis Pesan</textarea>
+                    <textarea name="message" id="message" rows="5" class="border rounded-xl px-5 py-3 w-full placeholder-[#808080] focus:outline-none" placeholder="Tulis Pesan"></textarea>
                 </div>
                 <div class="mt-5 space-y-3 md:space-y-0  md:flex md:justify-between">
                     <button type="button" class="bg-[#AEEF8B] px-5 py-3 rounded-full w-full md:w-auto hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">

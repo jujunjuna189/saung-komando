@@ -31,11 +31,16 @@ class HomeController extends Controller
             ->orderBy('sort_order', 'asc')
             ->get();
 
+        $hero = GalleryModel::where('category', 'hero')
+            ->orderBy('id', 'desc')
+            ->first();
+
         $data['category'] = $category;
         $data['facility'] = $facility;
         $data['capacities'] = $capacities;
         $data['bedrooms'] = $bedrooms;
         $data['sliders'] = $sliders;
+        $data['hero'] = $hero;
 
         return view('public.home.index', $data);
     }

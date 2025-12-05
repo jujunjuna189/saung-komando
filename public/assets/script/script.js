@@ -125,3 +125,64 @@ function runSliders(containerSelector, autoplayTime = 5000) {
 
     start();
 }
+
+function initFacilitySlider(trackId, prevId, nextId, dotsId) {
+    const $track = $(`#${trackId}`);
+    const $container = $track.parent();
+    const $dotsContainer = $(`#${dotsId}`);
+    let index = 0;
+
+    function updateSlider() {
+        const containerWidth = $container.width();
+        const totalWidth = $track[0].scrollWidth;
+        const visibleItems = Math.floor(containerWidth / $track.children().first().outerWidth(true));
+        const maxTranslate = totalWidth - containerWidth;
+
+        const itemWidth = $track.children().first().outerWidth(true);
+        const totalItems = $track.children().length;
+        const maxIndex = totalItems - visibleItems;
+
+        // Bound index
+        if (index < 0) index = 0;
+        if (index > maxIndex) index = maxIndex;
+
+        // Hitung translateX
+        let translateX = (index * itemWidth);
+        if (translateX > maxTranslate) translateX = maxTranslate;
+
+        $track.css('transform', `translateX(-${translateX}px)`);
+
+        // Update dots
+        $dotsContainer.empty();
+        for (let i = 0; i <= maxIndex; i++) {
+            const dotClass = i === index ? 'bg-black' : 'bg-gray-400';
+            $dotsContainer.append(`<div class="w-2 h-2 rounded-full cursor-pointer ${dotClass} transition-colors"></div>`);
+        }
+
+        // Dot click
+        $dotsContainer.children().click(function() {
+            index = $(this).index();
+            updateSlider();
+        });
+
+        // Disable buttons jika sudah di batas
+        $(`#${prevId}`).prop('disabled', index === 0);
+        $(`#${nextId}`).prop('disabled', index === maxIndex);
+    }
+
+    // Prev / Next
+    $(`#${prevId}`).click(() => {
+        index--;
+        updateSlider();
+    });
+    $(`#${nextId}`).click(() => {
+        index++;
+        updateSlider();
+    });
+
+    // Responsive: reset slider saat resize
+    $(window).resize(() => updateSlider());
+
+    // Inisialisasi
+    updateSlider();
+}
