@@ -14,7 +14,7 @@
             <div class="w-full md:w-[400px]">
                 <span class="font-semibold">Link Hero Video</span>
                 <div class="flex gap-2 mt-2">
-                    <input type="text" name="url" id="url" placeholder="https://youtube.com" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full">
+                    <input type="text" name="url" id="url" placeholder="https://vimeo.com" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full">
                     <button type="button" class="px-4 py-2 rounded-xl bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9FE07B] transition" onclick="saveVideo()">
                         <div class="flex gap-1 items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
