@@ -34,3 +34,7 @@ Route::get('/dashboard/calendar', function () {
 Route::get('/dashboard/promotion', function () {
     return view('dashboard.promotion.index');
 })->name('dashboard.promotion');
+
+Route::get('/dashboard/gallery', function () {
+    return view('dashboard.gallery.index');
+})->name('dashboard.gallery');

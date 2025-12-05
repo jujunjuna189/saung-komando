@@ -23,11 +23,17 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('dashboard.gallery') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/gallery') ? 'bg-[#AEEF8B]' : '' }}">
+                    <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Coupon">
+                    <span>Update Galeri</span>
+                </a>
+            </li>
+            <!-- <li>
                 <a href="{{ route('dashboard.promotion') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Coupon">
                     <span>Kode Promo</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{ route('login') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4">
                     <img src="{{ asset('assets/icon/profile.svg') }}" alt="Profile">
