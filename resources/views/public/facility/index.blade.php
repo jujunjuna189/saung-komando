@@ -82,7 +82,10 @@
                     </div>
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                        <label for="price" class="font-semibold text-sm md:text-xl">{{ $val->price }}</label>
+                        <div class="flex flex-wrap flex-row items-center gap-1">
+                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</label>
+                            <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">{{ $val->markup_price }}</label>
+                        </div>
                         <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
@@ -207,7 +210,7 @@
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
-                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}<</span>
+                        <span class="font-semibold text-[10px] md:text-[14px]">${item.rating}</span>
                     </div>
                 `;
             }
@@ -236,7 +239,10 @@
                     </div>
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                        <label for="price" class="font-semibold text-sm md:text-xl">${item.price}</label>
+                        <div class="flex flex-wrap flex-row items-center gap-1">
+                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</label>
+                            <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price}</label>
+                        </div>
                         <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>

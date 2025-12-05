@@ -14,7 +14,7 @@
                 <input type="password" name="password" id="password" placeholder="Masukan Password" class="border rounded-full px-5 py-3 w-full">
             </div>
             <div class="mt-6 mb-1 w-full">
-                <button type="button" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer btn-login">
+                <button type="button" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer btn-login hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <span>Masuk</span>
                 </button>
             </div>

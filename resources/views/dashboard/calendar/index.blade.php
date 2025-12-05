@@ -308,7 +308,7 @@
             const el = document.createElement("div");
 
             el.className =
-                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-xs md:text-lg cursor-pointer hover:bg-[#AEEF8B] transition relative";
+                "h-16 md:h-24 border border-[#D8E0ED] flex items-start justify-end p-1 md:p-3 text-xs md:text-lg cursor-pointer hover:bg-gray-200 transition relative";
 
             events.forEach(ev => {
 

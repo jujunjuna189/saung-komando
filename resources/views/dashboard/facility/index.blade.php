@@ -280,7 +280,7 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="bg-[#EDEFF1] flex items-center justify-center gap-0.5 rounded-full px-1 py-0.5 w-full">
+                <div class="bg-[#EDEFF1] flex items-center justify-center gap-0.5 rounded-full px-1 py-1 w-full">
                     <img src="${url + '/' + itemChild.icon}" alt="" class="h-3 w-3 object-contain">
                     <span class="text-[8px] whitespace-nowrap">${itemChild.value}</span>
                 </div>
@@ -364,7 +364,10 @@
                     </div>
                     <div class="grow"></div>
                     <div class="flex justify-between items-center">
-                        <h5 class="font-semibold whitespace-nowrap text-xs md:text-base">${item.price}</h5>
+                        <div class="flex gap-1 items-center">
+                            <h5 class="font-semibold whitespace-nowrap text-xs md:text-base">${item.price}</h5>
+                            <h6 class="font-semibold whitespace-nowrap text-[10px] text-red-600 line-through">${item.markup_price}</h6>
+                        </div>
                         <div class="rounded-full bg-[#AEEF8B] text-[10px] md:text-[12px] px-3 py-1 cursor-pointer whitespace-nowrap" onclick="editData('${item.id}')">Edit</div>
                     </div>
                 </div>

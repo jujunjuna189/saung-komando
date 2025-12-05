@@ -5,37 +5,37 @@
         </div>
         <ul class="mt-8 space-y-3">
             <li>
-                <a href="{{ route('dashboard.overview') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/overview') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.overview') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/overview') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/overview.svg') }}" alt="Overview">
                     <span>Overview</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.facility') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/facility') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.facility') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/facility') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/facility.svg') }}" alt="Facility">
                     <span>Fasilitas</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.calendar') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.calendar') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/calendar.svg') }}" alt="Calendar">
                     <span>Kalender</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.gallery') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/gallery') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.gallery') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/gallery') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Coupon">
                     <span>Update Galeri</span>
                 </a>
             </li>
             <!-- <li>
-                <a href="{{ route('dashboard.promotion') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.promotion') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Coupon">
                     <span>Kode Promo</span>
                 </a>
             </li> -->
             <li>
-                <a href="{{ route('login') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4">
+                <a href="{{ route('login') }}" class="flex item-center gap-3 w-full border rounded-xl px-4 py-4 hover:bg-gray-100">
                     <img src="{{ asset('assets/icon/profile.svg') }}" alt="Profile">
                     <span>Logout</span>
                 </a>
