@@ -6,89 +6,46 @@
         <div class="mt-0">
             <div class="flex justify-between items-center gap-2">
                 <h1 class="text-xl md:text-2xl font-semibold">Update Galeri</h1>
-                <button type="button" class="px-4 py-2 rounded-full bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer md:w-auto" onclick="saveData()">
-                    <div class="flex gap-1 items-center justify-center text-[12px] md:text-base">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                            <path d="M14 4l0 4l-6 0l0 -4" />
-                        </svg>
-                        <span>Simpan Perubahan</span>
-                    </div>
-                </button>
             </div>
         </div>
+
+        <!-- Hero Video Section -->
         <div class="flex mt-7">
-            <div class="w-[300px]">
+            <div class="w-full md:w-[400px]">
                 <span class="font-semibold">Link Hero Video</span>
-                <div>
-                    <input type="text" name="url" id="url" placeholder="https://youtube.com" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+                <div class="flex gap-2 mt-2">
+                    <input type="text" name="url" id="url" placeholder="https://youtube.com" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full">
+                    <button type="button" class="px-4 py-2 rounded-xl bg-[#AEEF8B] border-[#AEEF8B] cursor-pointer hover:bg-[#9FE07B] transition" onclick="saveVideo()">
+                        <div class="flex gap-1 items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M14 4l0 4l-6 0l0 -4" />
+                            </svg>
+                            <span class="font-semibold">Simpan</span>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="mt-5 flex gap-5">
-            <div class="flex-1 w-0 md:pr-3">
-                <span class="font-semibold">Gambar Slider Home</span>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <div class="relative group w-full">
-                            <input type="file" name="slider_image" id="slider_image_upload{{ $i }}" class="hidden" onchange="previewImage(this, 'sliderImageUpload{{ $i }}')">
-                            <label for="slider_image_upload{{ $i }}" class="cursor-pointer block w-full aspect-square overflow-hidden rounded-2xl">
-                                <div id="noImageText-sliderImageUpload{{ $i }}" class="border border-dashed w-full h-full rounded-2xl bg-gray-100 flex justify-center items-center">
-                                    <span class="font-semibold">Upload</span>
-                                </div>
-                                <img id="sliderImageUpload{{ $i }}" class="w-full h-full object-cover hidden" />
-                            </label>
 
-                            <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
-                                <button type="button" onclick="moveImage('slider', {{ $i }}, -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
-                                <button type="button" onclick="moveImage('slider', {{ $i }}, 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    @endfor
+        <div class="mt-8 flex flex-col md:flex-row gap-8">
+            <!-- Slider Images -->
+            <div class="flex-1 w-full">
+                <span class="font-semibold block mb-3">Gambar Slider Home</span>
+                <div id="slider-container" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
-            <div class="w-px bg-gray-900 md:flex hidden"></div>
-            <div class="flex-1 w-0 md:pl-3">
-                <span class="font-semibold">Gambar Galeri</span>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <div class="relative group w-full">
-                            <input type="file" name="gallery_image" id="gallery_image_upload{{ $i }}" class="hidden" onchange="previewImage(this, 'galleryImageUpload{{ $i }}')">
-                            <label for="gallery_image_upload{{ $i }}" class="cursor-pointer block w-full aspect-square overflow-hidden rounded-2xl">
-                                <div id="noImageText-galleryImageUpload{{ $i }}" class="border border-dashed w-full h-full rounded-2xl bg-gray-100 flex justify-center items-center">
-                                    <span class="font-semibold">Upload</span>
-                                </div>
-                                <img id="galleryImageUpload{{ $i }}" class="w-full h-full object-cover hidden" />
-                            </label>
 
-                            <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
-                                <button type="button" onclick="moveImage('gallery', {{ $i }}, -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
-                                <button type="button" onclick="moveImage('gallery', {{ $i }}, 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    @endfor
+            <div class="w-px bg-gray-200 hidden md:block"></div>
+
+            <!-- Gallery Images -->
+            <div class="flex-1 w-full">
+                <span class="font-semibold block mb-3">Gambar Galeri</span>
+                <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
         </div>
@@ -98,6 +55,8 @@
 
 @section('script')
 <script>
+    let galleryData = [];
+
     $(document).ready(function() {
         getData();
     });
@@ -108,158 +67,161 @@
             type: "GET",
             onLoader: false,
             onSuccess: function(response) {
-                if (!response.data) return;
-                const data = response.data || [];
-
-                // Set Hero Video URL
-                const hero = data.find(item => item.category === 'hero' && item.type === 'video');
-                if (hero) {
-                    $('#url').val(hero.link);
-                }
-
-                // Set Slider Images
-                const sliders = data.filter(item => item.category === 'slider' && item.type === 'image');
-                sliders.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
-
-                for (let i = 1; i <= 6; i++) {
-                    resetImageInput('slider', i);
-                }
-
-                sliders.forEach((item, index) => {
-                    if (index < 6) {
-                        setImageInput('slider', index + 1, item);
-                    }
-                });
-
-                // Set Gallery Images
-                const galleries = data.filter(item => item.category === 'gallery' && item.type === 'image');
-                galleries.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
-
-                for (let i = 1; i <= 6; i++) {
-                    resetImageInput('gallery', i);
-                }
-
-                galleries.forEach((item, index) => {
-                    if (index < 6) {
-                        setImageInput('gallery', index + 1, item);
-                    }
-                });
+                galleryData = response.data || [];
+                renderAll();
             },
         });
     }
 
-    function previewImage(input, previewId) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#' + previewId).attr('src', e.target.result).removeClass('hidden');
-                $('#noImageText-' + previewId).addClass('hidden');
-                $('#' + previewId).removeAttr('data-id'); // Clear ID on new upload
-            }
-            reader.readAsDataURL(input.files[0]);
+    function renderAll() {
+        if (!Array.isArray(galleryData)) galleryData = [];
+
+        // Set Hero Video URL
+        const hero = galleryData.find(item => item.category === 'youtube' && item.type === 'video');
+        if (hero) {
+            $('#url').val(hero.link);
         }
+
+        // Render Sliders
+        const sliders = galleryData.filter(item => item.category === 'slider');
+        renderSection('slider-container', 'slider', sliders);
+
+        // Render Galleries
+        const galleries = galleryData.filter(item => item.category === 'gallery');
+        renderSection('gallery-container', 'gallery', galleries);
     }
 
-    function resetImageInput(type, index) {
-        const previewId = `${type}ImageUpload${index}`;
-        const inputId = `${type}_image_upload${index}`;
+    function renderSection(containerId, category, items) {
+        const container = $('#' + containerId);
+        container.empty();
 
-        $(`#${previewId}`).attr('src', '').addClass('hidden');
-        $(`#noImageText-${previewId}`).removeClass('hidden');
-        $(`#${inputId}`).val('');
-        $(`#${previewId}`).removeAttr('data-id');
+        // Upload Button (Always First)
+        const uploadBtn = `
+            <label class="cursor-pointer block w-full aspect-square overflow-hidden rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 flex flex-col justify-center items-center hover:bg-gray-100 transition group">
+                <input type="file" class="hidden" onchange="uploadImage(this, '${category}')" accept="image/*">
+                <div class="bg-white p-2 rounded-full shadow-sm group-hover:scale-110 transition mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path d="M7 9l5 -5l5 5"></path><path d="M12 4l0 12"></path></svg>
+                </div>
+                <span class="font-semibold text-sm text-gray-600">Upload</span>
+            </label>
+        `;
+        container.append(uploadBtn);
+
+        // Items
+        items.forEach((item, index) => {
+            const html = `
+                <div class="relative group w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-sm border border-gray-100">
+                    <img src="{{ asset('storage') }}/${item.link}" class="w-full h-full object-cover">
+
+                    <!-- Overlay & Delete Button -->
+                    <div class="absolute inset-0 bg-black/40 hidden group-hover:flex justify-center items-center z-10 transition-all">
+                        <button onclick="event.stopPropagation(); deleteImage(${item.id})" class="bg-white hover:bg-red-500 hover:text-white text-red-500 p-3 rounded-full shadow-lg transition transform hover:scale-110 z-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16 0"></path><path d="M10 11l0 6"></path><path d="M14 11l0 6"></path><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Move Left -->
+                    ${index > 0 ? `
+                    <div class="absolute top-1/2 -translate-y-1/2 left-2 z-20 hidden group-hover:block">
+                        <button type="button" onclick="moveImage('${category}', ${index}, -1)" class="bg-white/90 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>` : ''}
+
+                    <!-- Move Right -->
+                    ${index < items.length - 1 ? `
+                    <div class="absolute top-1/2 -translate-y-1/2 right-2 z-20 hidden group-hover:block">
+                        <button type="button" onclick="moveImage('${category}', ${index}, 1)" class="bg-white/90 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>` : ''}
+                </div>
+            `;
+            container.append(html);
+        });
     }
 
-    function setImageInput(type, index, item) {
-        const previewId = `${type}ImageUpload${index}`;
-
-        $(`#${previewId}`).attr('src', `{{ asset('storage') }}/${item.link}`).removeClass('hidden').attr('data-id', item.id);
-        $(`#noImageText-${previewId}`).addClass('hidden');
-    }
-
-    function moveImage(type, index, direction) {
-        const targetIndex = index + direction;
-        if (targetIndex < 1 || targetIndex > 6) return;
-
-        const currentPreview = $(`#${type}ImageUpload${index}`);
-        const targetPreview = $(`#${type}ImageUpload${targetIndex}`);
-
-        const currentSrc = currentPreview.attr('src');
-        const currentId = currentPreview.attr('data-id');
-        const currentHidden = currentPreview.hasClass('hidden');
-
-        const targetSrc = targetPreview.attr('src');
-        const targetId = targetPreview.attr('data-id');
-        const targetHidden = targetPreview.hasClass('hidden');
-
-        // Swap src
-        currentPreview.attr('src', targetSrc);
-        targetPreview.attr('src', currentSrc);
-
-        // Swap data-id
-        if (targetId) currentPreview.attr('data-id', targetId);
-        else currentPreview.removeAttr('data-id');
-
-        if (currentId) targetPreview.attr('data-id', currentId);
-        else targetPreview.removeAttr('data-id');
-
-        // Swap visibility
-        if (targetHidden) currentPreview.addClass('hidden');
-        else currentPreview.removeClass('hidden');
-
-        if (currentHidden) targetPreview.addClass('hidden');
-        else targetPreview.removeClass('hidden');
-
-        // Swap no-image text
-        const currentText = $(`#noImageText-${type}ImageUpload${index}`);
-        const targetText = $(`#noImageText-${type}ImageUpload${targetIndex}`);
-
-        if (targetHidden) currentText.removeClass('hidden');
-        else currentText.addClass('hidden');
-
-        if (currentHidden) targetText.removeClass('hidden');
-        else targetText.addClass('hidden');
-    }
-
-    function saveData() {
+    function saveVideo() {
+        const urlValue = $('#url').val();
         const formData = new FormData();
-
-        // Hero Video
-        const heroUrl = $('#url').val();
-        formData.append('hero_url', heroUrl);
-
-        // Slider Images
-        const sliderOrder = [];
-        for (let i = 1; i <= 6; i++) {
-            const input = $(`#slider_image_upload${i}`)[0];
-            if (input && input.files[0]) {
-                formData.append('slider_files[]', input.files[0]);
-            }
-
-            const id = $(`#sliderImageUpload${i}`).attr('data-id');
-            if (id) {
-                sliderOrder.push(id);
-            }
-        }
-        formData.append('slider_order', JSON.stringify(sliderOrder));
-
-        // Gallery Images
-        const galleryOrder = [];
-        for (let i = 1; i <= 6; i++) {
-            const input = $(`#gallery_image_upload${i}`)[0];
-            if (input && input.files[0]) {
-                formData.append('gallery_files[]', input.files[0]);
-            }
-
-            const id = $(`#galleryImageUpload${i}`).attr('data-id');
-            if (id) {
-                galleryOrder.push(id);
-            }
-        }
-        formData.append('gallery_order', JSON.stringify(galleryOrder));
+        formData.append('hero_url', urlValue);
 
         requestServer({
             url: url + '/api/Gallery/update',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(response) {
+                showToast("success", "Berhasil", response.message);
+                getData();
+            },
+        });
+    }
+
+    function uploadImage(input, category) {
+        if (input.files && input.files[0]) {
+            const formData = new FormData();
+            formData.append('file', input.files[0]);
+            formData.append('category', category);
+
+            requestServer({
+                url: url + '/api/Gallery/upload',
+                data: formData,
+                onLoader: true,
+                onSuccess: function(response) {
+                    showToast("success", "Berhasil", response.message);
+                    getData(); // Reload to show new image
+                },
+            });
+        }
+    }
+
+    function deleteImage(id) {
+        const formData = new FormData();
+        formData.append('id', id);
+
+        requestServer({
+            url: url + '/api/Gallery/delete',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(response) {
+                showToast("success", "Berhasil", response.message);
+                getData();
+            },
+        });
+    }
+
+    function moveImage(category, index, direction) {
+        const items = galleryData.filter(item => item.category === category);
+        const targetIndex = index + direction;
+
+        if (targetIndex < 0 || targetIndex >= items.length) return;
+
+        // Swap in local array to get IDs
+        const item = items[index];
+        const targetItem = items[targetIndex];
+
+        // We need to swap their sort orders or just send the new order of IDs
+        // Let's create a new array of IDs in the desired order
+
+        // First, get all items of this category sorted by current order
+        const sortedItems = [...items]; // assuming they are already sorted from getData
+
+        // Swap
+        [sortedItems[index], sortedItems[targetIndex]] = [sortedItems[targetIndex], sortedItems[index]];
+
+        const orderIds = sortedItems.map(item => item.id);
+
+        const formData = new FormData();
+        orderIds.forEach((id, i) => {
+            formData.append(`order[${i}]`, id);
+        });
+
+        requestServer({
+            url: url + '/api/Gallery/sort',
             data: formData,
             onLoader: true,
             onSuccess: function(response) {

@@ -29,84 +29,78 @@ class GalleryController extends Controller
     public function update(Request $request)
     {
         try {
-            DB::beginTransaction();
-
-            // 1. Hero Video
             if ($request->has('hero_url')) {
                 GalleryModel::updateOrCreate(
-                    ['category' => 'hero', 'type' => 'video'],
+                    ['category' => 'youtube', 'type' => 'video'],
                     ['link' => $request->hero_url]
                 );
             }
 
-            // 2. Slider Images
-            // Handle new files
-            if ($request->hasFile('slider_files')) {
-                foreach ($request->file('slider_files') as $file) {
-                    $filename = Str::uuid().'.webp';
-                    $manager = new ImageManager(new Driver());
-                    $image = $manager->read($file);
-                    $encoded = $image->toWebp(60);
-                    Storage::disk('public')->put('gallery/'.$filename, $encoded);
-
-                    GalleryModel::create([
-                        'category' => 'slider',
-                        'type' => 'image',
-                        'link' => 'gallery/'.$filename,
-                        'sort_order' => 999,  // Append to end initially
-                    ]);
-                }
-            }
-
-            // Handle sorting
-            if ($request->has('slider_order')) {
-                $order = json_decode($request->slider_order);
-                if (is_array($order)) {
-                    foreach ($order as $index => $id) {
-                        GalleryModel::where('id', $id)->update(['sort_order' => $index]);
-                    }
-                }
-            }
-
-            // 3. Gallery Images
-            // Handle new files
-            if ($request->hasFile('gallery_files')) {
-                foreach ($request->file('gallery_files') as $file) {
-                    $filename = Str::uuid().'.webp';
-                    $manager = new ImageManager(new Driver());
-                    $image = $manager->read($file);
-                    $encoded = $image->toWebp(60);
-                    Storage::disk('public')->put('gallery/'.$filename, $encoded);
-
-                    GalleryModel::create([
-                        'category' => 'gallery',
-                        'type' => 'image',
-                        'link' => 'gallery/'.$filename,
-                        'sort_order' => 999,  // Append to end initially
-                    ]);
-                }
-            }
-
-            // Handle sorting
-            if ($request->has('gallery_order')) {
-                $order = json_decode($request->gallery_order);
-                if (is_array($order)) {
-                    foreach ($order as $index => $id) {
-                        GalleryModel::where('id', $id)->update(['sort_order' => $index]);
-                    }
-                }
-            }
-
-            DB::commit();
-
             return response()->json([
                 'status' => 'success',
-                'message' => 'Berhasil menyimpan perubahan',
+                'message' => 'Berhasil menyimpan link video',
                 'data' => [],
             ]);
         } catch (\Throwable $th) {
-            DB::rollBack();
+            return response()->json([
+                'status' => 'failed',
+                'message' => $th->getMessage(),
+                'data' => [],
+            ]);
+        }
+    }
 
+    public function upload(Request $request)
+    {
+        try {
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = Str::uuid().'.webp';
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file);
+                $encoded = $image->toWebp(60);
+                Storage::disk('public')->put('gallery/'.$filename, $encoded);
+
+                $model = GalleryModel::create([
+                    'category' => $request->category,
+                    'type' => 'image',
+                    'link' => 'gallery/'.$filename,
+                    'sort_order' => 999,
+                ]);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Berhasil upload gambar',
+                    'data' => $model,
+                ]);
+            }
+
+            return response()->json(['status' => 'failed', 'message' => 'File tidak ditemukan']);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $th->getMessage(),
+                'data' => [],
+            ]);
+        }
+    }
+
+    public function sort(Request $request)
+    {
+        try {
+            $order = $request->order;
+            if (is_array($order)) {
+                foreach ($order as $index => $id) {
+                    GalleryModel::where('id', $id)->update(['sort_order' => $index]);
+                }
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Berhasil mengurutkan',
+                'data' => [],
+            ]);
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => 'failed',
                 'message' => $th->getMessage(),
@@ -120,7 +114,6 @@ class GalleryController extends Controller
         try {
             $model = GalleryModel::find($request->id);
             if ($model) {
-                // Delete file from storage if it's an image
                 if ($model->type === 'image' && Storage::disk('public')->exists($model->link)) {
                     Storage::disk('public')->delete($model->link);
                 }
@@ -129,7 +122,7 @@ class GalleryController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Berhasil menghapus data',
+                'message' => 'Berhasil menghapus gambar',
                 'data' => [],
             ]);
         } catch (\Throwable $th) {

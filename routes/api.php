@@ -26,4 +26,6 @@ Route::post('/promotion/delete', [App\Http\Controllers\Dashboard\Promotion\Promo
 Route::get('/Gallery/show', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'show']);
 Route::post('/Gallery/create', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'create']);
 Route::post('/Gallery/update', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'update']);
+Route::post('/Gallery/upload', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'upload']);
+Route::post('/Gallery/sort', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'sort']);
 Route::post('/Gallery/delete', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'delete']);
