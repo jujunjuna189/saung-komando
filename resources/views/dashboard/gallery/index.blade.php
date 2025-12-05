@@ -115,7 +115,7 @@
 
                     <!-- Overlay & Delete Button -->
                     <div class="absolute inset-0 bg-black/40 hidden group-hover:flex justify-center items-center z-10 transition-all">
-                        <button onclick="event.stopPropagation(); deleteImage(${item.id})" class="bg-white hover:bg-red-500 hover:text-white text-red-500 p-3 rounded-full shadow-lg transition transform hover:scale-110 z-50">
+                        <button onclick="event.stopPropagation(); deleteImage(${item.id})" class="bg-white/40 p-3 rounded-full shadow-lg transition transform hover:scale-110 z-50">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16 0"></path><path d="M10 11l0 6"></path><path d="M14 11l0 6"></path><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path></svg>
                         </button>
                     </div>
@@ -123,7 +123,7 @@
                     <!-- Move Left -->
                     ${index > 0 ? `
                     <div class="absolute top-1/2 -translate-y-1/2 left-2 z-20 hidden group-hover:block">
-                        <button type="button" onclick="moveImage('${category}', ${index}, -1)" class="bg-white/90 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
+                        <button type="button" onclick="moveImage('${category}', ${index}, -1)" class="bg-white/40 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                             </svg>
@@ -133,7 +133,7 @@
                     <!-- Move Right -->
                     ${index < items.length - 1 ? `
                     <div class="absolute top-1/2 -translate-y-1/2 right-2 z-20 hidden group-hover:block">
-                        <button type="button" onclick="moveImage('${category}', ${index}, 1)" class="bg-white/90 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
+                        <button type="button" onclick="moveImage('${category}', ${index}, 1)" class="bg-white/40 rounded-full p-1.5 shadow-md hover:bg-gray-100 text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
