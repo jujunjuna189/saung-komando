@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="mt-6 space-y-2 md:space-y-0 md:flex gap-5">
-                <div class="bg-[#AEEF8B] text-black px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                <div class="bg-[#AEEF8B] text-black px-5 py-3 rounded-full cursor-pointer transition-all duration-200">
                     <div class="flex gap-3 items-center justify-center text-center">
                         <span>+ FREE Akses Semua Fasilitas Komando</span>
                     </div>

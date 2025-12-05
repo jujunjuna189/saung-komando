@@ -4,13 +4,13 @@
             <h6 class="font-semibold text-xl">Saung Komando Ciwidey</h6>
             <p class="text-[#808080] my-3 md:my-5">Lebakmuncang, Kec. Ciwidey, Kab. Bandung, <br />Jawa Barat 40973</p>
             <div class="flex gap-3">
-                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center">
+                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                     <img src="{{ asset('assets/icon/tiktok.svg') }}" alt="Tiktok">
                 </div>
-                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center">
+                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                     <img src="{{ asset('assets/icon/whatsapp.svg') }}" alt="Whatsapp" class="w-6 h-6">
                 </div>
-                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center">
+                <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                     <img src="{{ asset('assets/icon/instagram.svg') }}" alt="Instagram" class="w-9 h-9">
                 </div>
             </div>
