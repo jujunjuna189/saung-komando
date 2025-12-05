@@ -450,9 +450,13 @@
             onSuccess: function(response) {
                 $("#dropdown-search #dropdown-list").empty();
                 $.each(response.data, function(i, item) {
-                    const element = renderFilterFasility(item);
+                    var element = renderFilterFasility(item);
                     $("#dropdown-search #dropdown-list").append(element);
                 });
+                if (response.data.length == 0) {
+                    var element = `<div><p>Pencarian penginapan tidak ditemukan</p></div>`;
+                    $("#dropdown-search #dropdown-list").append(element);
+                }
             },
         });
     }
