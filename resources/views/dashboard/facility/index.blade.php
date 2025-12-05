@@ -448,6 +448,7 @@
             spesificationItem.push({
                 icon: "assets/icon/area.png",
                 value: area,
+                value_md: area
             });
         }
 
