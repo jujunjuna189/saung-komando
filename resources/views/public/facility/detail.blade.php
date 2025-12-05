@@ -136,7 +136,7 @@
                 <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
                     <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
                         <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
-                            <img src="{{ asset('storage/' . isset($detail->thumbnails[0]) ? $detail->thumbnails[0]->path : '') }}"
+                            <img src="{{ asset('storage/' . isset($val->thumbnails[0]) ? $val->thumbnails[0]->path : '') }}"
                                 alt=""
                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                         </div>
