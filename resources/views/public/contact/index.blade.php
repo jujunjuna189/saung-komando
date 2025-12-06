@@ -63,15 +63,15 @@
                         </div>
                     </button>
                     <div class="flex gap-3">
-                        <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
+                        <a href="https://www.tiktok.com/@saungkomando" target="_blank" class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                             <img src="{{ asset('assets/icon/tiktok.svg') }}" alt="Tiktok">
-                        </div>
-                        <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
+                        </a>
+                        <a href="https://wa.me/6281312876600" target="_blank" class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                             <img src="{{ asset('assets/icon/whatsapp.svg') }}" alt="Whatsapp" class="w-6 h-6">
-                        </div>
-                        <div class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
+                        </a>
+                        <a href="https://www.instagram.com/saungkomando_" target="_blank" class="bg-black rounded-full h-10 w-10 flex justify-center items-center cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:bg-[#AEEF8B]">
                             <img src="{{ asset('assets/icon/instagram.svg') }}" alt="Instagram" class="w-9 h-9">
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
