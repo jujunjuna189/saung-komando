@@ -60,8 +60,8 @@
     <div class="flex flex-col md:flex-row md:justify-between">
         <p class="text-[#000000] mt-4 font-medium text-center md:text-start">© 2025 Saung Komando Ciwidey. Hak Cipta Dilindungi.</p>
         <div class="flex gap-10">
-            <p class="text-[#000000] mt-4 font-medium">Syarat dan ketentuan</p>
-            <p class="text-[#000000] mt-4 font-medium">Kebijakan Privasi</p>
+            <a href="{{ route('term-condition') }}" target="_blank" class="text-[#000000] mt-4 font-medium">Syarat dan ketentuan</a>
+            <a href="{{ route('privacy') }}" target="_blank" class="text-[#000000] mt-4 font-medium">Kebijakan Privasi</a>
         </div>
     </div>
 </div>

@@ -17,6 +17,14 @@ Route::get('/login', function () {
     return view('public.login.index');
 })->name('login');
 
+Route::get('/term-condition', function () {
+    return view('public.term-condition.index');
+})->name('term-condition');
+
+Route::get('/privacy', function () {
+    return view('public.privacy.index');
+})->name('privacy');
+
 Route::get('/dashboard/overview', function () {
     return view('dashboard.overview.index');
 })->name('dashboard.overview');
