@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('rating')->nullable();
             $table->tinyInteger('is_free_for_guest')->default(0);
             $table->tinyInteger('is_membership')->default(0);
+            $table->tinyInteger('is_mini_soccer')->default(0);
             $table->timestamps();
         });
     }

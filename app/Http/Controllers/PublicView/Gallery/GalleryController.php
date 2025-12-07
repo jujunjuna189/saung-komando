@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public\Gallery;
+namespace App\Http\Controllers\PublicView\Gallery;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Gallery\GalleryModel;

@@ -112,6 +112,16 @@
                 <input type="text" name="area" id="area" placeholder="-" class="border rounded-xl bg-[#F1F3F6] w-full px-5 py-3 mt-4">
             </div>
         </div>
+        <div class="mt-4">
+            <label for="" class="font-semibold text-[12px]">Fitur Sewa</label>
+            <div class="flex gap-2 mt-2">
+                <input type="checkbox" name="is_mini_soccer" id="is_mini_soccer" class="border rounded-sm bg-[#F1F3F6] w-4 h-4">
+                <div class="leading-3 flex flex-col">
+                    <label for="" class="text-[12px]">Aktifkan Sewa Mini Soccer</label>
+                    <small>Fitur khusus untuk mini soccer (wajib diaktifkan untuk fasilitas mini soccer)</small>
+                </div>
+            </div>
+        </div>
     </div>
     <x-slot:footer>
         <div class="flex justify-start items-center px-5 py-4 border-t border-slate-200 gap-2">
@@ -412,6 +422,7 @@
         const link = $('#' + prefix + 'link').val();
         const freeForGuest = $('#' + prefix + 'free-for-guest').prop('checked');
         const membership = $('#' + prefix + 'membership').prop('checked');
+        const isMiniSoccer = $('#' + prefix + 'is_mini_soccer').prop('checked');
 
         // Spesification
         const maxCapasity = $('#' + prefix + 'max-capasity').val();
@@ -475,6 +486,7 @@
             link: link,
             freeForGuest: freeForGuest,
             membership: membership,
+            isMiniSoccer: isMiniSoccer,
             spesification: spesificationItem,
             files: files,
         };
@@ -622,6 +634,7 @@
         formData.append('link', data.link);
         formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
         formData.append('is_membership', data.membership ? 1 : 0);
+        formData.append('is_mini_soccer', data.isMiniSoccer ? 1 : 0);
         // Spesification
         formData.append('spesification', JSON.stringify(data.spesification));
         $.each(Object.keys(data.files), function(i, item) {

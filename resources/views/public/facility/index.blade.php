@@ -261,7 +261,7 @@
         header = {},
     }) {
         requestServer({
-            url: url + '/api/facility/show',
+            url: url + '/api/public/facility/show',
             type: "GET",
             data: header,
             onLoader: false,

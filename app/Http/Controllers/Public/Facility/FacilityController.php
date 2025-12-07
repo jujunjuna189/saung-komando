@@ -3,34 +3,35 @@
 namespace App\Http\Controllers\Public\Facility;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dashboard\Facility\FacilityCategoryModel;
 use App\Models\Dashboard\Facility\FacilityModel;
 use Illuminate\Http\Request;
 
 class FacilityController extends Controller
 {
-    public function index(Request $request)
+    public function show(Request $request)
     {
-        $category = FacilityCategoryModel::all();
-        $facility = FacilityModel::with('thumbnails', 'specification')->get();
+        $model = FacilityModel::when(! empty($request->category), function ($q) use ($request) {
+            $q->where('category', $request->category);
+        })
+            ->when(! empty($request->specs), function ($q) use ($request) {
+                $specs = $request->specs;
+                $q->whereHas('specification', function ($query) use ($specs) {
+                    $query->whereIn('value_md', $specs);
+                });
+                if (count($specs) > 1) {
+                    // AND: harus match semua
+                    $q->withCount(['specification as match_count' => function ($query) use ($specs) {
+                        $query->whereIn('value_md', $specs);
+                    }])->having('match_count', '=', count($specs));
+                }
+            })->with(['thumbnails' => function ($q) {
+                $q->orderBy('sort_order', 'asc');
+            }, 'specification'])->get();
 
-        $data['category'] = $category;
-        $data['facility'] = $facility;
-
-        return view('public.facility.index', $data);
-    }
-
-    public function detail(Request $request)
-    {
-        $category = FacilityCategoryModel::all();
-        $facility = FacilityModel::with('thumbnails', 'specification')->get();
-        $detail = FacilityModel::with('thumbnails', 'specification')->where('id', $request->id)->first();
-
-        $data['controller'] = $this;
-        $data['category'] = $category;
-        $data['facility'] = $facility;
-        $data['detail'] = $detail;
-
-        return view('public.facility.detail', $data);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Berhasil mengambil fasilitas',
+            'data' => $model,
+        ]);
     }
 }

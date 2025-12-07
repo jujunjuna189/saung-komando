@@ -29,3 +29,6 @@ Route::post('/Gallery/update', [App\Http\Controllers\Dashboard\Gallery\GalleryCo
 Route::post('/Gallery/upload', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'upload']);
 Route::post('/Gallery/sort', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'sort']);
 Route::post('/Gallery/delete', [App\Http\Controllers\Dashboard\Gallery\GalleryController::class, 'delete']);
+
+// Public Api
+Route::get('/public/facility/show', [App\Http\Controllers\Public\Facility\FacilityController::class, 'show']);

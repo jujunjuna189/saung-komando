@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public\Home;
+namespace App\Http\Controllers\PublicView\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Facility\FacilityCategoryModel;

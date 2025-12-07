@@ -487,7 +487,7 @@
         params.append('specs[]', $('#select_orang .selected-text').text());
         params.append('specs[]', $('#select_kamar .selected-text').text());
         requestServer({
-            url: url + '/api/facility/show',
+            url: url + '/api/public/facility/show',
             type: "GET",
             data: params.toString(),
             onLoader: false,
@@ -630,7 +630,7 @@
         header = {},
     }) {
         requestServer({
-            url: url + '/api/facility/show',
+            url: url + '/api/public/facility/show',
             type: "GET",
             data: header,
             onLoader: false,

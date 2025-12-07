@@ -38,7 +38,7 @@ class ReservationController extends Controller
 
         $model = $query
             ->orderBy('is_pinned', 'desc')
-            ->orderBy('check_in', 'desc')
+            ->orderBy('check_in', 'asc')
             ->get();
 
         return response()->json([

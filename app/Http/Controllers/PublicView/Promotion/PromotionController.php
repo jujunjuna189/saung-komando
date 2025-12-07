@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public\Promotion;
+namespace App\Http\Controllers\PublicView\Promotion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
