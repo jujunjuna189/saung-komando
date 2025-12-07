@@ -119,12 +119,13 @@
             </a>
         </div>
         <div class="relative rounded-bl-4xl w-full h-160 overflow-hidden bg-black fade">
-            <iframe
-                class="absolute top-1/2 left-1/2 h-full w-[177.78vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none fade"
-                src="{{ $hero->link ?? '-' }}?background=1&autoplay=1&muted=1&loop=1"
-                allow="autoplay; encrypted-media"
-                allowfullscreen>
-            </iframe>
+            <video
+                class="absolute top-1/2 left-1/2 h-full w-[177.78vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none fade"
+                src="{{ asset('assets/video/hero-video.mp4') }}"
+                autoplay
+                muted
+                loop
+                playsinline></video>
         </div>
     </div>
 </div>

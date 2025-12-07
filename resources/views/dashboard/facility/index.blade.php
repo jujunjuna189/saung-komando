@@ -42,9 +42,11 @@
         </div>
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Kategori<span class="text-red-500">*</span></label>
-            <select name="category" id="category" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-                <!-- Option in database section -->
-            </select>
+            <div class="px-2 border rounded-xl bg-[#F1F3F6] w-full mt-2">
+                <select name="category" id="category" class="py-3 w-full focus:outline-none">
+                    <!-- Option in database section -->
+                </select>
+            </div>
         </div>
     </div>
     <div class="mt-3">
@@ -140,9 +142,11 @@
         </div>
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Kategori<span class="text-red-500">*</span></label>
-            <select name="category" id="edit-category" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-                <!-- Option in database section -->
-            </select>
+            <div class="px-2 border rounded-xl bg-[#F1F3F6] w-full mt-2">
+                <select name="category" id="edit-category" class="py-3 w-full focus:outline-none">
+                    <!-- Option in database section -->
+                </select>
+            </div>
         </div>
     </div>
     <div class="mt-3">
@@ -221,6 +225,16 @@
             <div class="flex flex-col justify-start items-center">
                 <label for="" class="font-semibold text-[12px]">Luas Area Terbuka</label>
                 <input type="text" name="area" id="edit-area" placeholder="-" class="border rounded-xl bg-[#F1F3F6] w-full px-5 py-3 mt-4">
+            </div>
+        </div>
+        <div class="mt-4">
+            <label for="" class="font-semibold text-[12px]">Fitur Sewa</label>
+            <div class="flex gap-2 mt-2">
+                <input type="checkbox" name="is_mini_soccer" id="edit-is_mini_soccer" class="border rounded-sm bg-[#F1F3F6] w-4 h-4">
+                <div class="leading-3 flex flex-col">
+                    <label for="" class="text-[12px]">Aktifkan Sewa Mini Soccer</label>
+                    <small>Fitur khusus untuk mini soccer (wajib diaktifkan untuk fasilitas mini soccer)</small>
+                </div>
             </div>
         </div>
     </div>
@@ -513,6 +527,7 @@
 
         $('#edit-free-for-guest').prop('checked', item.is_free_for_guest == 1);
         $('#edit-membership').prop('checked', item.is_membership == 1);
+        $('#edit-is_mini_soccer').prop('checked', item.is_mini_soccer == 1);
 
         // Reset specs
         $('#edit-max-capasity').val('');
@@ -593,6 +608,7 @@
         formData.append('link', data.link);
         formData.append('is_free_for_guest', data.freeForGuest ? 1 : 0);
         formData.append('is_membership', data.membership ? 1 : 0);
+        formData.append('is_mini_soccer', data.isMiniSoccer ? 1 : 0);
         // Spesification
         formData.append('spesification', JSON.stringify(data.spesification));
         $.each(Object.keys(data.files), function(i, item) {
