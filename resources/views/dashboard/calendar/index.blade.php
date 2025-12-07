@@ -47,7 +47,7 @@
                 </div>
                 <div class="mt-5 md:mt-3 flex flex-wrap justify-end md:justify-end gap-4 text-xs font-medium">
                     <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded bg-green-300"></div>
+                        <div class="w-3 h-3 rounded bg-[#AEEF8B]"></div>
                         <span>Lunas</span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -239,7 +239,7 @@
     let currentDeleteId = null;
 
     const categoryColor = {
-        A: "bg-green-300",
+        A: "bg-[#AEEF8B]",
         B: "bg-blue-300",
         C: "bg-orange-300",
     };
@@ -343,15 +343,15 @@
 
             // Highlight range
             if (startDate && endDate && dateObj >= startDate && dateObj <= endDate) {
-                el.classList.add("bg-blue-400", "text-white");
+                el.classList.add("border-black", "text-black");
             }
 
             if (startDate && dateObj.getTime() === startDate.getTime()) {
-                el.classList.add("bg-blue-600", "text-white");
+                el.classList.add("border-black", "text-black");
             }
 
             if (endDate && dateObj.getTime() === endDate.getTime()) {
-                el.classList.add("bg-blue-600", "text-white");
+                el.classList.add("border-black", "text-black");
             }
 
             el.innerHTML = d;
@@ -486,7 +486,7 @@
                     <p>${item.note ?? '-'}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
-                    <div class="px-4 py-2 border rounded-xl flex-[7] ${item.status == 'Lunas' ? 'bg-green-300 border-green-300' : item.status == 'DP' ? 'bg-orange-300 border-orange-300' : 'bg-blue-300 border-blue-300'}">
+                    <div class="px-4 py-2 border rounded-xl flex-[7] ${item.status == 'Lunas' ? 'bg-[#AEEF8B] border-[#AEEF8B]' : item.status == 'DP' ? 'bg-orange-300 border-orange-300' : 'bg-blue-300 border-blue-300'}">
                         <select name="" id="" class="border-none focus:outline-none w-full bg-transparent" onchange="updateStatus('${item.id}', this.value)">
                             <option value="DP" ${item.status == 'DP' ? 'selected' : ''}>DP</option>
                             <option value="Lunas" ${item.status == 'Lunas' ? 'selected' : ''}>Lunas</option>

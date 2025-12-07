@@ -6,19 +6,21 @@
         <div class="flex justify-center mt-5">
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Saung Komando" class="h-20">
         </div>
-        <div class="mt-10">
-            <div>
-                <input type="text" name="username" id="username" placeholder="Masukan Username" class="border rounded-full px-5 py-3 w-full">
+        <form id="form-login">
+            <div class="mt-10">
+                <div>
+                    <input type="text" name="username" id="username" placeholder="Masukan Username" class="border rounded-full px-5 py-3 w-full">
+                </div>
+                <div class="mt-4">
+                    <input type="password" name="password" id="password" placeholder="Masukan Password" class="border rounded-full px-5 py-3 w-full">
+                </div>
+                <div class="mt-6 mb-1 w-full">
+                    <button type="submit" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                        <span>Masuk</span>
+                    </button>
+                </div>
             </div>
-            <div class="mt-4">
-                <input type="password" name="password" id="password" placeholder="Masukan Password" class="border rounded-full px-5 py-3 w-full">
-            </div>
-            <div class="mt-6 mb-1 w-full">
-                <button type="button" class="bg-[#AEEF8B] px-5 py-3 w-full rounded-full border text-center cursor-pointer btn-login hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                    <span>Masuk</span>
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
@@ -26,39 +28,41 @@
 @section('script')
 <script>
     $(document).ready(function() {
-
-        // akun fix (bisa ditambah)
-        const accounts = [{
-                username: "admin",
-                password: "admin123"
-            },
-            {
-                username: "staff",
-                password: "12345"
-            },
-        ];
-
-        $(".btn-login").on("click", function() {
-            let user = $("#username").val().trim();
-            let pass = $("#password").val().trim();
-
-            // cek kosong
-            if (!user || !pass) {
-                showToast("error", "Gagal", "Username dan password wajib diisi!");
-                return;
-            }
-
-            // cek akun
-            const match = accounts.find(a => a.username === user && a.password === pass);
-
-            if (match) {
-                // redirect
-                window.location.href = "{{ route('dashboard.overview') }}";
-            } else {
-                showToast("error", "Gagal", "Username atau password salah!");
-            }
+        $("#form-login").on("submit", function(e) {
+            e.preventDefault();
+            onLogin();
         });
-
     });
+
+    const accounts = [{
+            username: "adminkomando",
+            password: "S4ungK0mand0@"
+        },
+        {
+            username: "staff",
+            password: "12345"
+        },
+    ];
+
+    function onLogin() {
+        let user = $("#username").val().trim();
+        let pass = $("#password").val().trim();
+
+        // cek kosong
+        if (!user || !pass) {
+            showToast("error", "Gagal", "Username dan password wajib diisi!");
+            return;
+        }
+
+        // cek akun
+        const match = accounts.find(a => a.username === user && a.password === pass);
+        console.log(match);
+        if (match) {
+            // redirect
+            window.location.href = "{{ route('dashboard.overview') }}";
+        } else {
+            showToast("error", "Gagal", "Username atau password salah!");
+        }
+    }
 </script>
 @endsection

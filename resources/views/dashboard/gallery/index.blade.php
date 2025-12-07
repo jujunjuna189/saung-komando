@@ -10,7 +10,7 @@
         </div>
 
         <!-- Hero Video Section -->
-        <div class="flex mt-7">
+        <!-- <div class="flex mt-7">
             <div class="w-full md:w-[400px]">
                 <span class="font-semibold">Link Hero Video</span>
                 <div class="flex gap-2 mt-2">
@@ -28,7 +28,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="mt-8 flex flex-col md:flex-row gap-8">
             <!-- Slider Images -->

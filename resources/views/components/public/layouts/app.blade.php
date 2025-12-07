@@ -41,7 +41,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Custome Js -->
-<script src="{{ asset('assets/script/runslider.js') }}"></script>
 <script src="{{ asset('assets/script/animation.js') }}"></script>
 <script src="{{ asset('assets/script/notification.js') }}"></script>
 <script src="{{ asset('assets/script/script.js') }}"></script>

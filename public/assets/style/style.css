@@ -14,6 +14,51 @@
     animation: fade 0.6s ease-out forwards;
 }
 
+.image-zoom-container {
+    position: relative;
+    cursor: zoom-in;
+}
+
+.image-zoom-container img {
+    transition: all opacity 1s ease;
+    display: block;
+}
+
+.image-zoom-container.zoomed {
+    background-repeat: no-repeat;
+    background-size: 200%;
+}
+
+.image-zoom-container.zoomed img {
+    opacity: 0;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 32px);
+    gap: 6px;
+    text-align: center;
+}
+
+.calendar div {
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.calendar div:hover {
+    background: #e6e6e6;
+}
+
+.selected {
+    background: #AEEF8B !important;
+    font-weight: bold;
+}
+
+.range {
+    background: #DFF5C6;
+}
+
 @keyframes fade {
     from {
         opacity: 0;

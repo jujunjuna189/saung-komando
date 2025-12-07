@@ -8,10 +8,13 @@ const dateFormat = (date) => {
 }
 
 function dateDiff(start, end) {
-    const d1 = new Date(start);
-    const d2 = new Date(end);
+    const startDate = new Date(start);
+    const endDate = new Date(end);
 
-    return (d2 - d1) / (1000 * 60 * 60 * 24);
+    const diffTime = endDate - startDate;
+
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
 }
 
 // Request category
@@ -111,13 +114,13 @@ function runSliders(containerSelector, autoplayTime = 5000) {
     }
 
     // tombol
-    container.find('.slider-next').click(function(e) {
+    container.find('.slider-next').click(function (e) {
         e.preventDefault();
         next();
         reset();
     });
 
-    container.find('.slider-prev').click(function(e) {
+    container.find('.slider-prev').click(function (e) {
         e.preventDefault();
         prev();
         reset();
@@ -160,7 +163,7 @@ function initFacilitySlider(trackId, prevId, nextId, dotsId) {
         }
 
         // Dot click
-        $dotsContainer.children().click(function() {
+        $dotsContainer.children().click(function () {
             index = $(this).index();
             updateSlider();
         });
@@ -201,4 +204,181 @@ function getYouTubeCode(url) {
     }
 
     return videoCode;
+}
+
+function copyToClipboard(text, targetSelector = null) {
+    navigator.clipboard.writeText(text).then(() => {
+
+        // efek background tombol (opsional)
+        if (targetSelector) {
+            const el = document.querySelector(targetSelector);
+            if (el) {
+                const originalBg = el.style.backgroundColor;
+                el.style.backgroundColor = "#D1FFD6";
+                setTimeout(() => {
+                    el.style.backgroundColor = originalBg || "#EDEFF1";
+                }, 800);
+            }
+        }
+
+        // Alert kecil
+        showCopyAlert({ text: "Link Disalin" });
+    }).catch(err => {
+        showCopyAlert({ text: "Gagal Salin Link" });
+    });
+}
+
+function showCopyAlert({ text = "Tersalin!" }) {
+    // Cek kalau alert masih ada, hapus dulu
+    let oldAlert = document.querySelector(".copy-alert");
+    if (oldAlert) oldAlert.remove();
+
+    const alertDiv = document.createElement("div");
+    alertDiv.className = "copy-alert";
+    alertDiv.innerText = text;
+
+    Object.assign(alertDiv.style, {
+        position: "fixed",
+        bottom: "20px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        background: "#111",
+        color: "#fff",
+        padding: "6px 20px",
+        borderRadius: "100px",
+        fontSize: "13px",
+        fontWeight: "500",
+        zIndex: "9999",
+        opacity: "0",
+        transition: "opacity 0.3s ease"
+    });
+
+    document.body.appendChild(alertDiv);
+
+    // Fade in
+    setTimeout(() => {
+        alertDiv.style.opacity = "1";
+    }, 10);
+
+    // Fade out & remove
+    setTimeout(() => {
+        alertDiv.style.opacity = "0";
+        setTimeout(() => alertDiv.remove(), 300);
+    }, 1500);
+}
+
+function initDateRangePicker(inputSelector, popupSelector, checkinSelector = null, checkoutSelector = null) {
+    let $input = $(inputSelector);
+    let $popup = $(popupSelector);
+    let $checkin = checkinSelector ? $(checkinSelector) : null;
+    let $checkout = checkoutSelector ? $(checkoutSelector) : null;
+
+    let startDate = null;
+    let endDate = null;
+    let currentDate = new Date();
+
+    $input.on("click", function (e) {
+        e.stopPropagation();
+        renderCalendar(currentDate);
+        $popup.removeClass("hidden");
+    });
+
+    function renderCalendar(date) {
+        $popup.html("");
+
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        let firstDay = new Date(year, month, 1).getDay();
+        let lastDate = new Date(year, month + 1, 0).getDate();
+        let monthName = date.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+
+        let $header = `
+            <div class="flex justify-between items-center mb-2 px-2">
+                <button id="prevMonth" class="px-2 py-1">◀</button>
+                <span class="font-semibold">${monthName}</span>
+                <button id="nextMonth" class="px-2 py-1">▶</button>
+            </div>
+        `;
+        $popup.append($header);
+
+        let $cal = $('<div class="calendar grid grid-cols-7 gap-1 p-2"></div>');
+
+        for (let i = 0; i < firstDay; i++) $cal.append("<span></span>");
+
+        for (let d = 1; d <= lastDate; d++) {
+            let chosen = new Date(year, month, d);
+            let $cell = $(`<div class="cursor-pointer text-center p-1 rounded select-none">${d}</div>`);
+
+            if (startDate && chosen.getTime() === startDate.getTime()) {
+                $cell.addClass("bg-[#AEEF8B]");
+            }
+            if (endDate && chosen.getTime() === endDate.getTime()) {
+                $cell.addClass("bg-[#AEEF8B]");
+            }
+            if (startDate && endDate && chosen > startDate && chosen < endDate) {
+                $cell.addClass("bg-[#AEEF8B]/30");
+            }
+
+            $cell.on("click", function (e) {
+                e.stopPropagation();
+
+                if (!startDate) {
+                    startDate = chosen;
+                    endDate = null;
+                } else if (!endDate) {
+                    endDate = chosen;
+                    if (endDate < startDate) [startDate, endDate] = [endDate, startDate];
+                    updateInputs();
+                    $popup.addClass("hidden");
+                } else {
+                    startDate = chosen;
+                    endDate = null;
+                }
+                renderCalendar(currentDate);
+            });
+
+            $cal.append($cell);
+        }
+
+        $popup.append($cal);
+
+        $(document).off("click", "#prevMonth");
+        $(document).off("click", "#nextMonth");
+
+        $(document).on("click", "#prevMonth", function (e) {
+            e.stopPropagation();
+            currentDate = new Date(year, month - 1, 1);
+            renderCalendar(currentDate);
+        });
+
+        $(document).on("click", "#nextMonth", function (e) {
+            e.stopPropagation();
+            currentDate = new Date(year, month + 1, 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    function updateInputs() {
+        let start = formatDate(startDate);
+        let end = formatDate(endDate);
+
+        $input.val(`${start} - ${end}`);
+        if ($checkin) $checkin.val(start);
+        if ($checkout) $checkout.val(end);
+    }
+
+    function formatDate(date) {
+        return date.toLocaleDateString("id-ID", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest(inputSelector).length &&
+            !$(e.target).closest(popupSelector).length) {
+            $popup.addClass("hidden");
+        }
+    });
 }

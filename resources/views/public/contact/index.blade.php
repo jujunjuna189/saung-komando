@@ -49,6 +49,7 @@
                     <div class="border rounded-xl px-5 w-full ">
                         <select name="cooperation" id="cooperation" class="w-full py-3 placeholder-[#808080] focus:outline-none">
                             <option value="Kerjasama">Kerjasama</option>
+                            <option value="Custom Reservasi">Custom Reservasi</option>
                         </select>
                     </div>
                     <input type="text" name="link" id="link" placeholder="Link Akun  IG/TikTok" class="placeholder-[#808080] border rounded-xl px-5 py-3 w-full focus:outline-none">
@@ -57,7 +58,7 @@
                     <textarea name="message" id="message" rows="5" class="border rounded-xl px-5 py-3 w-full placeholder-[#808080] focus:outline-none" placeholder="Tulis Pesan"></textarea>
                 </div>
                 <div class="mt-5 space-y-3 md:space-y-0  md:flex md:justify-between">
-                    <button type="button" class="bg-[#AEEF8B] px-5 py-3 rounded-full w-full md:w-auto hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                    <button type="button" class="bg-[#AEEF8B] px-5 py-3 rounded-full w-full md:w-auto hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="onSendWA()">
                         <div class="flex gap-3 items-center justify-center md:justify-start">
                             <span>Kirim ke WhatsApp Admin</span>
                         </div>
@@ -78,4 +79,37 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    function onSendWA() {
+        // Ambil value dari form
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const cooperation = document.getElementById("cooperation").value;
+        const link = document.getElementById("link").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        // Cek wajib diisi
+        if (!name || !email || !cooperation) {
+            showToast("error", "Silakan isi terlebih dahulu!", "Nama, Email, dan Jenis Kerjasama wajib diisi!");
+            return;
+        }
+
+        // Buat pesan WA
+        let waMessage = `Halo kak, saya ingin ${cooperation}%0A`;
+        waMessage += `Nama: ${name}%0A`;
+        waMessage += `Email: ${email}%0A`;
+        if (link) waMessage += `Link Akun: ${link}%0A`;
+        if (message) waMessage += `Pesan: ${message}%0A`;
+
+        // Nomor WhatsApp admin (ganti dengan nomor kamu)
+        const waNumber = "6281312876600";
+
+        // Buka WhatsApp
+        const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+        window.open(waUrl, "_blank");
+    }
+</script>
 @endsection

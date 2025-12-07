@@ -7,7 +7,7 @@
             <div class="w-full md:w-auto flex justify-between items-center">
                 <div>
                     <h1 class="text-lg md:text-2xl font-semibold">Overview</h1>
-                    <p class="text-[12px] md:text-base">Selasa, 15 November 2025</p>
+                    <p class="text-[12px] md:text-base">{{ \Carbon\Carbon::now()->locale('id')->translatedFormat('l, d F Y') }}</p>
                 </div>
                 <div class="md:hidden">
                     <div class="px-3 py-3 md:px-4 md:py-4 border-[#AEEF8B] bg-[#AEEF8B] rounded-full flex items-center cursor-pointer text-[10px] md:text-base">Export to Excel</div>
@@ -108,11 +108,11 @@
                 </div>
                 <div class="mt-3 text-sm md:text-base">
                     <p>Catatan :</p>
-                    <p>${item.note}</p>
+                    <p>${item.note ?? '<span class="text-gray-600">Tidak ada catatan</span>'}</p>
                 </div>
                 <div class="mt-3 flex gap-2 text-sm md:text-base">
-                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl bg-[#AEEF8B] flex-[6] md:grow md:basis-auto">
-                        <select name="" id="" class="border-none focus:outline-none w-full">
+                    <div class="px-4 py-2 border border-[#AEEF8B] rounded-xl ${item.status == 'Lunas' ? 'bg-[#AEEF8B] border-[#AEEF8B]' : item.status == 'DP' ? 'bg-orange-300 border-orange-300' : 'bg-blue-300 border-blue-300'} flex-[6] md:grow md:basis-auto">
+                        <select name="" id="" class="border-none focus:outline-none w-full" onchange="updateStatus('${item.id}', this.value)">
                             <option value="${item.status}">${item.status}</option>
                             <option value="DP">DP</option>
                             <option value="Lunas">Lunas</option>
@@ -120,7 +120,7 @@
                         </select>
                     </div>
                     <div class="px-4 py-2 border border-[#D8E0ED] rounded-xl bg-[#D8E0ED] flex-[4] md:flex-initial">
-                        <p>${dateDiff(item.check_in, item.check_out)} Hari</p>
+                        <p>${dateDiff(Date.now(), item.check_in)} Hari</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
     }
 
     var dataFilter = {
-        month: "",
+        month: `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`,
         status: "",
     };
 
@@ -180,6 +180,24 @@
                 $.each(response.data, function(i, item) {
                     const element = renderReservation(item);
                     $('#container-reservation').append(element);
+                });
+            },
+        });
+    }
+
+    function updateStatus(id, newStatus) {
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('status', newStatus);
+
+        requestServer({
+            url: url + '/api/reservation/update',
+            data: formData,
+            onLoader: true,
+            onSuccess: function(value) {
+                showToast("success", "Berhasil", "Status berhasil diperbarui");
+                getData({
+                    header: `filter_month=${dataFilter.month}&status=${dataFilter.status}`,
                 });
             },
         });

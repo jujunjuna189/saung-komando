@@ -60,17 +60,7 @@
                             ['value' => '7 Orang', 'display' => '7 Orang'],
                             ['value' => '8 Orang', 'display' => '8 Orang'],
                             ['value' => '9 Orang', 'display' => '9 Orang'],
-                            ['value' => '10 Orang', 'display' => '10 Orang'],
-                            ['value' => '11 Orang', 'display' => '11 Orang'],
-                            ['value' => '12 Orang', 'display' => '12 Orang'],
-                            ['value' => '13 Orang', 'display' => '13 Orang'],
-                            ['value' => '14 Orang', 'display' => '14 Orang'],
-                            ['value' => '15 Orang', 'display' => '15 Orang'],
-                            ['value' => '16 Orang', 'display' => '16 Orang'],
-                            ['value' => '17 Orang', 'display' => '17 Orang'],
-                            ['value' => '18 Orang', 'display' => '18 Orang'],
-                            ['value' => '19 Orang', 'display' => '19 Orang'],
-                            ['value' => '20 Orang', 'display' => '20 Orang']
+                            ['value' => '10 Orang', 'display' => '10 Orang']
                         ]" class_container="border-none text-semibold px-[0px] lg:pr-10 py-[0px] w-full whitespace-pre" class_list="w-full lg:right-10" />
                     </div>
                 </div>
@@ -141,7 +131,7 @@
 <div class="my-5 md:my-14 px-0 md:px-20">
     <div class="bg-white p-3 md:p-7 rounded-lg md:rounded-3xl flex flex-col-reverse md:flex-row gap-5">
         <div class="w-full md:w-[60%] 2xl:w-[50%] p-2 md:p-5">
-            <h5 class="text-xl md:text-3xl font-semibold">Tempat staycation nyaman <br/>dengan Udara Sejuk Ciwidey</h5>
+            <h5 class="text-xl md:text-3xl font-semibold">Tempat Staycation Nyaman <br />Dengan Udara Sejuk Ciwidey</h5>
             <p class="text-[#808391] mt-6">Saung Komando Ciwidey menghadirkan pengalaman menginap yang dipenuhi hawa pegunungan yang dingin dan bersih. Setiap tamu merasakan ketenangan, kualitas tidur yang lebih baik, dan suasana alam yang membuat tubuh benar-benar rileks.</p>
             <div class="grid grid-cols-2 md:flex gap-10 py-10">
                 <div class="text-center">
@@ -175,11 +165,11 @@
                         <span>+ FREE Akses Semua Fasilitas Komando</span>
                     </div>
                 </div>
-                <div class="bg-[#000000] text-white px-5 py-3 rounded-full hover:bg-[#AEEF8B] hover:text-black cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                <a href="{{ route('facility') }}" class="bg-[#000000] text-white px-5 py-3 rounded-full hover:bg-[#AEEF8B] hover:text-black cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center justify-center text-center">
                         <span>Cari Penginapan Sekarang</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="w-full md:w-[40%] 2xl:w-[50%] relative min-h-[300px] md:min-h-0">
@@ -308,11 +298,15 @@
         </div>
 
         <!-- Buttons -->
-        <button class="absolute top-1/2 -translate-y-1/2 left-0 bg-black/40 text-white w-8 h-8 flex justify-center items-center rounded-full hover:bg-black ml-5 cursor-pointer" id="facility-prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+        <button class="absolute top-1/2 -translate-y-1/2 left-0 bg-black/40 text-white w-10 h-10 flex justify-center items-center rounded-full hover:bg-black ml-5 cursor-pointer" id="facility-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
         </button>
-        <button class="absolute top-1/2 -translate-y-1/2 right-0 bg-black/40 text-white w-8 h-8 flex justify-center items-center rounded-full hover:bg-black mr-5 cursor-pointer" id="facility-next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+        <button class="absolute top-1/2 -translate-y-1/2 right-0 bg-black/40 text-white w-10 h-10 flex justify-center items-center rounded-full hover:bg-black mr-5 cursor-pointer" id="facility-next">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
         </button>
     </div>
 
@@ -345,7 +339,7 @@
     let categoryActive = "";
     $(document).ready(function() {
         startCounter();
-        $('.slider-wrapper').each(function () {
+        $('.slider-wrapper').each(function() {
             runSliders(this, 5000);
         });
         // Initial
@@ -386,8 +380,8 @@
 
         $.each(item.specification, function(i, itemChild) {
             specHtml += `
-                <div class="flex gap-2 items-center px-2 py-1 md:py-1.5 rounded-full bg-[#EDEFF1] overflow-hidden">
-                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-4">
+                <div class="flex gap-1 items-center px-2 py-1 md:py-1.5 rounded-full bg-[#EDEFF1] overflow-hidden">
+                    <img src="${url + '/' + itemChild.icon}" alt="" class="h-3 md:h-4">
                     <span class="text-[10px] whitespace-pre flex 2xl:hidden">${itemChild.value}</span>
                     <span class="text-[10px] md:text-[14px] lg:text-[11px] whitespace-pre hidden 2xl:flex">${itemChild.value_md}</span>
                 </div>
@@ -404,7 +398,7 @@
                         </span>
                     </div>
                     <div class="flex gap-1 items-center px-2 py-1 rounded-full bg-[#EDEFF1]">
-                        <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[16px] h-[13px] md:h-[16px]">
+                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[16px] h-[13px] md:h-[16px]">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                         </svg>
@@ -448,8 +442,8 @@
 
         const element = `
             <div class="rounded-xl overflow-hidden bg-white flex flex-row">
-                <div class="w-[90px] aspect-square bg-gray-50 overflow-hidden group">
-                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}"
+                <div class="min-w-[70px] w-[70px] aspect-square bg-gray-50 overflow-hidden group">
+                    <img src="{{ asset('storage/${item.thumbnails?.[0]?.path}') }}"
                         alt=""
                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
@@ -462,16 +456,19 @@
                         ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
 
-                    <div class="mt-2 flex justify-between gap-2 overflow-x-auto no-scrollbar">
+                    <div class="mt-2 flex justify-between gap-1 md:gap-2 overflow-x-auto no-scrollbar">
                         ${specHtml}
                     </div>
 
                     <div class="flex flex-row justify-between items-center mt-1">
-                        <label class="font-semibold text-sm">${item.price}</label>
+                        <div class="flex flex-wrap flex-row items-center gap-1 leading-[3px]">
+                            <label class="text-[11px] md:text-[14px] font-semibold text-sm">${item.price}</label>
+                            <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
+                        </div>
                         <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
                             class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px]">
-                                <span>Lihat Detail</span>
+                                <span class="whitespace-pre">Lihat Detail</span>
                             </div>
                         </a>
                     </div>

@@ -64,16 +64,16 @@
             </li>
             <li>
                 <a href="{{ route('dashboard.gallery') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/gallery') ? 'bg-[#AEEF8B]' : '' }}">
-                    <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Kode Promo">
+                    <img src="{{ asset('assets/icon/gallery.svg') }}" alt="Update Gallery">
                     <span>Update Galeri</span>
                 </a>
             </li>
-            {{-- <li>
+            <!-- <li>
                 <a href="{{ route('dashboard.promotion') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/promotion') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/coupon.svg') }}" alt="Kode Promo">
                     <span>Kode Promo</span>
                 </a>
-            </li> --}}
+            </li> -->
             <li>
                 <a href="{{ route('login') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4">
                     <img src="{{ asset('assets/icon/profile.svg') }}" alt="Logout">
