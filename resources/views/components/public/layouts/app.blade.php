@@ -53,30 +53,40 @@
         // Buka modal
         $('.open-modal').on('click', function() {
             const id = $(this).data('id');
-            const modal = $('#' + id);
-            const box = modal.find('> div');
-
-            modal.removeClass('hidden').addClass('flex');
-            setTimeout(() => {
-                modal.removeClass('opacity-0');
-                box.removeClass('scale-95');
-            }, 10); // small delay to trigger animation
+            openModal(id);
         });
 
         // Tutup modal
         $('.close-modal').on('click', function() {
             const id = $(this).data('id');
-            const modal = $('#' + id);
-            const box = modal.find('> div');
-
-            modal.addClass('opacity-0');
-            box.addClass('scale-95');
-
-            setTimeout(() => {
-                modal.removeClass('flex').addClass('hidden');
-            }, 300); // delay sesuai durasi animasi
+            closeModal(id);
         });
     });
+
+    function openModal(id){
+        const modal = $('#' + id);
+        const box = modal.find('> div');
+
+        modal.removeClass('hidden').addClass('flex');
+        setTimeout(() => {
+            modal.removeClass('opacity-0');
+            box.removeClass('scale-95');
+        }, 10); // small delay to trigger animation
+    }
+
+    function closeModal(id) {
+        const modal = $('#' + id);
+        const box = modal.find('> div');
+
+        modal.addClass('opacity-0');
+        box.addClass('scale-95');
+        box.removeClass('mx-4');
+        box.addClass('-mx-[100px]');
+
+        setTimeout(() => {
+            modal.removeClass('flex').addClass('hidden');
+        }, 300); // delay sesuai durasi animasi
+    }
 </script>
 @stack('scripts')
 @yield('script')
