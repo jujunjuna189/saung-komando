@@ -70,6 +70,18 @@
                             <h6 class="font-semibold text-lg">Fasilitas</h6>
                         </div>
                         <p class="text-justify mt-3">{{ $detail->description }}</p>
+                        @if($detail->is_mini_soccer == 1)
+                        <div class="mt-3 mb-5">
+                            <h6 class="font-semibold text-lg">Cek Jadwal<span class="text-red-500">*</span></h6>
+                            <div>
+                                <div class="bg-[#92BAF5] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 open-modal" data-id="modalCheckout">
+                                    <div class="flex gap-3 items-center justify-center">
+                                        <span>Pesan Sekarang</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @else
                         <div class="flex justify-between gap-2 mt-4 flex-wrap">
                             @foreach($detail->specification as $val)
                             <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
@@ -105,6 +117,7 @@
                                 <span class="text-[#808391] text-[10px] font-semibold whitespace-pre">42” Smart TV</span>
                             </div>
                         </div>
+                        @endif
                         <div class="flex justify-between items-center">
                             <div class="flex flex-row flex-wrap gap-1 items-center">
                                 <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>

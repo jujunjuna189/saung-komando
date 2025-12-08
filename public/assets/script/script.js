@@ -382,3 +382,138 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
         }
     });
 }
+
+function initTimePicker(container = "") {
+    let prefix = container ? container + " " : "";
+    const startHour = 16;
+    const endHour = 22;
+
+    let start = null;
+    let end = null;
+
+    // Klik input untuk toggle dropdown
+    $(document).on("click", prefix + "#time", function () {
+        renderHours();
+        $(prefix + "#hourSlots").toggleClass("hidden");
+    });
+
+    // Klik di luar → tutup
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest(prefix + "#time-picker").length) {
+            $(prefix + "#hourSlots").addClass("hidden");
+            resetSelection();
+        }
+    });
+
+    function renderHours() {
+        const box = $(prefix + "#hourSlots");
+        box.html("");
+
+        for (let h = startHour; h <= endHour; h++) {
+            const t = `${String(h).padStart(2, '0')}:00`;
+
+            box.append(`
+                <div class="hour-item px-4 py-2 cursor-pointer text-sm
+                    hover:bg-blue-100" data-hour="${t}">
+                    ${t}
+                </div>
+            `);
+        }
+
+        // Klik item jam
+        $(prefix + ".hour-item").on("click", function () {
+            const t = $(this).data("hour");
+            if (start == null) showCopyAlert({ text: "Silakan pilih jam selesai" });
+
+            if (!start) {
+                start = t;
+                $(this).addClass("bg-blue-500 text-white");
+            } else if (!end) {
+                end = t;
+
+                if (end <= start) {
+                    showToast("error", "Gagal", "Jam keluar harus lebih besar!");
+                    end = null;
+                    return;
+                }
+
+                updateValues();
+                resetSelection();
+            } else {
+                resetSelection();
+                start = t;
+                $(this).addClass("bg-blue-500 text-white");
+            }
+        });
+    }
+
+    function updateValues() {
+        $(prefix + "#time").val(`${start} - ${end}`);
+        $(prefix + "#time_in").val(start);
+        $(prefix + "#time_out").val(end);
+
+        $(prefix + "#hourSlots").addClass("hidden");
+    }
+
+    function resetSelection() {
+        start = null;
+        end = null;
+        $(prefix + ".hour-item").removeClass("bg-blue-500 text-white");
+    }
+}
+
+function getDayIndexByDate(dateString) {
+    const dayNames = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+    const dayName = new Date(dateString).toLocaleDateString("id-ID", {
+        weekday: "long"
+    });
+
+    return dayNames.findIndex(d => d === dayName);
+}
+
+function parseTime(time) {
+    var times = time.toString();
+    times = times.split(":");
+    times = times[0] + ':' + times[1];
+    return times;
+}
+
+function formatDateYMD(date) {
+    const d = new Date(date); // bisa menerima Date object atau string
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // bulan 0-based
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function renderWeeks(month, year) {
+    let weeks = [];
+    let firstDay = new Date(year, month - 1, 1); // tanggal 1 bulan itu
+    let lastDay = new Date(year, month, 0);      // tanggal terakhir bulan itu
+
+    let current = new Date(firstDay);
+
+    while (current <= lastDay) {
+        // start of week (Senin)
+        let startOfWeek = new Date(current);
+        startOfWeek.setDate(current.getDate() - (current.getDay() === 0 ? 6 : current.getDay() - 1));
+
+        // end of week (Minggu)
+        let endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+        // batasi akhir minggu tidak melebihi akhir bulan
+        if (endOfWeek > lastDay) endOfWeek = lastDay;
+
+        // simpan minggu
+        weeks.push({
+            start: startOfWeek.toISOString().split('T')[0],
+            end: endOfWeek.toISOString().split('T')[0],
+        });
+
+        // lanjut ke minggu berikutnya
+        current.setDate(endOfWeek.getDate() + 1);
+    }
+
+    return weeks;
+}

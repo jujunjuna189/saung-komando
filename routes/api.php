@@ -18,6 +18,12 @@ Route::post('/reservation/update', [App\Http\Controllers\Dashboard\Reservation\R
 Route::post('/reservation/delete', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'delete']);
 Route::post('/reservation/pin', [App\Http\Controllers\Dashboard\Reservation\ReservationController::class, 'pin']);
 
+// Reservation Mini Soccer
+Route::get('/reservation-mini-soccer/show', [App\Http\Controllers\Dashboard\Reservation\ReservationMiniSoccerController::class, 'show']);
+Route::post('/reservation-mini-soccer/create', [App\Http\Controllers\Dashboard\Reservation\ReservationMiniSoccerController::class, 'create']);
+Route::post('/reservation-mini-soccer/update', [App\Http\Controllers\Dashboard\Reservation\ReservationMiniSoccerController::class, 'update']);
+Route::post('/reservation-mini-soccer/delete', [App\Http\Controllers\Dashboard\Reservation\ReservationMiniSoccerController::class, 'delete']);
+
 // Promotion
 Route::get('/promotion/show', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, 'show']);
 Route::post('/promotion/create', [App\Http\Controllers\Dashboard\Promotion\PromotionController::class, 'create']);
