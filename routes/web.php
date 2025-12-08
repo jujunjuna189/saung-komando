@@ -1,6 +1,9 @@
 <?php
 
+use App\Exports\ReservationExport;
+use App\Exports\ReservationMiniSoccerExport;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Excel;
 
 Route::get('/', [App\Http\Controllers\PublicView\Home\HomeController::class, 'index'])->name('home');
 
@@ -36,6 +39,9 @@ Route::get('/dashboard/facility', function () {
 Route::get('/dashboard/calendar', function () {
     return view('dashboard.calendar.reservasi');
 })->name('dashboard.calendar');
+// Reservation
+Route::get('/reservations/export', function () {return Excel::download(new ReservationExport, 'reservations.xlsx');})->name('reservations.export');
+Route::get('/reservations-mini-soccer/export', function () {return Excel::download(new ReservationMiniSoccerExport, 'reservation-mini-soccer.xlsx');})->name('reservations-mini-soccer.export');
 
 Route::get('/dashboard/calendar-mini-soccer', function () {
     return view('dashboard.calendar.mini-soccer');
