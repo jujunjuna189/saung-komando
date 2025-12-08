@@ -88,7 +88,7 @@
 
                             <!-- Export Button -->
                             <div class="flex justify-end mt-4">
-                                <a href="{{ route('reservations.export') }}" class="bg-[#A9C8FF] text-gray-900 px-5 py-2 rounded-full hover:bg-blue-600 hover:text-white transition">
+                                <a href="{{ route('reservations-mini-soccer.export') }}" class="bg-[#A9C8FF] text-gray-900 px-5 py-2 rounded-full hover:bg-blue-600 hover:text-white transition">
                                     Export to Excel
                                 </a>
                             </div>

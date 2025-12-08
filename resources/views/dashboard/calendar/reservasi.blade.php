@@ -33,7 +33,7 @@
 
                     <div class="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
                         <div class="flex gap-2 w-full md:w-auto md:order-2">
-                            <a href="{{ route('reservations-mini-soccer.export') }}" class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition flex-3 md:flex-none flex justify-center">
+                            <a href="{{ route('reservations.export') }}" class="px-4 py-2 rounded-full bg-[#92BAF5] border-[#92BAF5] cursor-pointer hover:bg-[#7da8e8] transition flex-3 md:flex-none flex justify-center">
                                 <div class="flex gap-1 items-center">
                                     <span class="text-xs md:text-sm whitespace-nowrap">Export To Excel</span>
                                 </div>

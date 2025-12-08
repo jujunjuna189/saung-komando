@@ -166,7 +166,7 @@
                         <span>+ FREE Akses Semua Fasilitas Komando</span>
                     </div>
                 </div>
-                <a href="{{ route('facility') }}" class="bg-[#000000] text-white px-5 py-3 rounded-full hover:bg-[#AEEF8B] hover:text-black cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                <a href="{{ route('facility') }}" class="bg-[#000000] inline-block text-white px-5 py-3 rounded-full hover:bg-[#AEEF8B] hover:text-black cursor-pointer transition-all duration-200 hover:-translate-y-1">
                     <div class="flex gap-3 items-center justify-center text-center">
                         <span>Cari Penginapan Sekarang</span>
                     </div>
@@ -226,7 +226,7 @@
             @foreach($facility as $val)
             <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
                 <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
-                    <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
+                    <div class="md:h-[405px] min-w-[90px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
                         <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
                             alt=""
                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
@@ -235,7 +235,7 @@
                         @if($val->is_free_for_guest == 1)
                         <div class="flex justify-between items-center">
                             <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1">
-                                <span class="text-[10px] md:text-[14px]"><strong class="text-red-500">FREE</strong> untuk tamu menginap</span>
+                                <span class="text-[10px] md:text-[14px] whitespace-pre"><strong class="text-red-500">FREE</strong> untuk tamu menginap</span>
                             </div>
                             <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
                                 <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-[#F4C01E] w-[13px] md:w-[18px] h-[13px] md:h-[18px]">
@@ -247,10 +247,10 @@
                         </div>
                         @endif
                         @if($val->is_membership == 1)
-                        <div class="flex justify-between items-center">
+                        <div class="flex md:justify-between md:items-center flex-col-reverse md:flex-row">
                             <h5 class="text-md md:text-2xl font-semibold">{{ $val->title }}</h5>
                             <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                                <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
+                                <span class="text-[10px] md:text-[14px] whitespace-pre">Membership 325rb/bln</span>
                             </div>
                         </div>
                         @else
@@ -281,12 +281,12 @@
                         </div>
                         <div class="md:grow"></div>
                         <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                            <div class="flex flex-wrap flex-row items-center gap-1">
+                            <div class="flex flex-wrap flex-row items-center gap-1 leading-3">
                                 <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</label>
                                 <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">{{ $val->markup_price ?? '' }}</label>
                             </div>
                             <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                                <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
+                                <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
                                     <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                     <span class="md:hidden flex">Lihat Detail</span>
                                 </div>

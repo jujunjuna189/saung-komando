@@ -29,8 +29,10 @@
                             <option value="Dilokasi">Dilokasi</option>
                         </select>
                     </li>
-                    <li class="hidden px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full items-center cursor-pointer md:flex">
-                        <span>Export To Excel</span>
+                    <li>
+                        <a href="{{ route('reservations.export') }}" class="hidden px-4 py-2 border-[#AEEF8B] bg-[#AEEF8B] rounded-full items-center cursor-pointer md:flex">
+                            <span>Export To Excel</span>
+                        </a>
                     </li>
                 </ul>
             </div>

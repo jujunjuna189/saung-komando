@@ -81,8 +81,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-row flex-wrap gap-1 items-center">
+                                <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
+                                <h4 class="text-md text-red-600 line-through whitespace-pre">{{ $detail->markup_price ?? '' }}</h4>
+                            </div>
+                            <div>
+                                <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="scheduleModalOpen()">
+                                    <div class="flex gap-3 items-center">
+                                        <span>Pesan Sekarang</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @else
-                        <div class="flex justify-between gap-2 mt-4 flex-wrap">
+                        <div class="flex justify-between gap-2 mt-4 flex-wrap md:flex-nowrap">
                             @foreach($detail->specification as $val)
                             <div class="flex gap-2 items-center px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-[#EDEFF1]">
                                 <img src="{{ url($val->icon) }}" alt="" class="h-4">
@@ -117,7 +130,6 @@
                                 <span class="text-[#808391] text-[10px] font-semibold whitespace-pre">42” Smart TV</span>
                             </div>
                         </div>
-                        @endif
                         <div class="flex justify-between items-center">
                             <div class="flex flex-row flex-wrap gap-1 items-center">
                                 <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
@@ -131,6 +143,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
