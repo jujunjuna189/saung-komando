@@ -1,9 +1,35 @@
-<div id="mini-soccer" style="display: none;">
+@extends('components.dashboard.layouts.app', ['nav_bar' => false])
+
+@section('content')
+<div id="mini-soccer">
     <div class="py-3 md:px-5 md:py-5">
         <div class="flex flex-col xl:flex-row gap-4">
             <div class="bg-white md:rounded-2xl p-4 md:p-5 w-full min-w-0 xl:flex-7">
                 <div class="flex flex-col gap-4">
-                    <h1 class="text-xl md:text-2xl font-semibold">Kalender Mini Soccer</h1>
+                    <div id="openPopup" class="relative inline-flex items-center gap-2 cursor-pointer">
+                        <h1 id="selectedText" class="text-xl md:text-2xl font-semibold">
+                            Kalender Mini Soccer
+                        </h1>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+
+                        <!-- Popup Dropdown -->
+                        <div id="popupSelect" class="absolute left-0 top-full mt-2 bg-white shadow-lg border rounded-xl w-48 hidden z-50">
+                            <div class="flex flex-col py-2">
+                                <button class="optionBtn px-4 py-2 hover:bg-gray-100 text-left" data-value="Kalender Penginapan">
+                                    Kalender Penginapan
+                                </button>
+                                <button class="optionBtn px-4 py-2 hover:bg-gray-100 text-left" data-value="Kalender Mini Soccer">
+                                    Kalender Mini Soccer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
                         <div class="flex gap-2 w-full md:w-auto md:order-2">
@@ -198,9 +224,10 @@
         </div>
     </x-dashboard.modal>
 </div>
+@endsection
 
-@push('scripts')
-<script data-script="mini-soccer" type="hidden">
+@section('script')
+<script>
     const prefix = "#mini-soccer";
     let events = [];
     let reservationsData = [];
@@ -402,6 +429,28 @@
         Calendar.updateWeekStart(prefix, weeks[weeks.findIndex(w => new Date() >= new Date(w.start) && new Date() <= new Date(w.end))].start);
         // Time generate
         initTimePicker("#modalAddMiniSoccer");
+
+        // toggle dropdown popup
+        $("#openPopup").on("click", function (e) {
+            e.stopPropagation();
+            $("#popupSelect").toggleClass("hidden");
+        });
+
+        // pilih opsi
+        $(".optionBtn").on("click", function () {
+            let selected = $(this).data("value");
+            $("#selectedText").text(selected);
+            $("#popupSelect").addClass("hidden");
+            // For redirect
+            if (selected === "Kalender Penginapan") {
+                location.href = "{{ route('dashboard.calendar') }}";
+            }
+        });
+
+        // klik di luar, popup hilang
+        $(document).on("click", function () {
+            $("#popupSelect").addClass("hidden");
+        });
     });
 
     function filterStatusChange(target) {
@@ -460,7 +509,7 @@
         const element = `
             <div class="bg-[#F2F4F7] rounded-lg p-5 relative">
                 <div class="flex justify-between items-center">
-                    <h6 class="font-semibold text-base md:text-lg">${item.facility?.title ?? ""}</h6>
+                    <h6 class="font-semibold text-base md:text-lg">${formatDayDate(item.date)}</h6>
                     <div class="relative dropdown-container">
                         <div class="flex justify-end items-center cursor-pointer p-1 rounded-full hover:bg-gray-200 transition" onclick="toggleDropdown('${item.id}')">
                             <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
@@ -481,11 +530,7 @@
                     <span class="font-semibold">${item.name}</span>
                     <span class="font-semibold text-end">${item.telp}</span>
                 </div>
-                <div class="mt-3 grid grid-cols-2 text-sm md:text-base">
-                    <div>
-                        <p>Tanggal :</p>
-                        <p class="font-semibold">${item.date}</p>
-                    </div>
+                <div class="mt-3 text-sm md:text-base">
                     <div>
                         <p>Durasi :</p>
                         <p class="font-semibold">${parseTime(item.time_in)} - ${parseTime(item.time_out)} WIB</p>
@@ -695,4 +740,4 @@
         });
     }
 </script>
-@endpush
+@endsection

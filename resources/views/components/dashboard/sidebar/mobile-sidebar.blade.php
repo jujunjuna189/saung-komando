@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.calendar') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B]' : '' }}">
+                <a href="{{ route('dashboard.calendar') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') || Request::is('dashboard/calendar-mini-soccer') ? 'bg-[#AEEF8B]' : '' }}">
                     <img src="{{ asset('assets/icon/calendar.svg') }}" alt="Calendar">
                     <span>Kalender</span>
                 </a>

@@ -34,8 +34,12 @@ Route::get('/dashboard/facility', function () {
 })->name('dashboard.facility');
 
 Route::get('/dashboard/calendar', function () {
-    return view('dashboard.calendar.index');
+    return view('dashboard.calendar.reservasi');
 })->name('dashboard.calendar');
+
+Route::get('/dashboard/calendar-mini-soccer', function () {
+    return view('dashboard.calendar.mini-soccer');
+})->name('dashboard.calendar-mini-soccer');
 
 Route::get('/dashboard/promotion', function () {
     return view('dashboard.promotion.index');

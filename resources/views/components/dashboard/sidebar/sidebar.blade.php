@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.calendar') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
+                <a href="{{ route('dashboard.calendar') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 {{ Request::is('dashboard/calendar') || Request::is('dashboard/calendar-mini-soccer') ? 'bg-[#AEEF8B] hover:bg-[#AEEF8B]/70' : 'hover:bg-gray-100' }}">
                     <img src="{{ asset('assets/icon/calendar.svg') }}" alt="Calendar">
                     <span>Kalender</span>
                 </a>

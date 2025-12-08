@@ -441,6 +441,7 @@
             `;
         }
 
+        const facilityDetailBase = "{{ route('facility.detail', ['id' => ':id']) }}";
         const element = `
             <div class="rounded-xl overflow-hidden bg-white flex flex-row">
                 <div class="min-w-[70px] w-[70px] aspect-square bg-gray-50 overflow-hidden group">
@@ -466,7 +467,7 @@
                             <label class="text-[11px] md:text-[14px] font-semibold text-sm">${item.price}</label>
                             <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
                         </div>
-                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}"
+                        <a href="${facilityDetailBase.replace(':id', item.id)}"
                             class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px]">
                                 <span class="whitespace-pre">Lihat Detail</span>
@@ -592,6 +593,7 @@
             `;
         }
 
+        const facilityDetailBase = "{{ route('facility.detail', ['id' => ':id']) }}";
         const element = `
         <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
             <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
@@ -613,7 +615,7 @@
                             <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</label>
                             <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
                         </div>
-                        <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
+                        <a href="${facilityDetailBase.replace(':id', item.id)}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>

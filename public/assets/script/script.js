@@ -517,3 +517,24 @@ function renderWeeks(month, year) {
 
     return weeks;
 }
+
+function formatDayDate(tanggal) {
+    const hari = [
+        "Minggu", "Senin", "Selasa", "Rabu",
+        "Kamis", "Jumat", "Sabtu"
+    ];
+
+    const bulan = [
+        "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+        "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+    ];
+
+    const d = new Date(tanggal);
+
+    const namaHari = hari[d.getDay()];
+    const tgl = d.getDate();
+    const namaBulan = bulan[d.getMonth()];
+    const tahun = d.getFullYear();
+
+    return `${namaHari}, ${tgl} ${namaBulan} ${tahun}`;
+}

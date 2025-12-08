@@ -1,9 +1,35 @@
+@extends('components.dashboard.layouts.app', ['nav_bar' => false])
+
+@section('content')
 <div id="reservasi">
     <div class="py-3 md:px-5 md:py-5">
         <div class="flex flex-col xl:flex-row gap-4">
             <div class="bg-white md:rounded-2xl p-4 md:p-5 w-full min-w-0 xl:flex-7">
                 <div class="flex flex-col gap-4">
-                    <h1 class="text-xl md:text-2xl font-semibold">Kalender Penginapan</h1>
+                    <div id="openPopup" class="relative inline-flex items-center gap-2 cursor-pointer">
+                        <h1 id="selectedText" class="text-xl md:text-2xl font-semibold">
+                            Kalender Penginapan
+                        </h1>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+
+                        <!-- Popup Dropdown -->
+                        <div id="popupSelect" class="absolute left-0 top-full mt-2 bg-white shadow-lg border rounded-xl w-48 hidden z-50">
+                            <div class="flex flex-col py-2">
+                                <button class="optionBtn px-4 py-2 hover:bg-gray-100 text-left" data-value="Kalender Penginapan">
+                                    Kalender Penginapan
+                                </button>
+                                <button class="optionBtn px-4 py-2 hover:bg-gray-100 text-left" data-value="Kalender Mini Soccer">
+                                    Kalender Mini Soccer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
                         <div class="flex gap-2 w-full md:w-auto md:order-2">
@@ -222,9 +248,10 @@
         </div>
     </x-dashboard.modal>
 </div>
+@endsection
 
-@push('scripts')
-<script data-script="reservasi">
+@section('script')
+<script>
     const now = new Date();
     let currentYear = now.getFullYear();
     let currentMonth = now.getMonth();
@@ -424,6 +451,28 @@
             if (!$(e.target).closest('.dropdown-container').length) {
                 $('.dropdown-menu').addClass('hidden');
             }
+        });
+
+        // toggle dropdown popup
+        $("#openPopup").on("click", function (e) {
+            e.stopPropagation();
+            $("#popupSelect").toggleClass("hidden");
+        });
+
+        // pilih opsi
+        $(".optionBtn").on("click", function () {
+            let selected = $(this).data("value");
+            $("#selectedText").text(selected);
+            $("#popupSelect").addClass("hidden");
+            // For redirect
+            if (selected === "Kalender Mini Soccer") {
+                location.href = "{{ route('dashboard.calendar-mini-soccer') }}";
+            }
+        });
+
+        // klik di luar, popup hilang
+        $(document).on("click", function () {
+            $("#popupSelect").addClass("hidden");
         });
     });
 
@@ -797,4 +846,4 @@
         });
     }
 </script>
-@endpush
+@endsection
