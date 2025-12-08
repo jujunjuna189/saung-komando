@@ -3,7 +3,7 @@
 use App\Exports\ReservationExport;
 use App\Exports\ReservationMiniSoccerExport;
 use Illuminate\Support\Facades\Route;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', [App\Http\Controllers\PublicView\Home\HomeController::class, 'index'])->name('home');
 
