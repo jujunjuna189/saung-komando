@@ -51,7 +51,7 @@
                     <div class="flex justify-between items-center">
                         <h5 class="text-md md:text-2xl font-semibold">{{ $val->title }}</h5>
                         <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                            <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
+                            <span class="text-[10px] md:text-[14px]">Membership 300rb/bln</span>
                         </div>
                     </div>
                     @else
@@ -82,12 +82,12 @@
                     </div>
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                        <div class="flex flex-wrap flex-row items-center gap-1">
-                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</label>
+                        <div class="leading-3">
                             <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">{{ $val->markup_price ?? '' }}</label>
+                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</label>
                         </div>
                         <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                            <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
+                            <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
                             </div>
@@ -197,7 +197,7 @@
                 <div class="flex justify-between items-center">
                     <h5 class="text-md md:text-2xl font-semibold">${item.title}</h5>
                     <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                        <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
+                        <span class="text-[10px] md:text-[14px]">Membership 300rb/bln</span>
                     </div>
                 </div>
             `;
@@ -239,12 +239,12 @@
                     </div>
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                        <div class="flex flex-wrap flex-row items-center gap-1">
-                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</label>
+                        <div class="leading-3">
                             <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
+                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</label>
                         </div>
                         <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                            <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
+                            <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
                             </div>

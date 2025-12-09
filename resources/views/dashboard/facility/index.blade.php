@@ -350,7 +350,7 @@
                 <div class="flex justify-between items-center gap-2 flex-wrap">
                     <h5 class="font-semibold text-xs md:text-base leading-tight">${item.title}</h5>
                     <div class="bg-[#EDEFF1] flex items-center gap-1 rounded-full px-2 py-1 shrink-0">
-                        <span class="text-[8px] leading-tight font-bold">Membership 325rb/bln</span>
+                        <span class="text-[8px] leading-tight font-bold">Membership 300rb/bln</span>
                     </div>
                 </div>
             `;

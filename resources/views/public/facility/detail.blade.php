@@ -14,7 +14,7 @@
                     @endif
                     @if($detail->is_membership == 1)
                     <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EAC580] text-[10px] md:text-[14px]">
-                        <span class="font-semibold">Membership 325rb/bln</span>
+                        <span class="font-semibold">Membership 300rb/bln</span>
                     </div>
                     @endif
                     <div class="flex gap-1 items-center px-2 md:px-4 py-1 md:py-2 rounded-full bg-[#EDEFF1]">
@@ -56,7 +56,7 @@
                 </div>
                 <div>
                     <div>
-                        <div class="w-full rounded-lg md:rounded-3xl h-64 md:h-96 overflow-hidden relative fade hidden md:flex">
+                        <div class="w-full rounded-lg md:rounded-3xl overflow-hidden relative fade hidden md:flex aspect-video">
                             <iframe
                                 class="w-full h-full object-cover"
                                 src="https://www.youtube.com/embed/{{ $controller->getYouTubeCode($detail->link) }}?autoplay=1&mute=1&loop=1&playlist={{ $controller->getYouTubeCode($detail->link) }}"
@@ -73,10 +73,10 @@
                         @if($detail->is_mini_soccer == 1)
                         <div class="mt-3 mb-5">
                             <h6 class="font-semibold text-lg">Cek Jadwal<span class="text-red-500">*</span></h6>
-                            <div>
+                            <div class="mt-2">
                                 <div class="bg-[#92BAF5] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 open-modal" data-id="modalBooking">
                                     <div class="flex gap-3 items-center justify-center">
-                                        <span>Pesan Sekarang</span>
+                                        <span>Cek Ketersediaan</span>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                             </div>
                             @endforeach
                         </div>
-                        <div class="flex flex-wrap gap-3 justify-evenly md:justify-between my-5">
+                        <div class="flex flex-wrap gap-2 justify-evenly md:justify-between my-5">
                             <div class="text-center">
                                 <div class="flex justify-center mb-3">
                                     <img src="{{ asset('assets/icon/sofa.svg') }}" alt="Sofa" class="h-10">
@@ -127,17 +127,17 @@
                                 <div class="flex justify-center mb-3">
                                     <img src="{{ asset('assets/icon/smart-tv.svg') }}" alt="Smart Tv" class="h-10">
                                 </div>
-                                <span class="text-[#808391] text-[10px] font-semibold whitespace-pre">42” Smart TV</span>
+                                <span class="text-[#808391] text-[10px] font-semibold whitespace-pre">32inc+ Smart TV</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
-                            <div class="flex flex-row flex-wrap gap-1 items-center">
-                                <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
+                            <div class="flex-wrap gap-1 items-center leading-3">
                                 <h4 class="text-md text-red-600 line-through whitespace-pre">{{ $detail->markup_price ?? '' }}</h4>
+                                <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
                             </div>
                             <div>
                                 <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1 open-modal" data-id="modalCheckout">
-                                    <div class="flex gap-3 items-center">
+                                    <div class="flex gap-3 items-center whitespace-pre">
                                         <span>Pesan Sekarang</span>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                             <div class="flex justify-between items-center">
                                 <h5 class="text-md md:text-2xl font-semibold">{{ $val->title }}</h5>
                                 <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                                    <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
+                                    <span class="text-[10px] md:text-[14px]">Membership 300rb/bln</span>
                                 </div>
                             </div>
                             @else
@@ -665,7 +665,7 @@
                 <div class="flex justify-between items-center">
                     <h5 class="text-md md:text-2xl font-semibold">${item.title}</h5>
                     <div class="bg-[#EAC580] flex items-center gap-1 rounded-full px-2 py-1">
-                        <span class="text-[10px] md:text-[14px]">Membership 325rb/bln</span>
+                        <span class="text-[10px] md:text-[14px]">Membership 300rb/bln</span>
                     </div>
                 </div>
             `;

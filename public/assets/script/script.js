@@ -383,7 +383,7 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
     });
 }
 
-function initTimePicker(container = "") {
+function initTimePicker(container = "", suffix = "") {
     let prefix = container ? container + " " : "";
     const startHour = 16;
     const endHour = 22;
@@ -392,7 +392,7 @@ function initTimePicker(container = "") {
     let end = null;
 
     // Klik input untuk toggle dropdown
-    $(document).on("click", prefix + "#time", function () {
+    $(document).on("click", prefix + suffix, function () {
         renderHours();
         $(prefix + "#hourSlots").toggleClass("hidden");
     });
@@ -448,7 +448,7 @@ function initTimePicker(container = "") {
     }
 
     function updateValues() {
-        $(prefix + "#time").val(`${start} - ${end}`);
+        $(prefix + suffix).val(`${start} - ${end}`);
         $(prefix + "#time_in").val(start);
         $(prefix + "#time_out").val(end);
 

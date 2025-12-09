@@ -428,7 +428,8 @@
         renderWeek(new Date().getFullYear(), new Date().getMonth(), weeks.findIndex(w => new Date() >= new Date(w.start) && new Date() <= new Date(w.end)));
         Calendar.updateWeekStart(prefix, weeks[weeks.findIndex(w => new Date() >= new Date(w.start) && new Date() <= new Date(w.end))].start);
         // Time generate
-        initTimePicker("#modalAddMiniSoccer");
+        initTimePicker("#modalAddMiniSoccer", "#time");
+        initTimePicker("#modalEditMiniSoccer", "#edit-time");
 
         // toggle dropdown popup
         $("#openPopup").on("click", function (e) {
