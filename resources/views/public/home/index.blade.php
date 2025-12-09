@@ -282,8 +282,8 @@
                         <div class="md:grow"></div>
                         <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                             <div class="leading-3">
-                                <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">{{ $val->markup_price ?? '' }}</label>
-                                <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</label>
+                                <p for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">{{ $val->markup_price ?? '' }}</p>
+                                <p for="price" class="font-semibold text-sm md:text-xl whitespace-pre">{{ $val->price }}</p>
                             </div>
                             <a href="{{ route('facility.detail', ['id' => $val->id]) }}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                                 <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
@@ -464,8 +464,8 @@
 
                     <div class="flex flex-row justify-between items-center mt-1">
                         <div class="flex flex-wrap flex-row items-center gap-1 leading-[3px]">
-                            <label class="text-[11px] md:text-[14px] font-semibold text-sm">${item.price}</label>
-                            <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
+                            <p class="text-[11px] md:text-[14px] font-semibold text-sm">${item.price}</p>
+                            <p for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</p>
                         </div>
                         <a href="${facilityDetailBase.replace(':id', item.id)}"
                             class="bg-[#AEEF8B] py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
@@ -612,8 +612,8 @@
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
                         <div class="leading-3">
-                            <label for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</label>
-                            <label for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</label>
+                            <p for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</p>
+                            <p for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</p>
                         </div>
                         <a href="${facilityDetailBase.replace(':id', item.id)}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
                             <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
