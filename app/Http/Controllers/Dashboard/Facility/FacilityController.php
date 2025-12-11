@@ -68,7 +68,7 @@ class FacilityController extends Controller
                     $filename = Str::uuid() . '.webp';
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($file);
-                    $encoded = $image->toWebp(60);
+                    $encoded = $image->toWebp(60)->toString();
                     Storage::disk('public')->put('fasility/' . $filename, $encoded);
                     $spec = new FacilityThumbnailModel();
                     $spec->facility_id = $model->id;
@@ -108,7 +108,7 @@ class FacilityController extends Controller
                 ]);
             }
 
-            $model->fill($request->except('spesification', 'files', 'id'));
+            $model->fill($request->except('spesification', 'files', 'files_id', 'id'));
             $model->save();
 
             if ($request->has('spesification') && count(json_decode($request->spesification)) > 0) {
@@ -124,11 +124,21 @@ class FacilityController extends Controller
             }
 
             if ($request->hasFile('files') && count($request->file('files')) > 0) {
+                if($request->has('files_id') && count(json_decode($request->files_id)) > 0){
+                    $oldThumbs = FacilityThumbnailModel::whereIn('id', json_decode($request->files_id))->get();
+                    foreach ($oldThumbs as $thumb) {
+                        if (Storage::disk('public')->exists($thumb->path)) {
+                            Storage::disk('public')->delete($thumb->path);
+                        }
+                        $thumb->delete();
+                    }
+                }
+
                 foreach ($request->file('files') as $file) {
                     $filename = Str::uuid() . '.webp';
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($file);
-                    $encoded = $image->toWebp(60);
+                    $encoded = $image->toWebp(60)->toString();
                     Storage::disk('public')->put('fasility/' . $filename, $encoded);
                     $spec = new FacilityThumbnailModel();
                     $spec->facility_id = $model->id;

@@ -190,24 +190,24 @@
         <div class="mt-2 grid grid-cols-3 md:grid-cols-6 justify-center gap-3">
             @for ($i = 1; $i <= 6; $i++)
                 <div class="relative group">
-                <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload{{ $i }}" previewId="editImageUpload{{ $i }}" required />
-                <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
-                    <button type="button" onclick="moveImage(<?= $i ?>, -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
+                    <x-dashboard.field.image-input label="Gambar" name="image" id="edit_image_upload{{ $i }}" previewId="editImageUpload{{ $i }}" required />
+                    <div class="absolute top-1/2 -translate-y-1/2 -left-3 z-10 hidden group-hover:block">
+                        <button type="button" onclick="moveImage(<?= $i ?>, -1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
+                        <button type="button" onclick="moveImage(<?= $i ?>, 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="absolute top-1/2 -translate-y-1/2 -right-3 z-10 hidden group-hover:block">
-                    <button type="button" onclick="moveImage(<?= $i ?>, 1)" class="bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
+            @endfor
         </div>
-        @endfor
-    </div>
     </div>
     <div class="mt-5 border p-4 rounded-xl">
         <div class="grid grid-cols-2 gap-2">
@@ -479,6 +479,7 @@
 
         // Files
         const files = [];
+        const filesId = [];
         // Adjust ID for image upload based on prefix
         // The modalAdd uses image_upload1, modalEdit uses edit_image_upload1
         const idPrefix = prefix === "edit-" ? "edit_image_upload" : "image_upload";
@@ -487,6 +488,10 @@
             const el = $('#' + idPrefix + i)[0];
             if (el && el.files[0]) {
                 files.push(el.files[0]);
+                const id = $(`#editImageUpload${i}`).attr('data-id');
+                if(id){
+                    filesId.push(id);
+                }
             }
         }
 
@@ -503,6 +508,7 @@
             isMiniSoccer: isMiniSoccer,
             spesification: spesificationItem,
             files: files,
+            filesId: filesId,
         };
 
         return data;
@@ -611,6 +617,7 @@
         formData.append('is_mini_soccer', data.isMiniSoccer ? 1 : 0);
         // Spesification
         formData.append('spesification', JSON.stringify(data.spesification));
+        formData.append('files_id', JSON.stringify(data.filesId));
         $.each(Object.keys(data.files), function(i, item) {
             formData.append('files[]', data.files[item]);
         });
