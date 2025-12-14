@@ -828,7 +828,6 @@
 
     function onSubmit() {
         const data = form();
-        console.log(data);
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('facility_id', JSON.stringify(data.facilityId));
