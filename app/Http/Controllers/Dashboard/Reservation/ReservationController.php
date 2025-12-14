@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Reservation;
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Reservation\ReservationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -50,15 +51,24 @@ class ReservationController extends Controller
 
     public function create(Request $request)
     {
-        $model = new ReservationModel();
-        $model->fill($request->all());
-        $model->save();
+        DB::beginTransaction();
+        try {
+            foreach(json_decode($request->facility_id) as $val){
+                $model = new ReservationModel();
+                $model->fill($request->except('facility_id'));
+                $model->facility_id = $val;
+                $model->save();
+            }
 
-        return response()->json([
-            "status" => 'success',
-            "message" => 'Berhasil membuat reservasi',
-            "data" => $model,
-        ]);
+            DB::commit();
+            return response()->json([
+                "status" => 'success',
+                "message" => 'Berhasil membuat reservasi',
+                "data" => $model,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     }
 
     public function update(Request $request)

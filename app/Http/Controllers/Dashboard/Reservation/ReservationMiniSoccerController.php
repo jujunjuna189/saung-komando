@@ -7,6 +7,7 @@ use App\Models\Dashboard\Facility\FacilityModel;
 use App\Models\Dashboard\Reservation\ReservationMiniSoccerModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationMiniSoccerController extends Controller
 {
@@ -55,17 +56,23 @@ class ReservationMiniSoccerController extends Controller
 
     public function create(Request $request)
     {
-        $minisoccer = FacilityModel::where('is_mini_soccer', 1)->first();
-        $model = new ReservationMiniSoccerModel();
-        $model->fill($request->except('facility_id'));
-        $model->facility_id = $minisoccer->id;
-        $model->save();
+        DB::beginTransaction();
+        try {
+            $minisoccer = FacilityModel::where('is_mini_soccer', 1)->first();
+            $model = new ReservationMiniSoccerModel();
+            $model->fill($request->except('facility_id'));
+            $model->facility_id = $minisoccer->id;
+            $model->save();
 
-        return response()->json([
-            "status" => 'success',
-            "message" => 'Berhasil membuat sewa mini soccer',
-            "data" => $model,
-        ]);
+            DB::commit();
+            return response()->json([
+                "status" => 'success',
+                "message" => 'Berhasil membuat sewa mini soccer',
+                "data" => $model,
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     }
 
     public function update(Request $request)

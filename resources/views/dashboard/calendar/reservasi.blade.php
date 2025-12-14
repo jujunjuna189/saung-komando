@@ -116,9 +116,11 @@
             </div>
             <div class="grow">
                 <label for="" class="font-semibold text-[12px]">Nama Fasilitas<span class="text-red-500">*</span></label>
-                <select name="facility_id" id="facility_id" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
-                    <!-- From data facility -->
-                </select>
+                <div class="mt-2 border rounded-xl bg-[#F1F3F6] px-2 py-[7px] w-full">
+                    <select name="facility_id[]" id="facility_id" multiple="multiple">
+                        <!-- From data facility -->
+                    </select>
+                </div>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
@@ -474,6 +476,11 @@
         $(document).on("click", function () {
             $("#popupSelect").addClass("hidden");
         });
+
+        $('#facility_id').select2({
+            placeholder: 'Pilih fasilitas',
+            width: '100%'
+        });
     });
 
     function toggleDropdown(id) {
@@ -821,9 +828,10 @@
 
     function onSubmit() {
         const data = form();
+        console.log(data);
         const formData = new FormData();
         formData.append('name', data.name);
-        formData.append('facility_id', data.facilityId);
+        formData.append('facility_id', JSON.stringify(data.facilityId));
         formData.append('telp', data.telp);
         formData.append('total_guest', data.totalGuest);
         formData.append('status', data.status);

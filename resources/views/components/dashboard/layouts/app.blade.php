@@ -11,8 +11,10 @@
 
     <title>{{ config('app.name', 'Saung Komando') }}</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
@@ -22,6 +24,12 @@
             font-family: "Poppins", sans-serif;
             font-weight: 400;
             font-style: normal;
+        }
+
+        .select2-container--default .select2-selection--multiple {
+            border: none !important;
+            box-shadow: none !important;
+            background-color: transparent;
         }
     </style>
 </head>
@@ -42,6 +50,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Custome Js -->
 <script src="{{ asset('assets/script/notification.js') }}"></script>
 <script src="{{ asset('assets/script/script.js') }}"></script>

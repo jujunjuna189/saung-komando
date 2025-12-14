@@ -543,9 +543,9 @@
 
         if (item.specification) {
             $.each(item.specification, function(i, spec) {
-                if (spec.icon.includes('person')) $('#edit-max-capasity').val(parseFloat(spec.value));
-                if (spec.icon.includes('bedroom')) $('#edit-bedroom').val(parseFloat(spec.value));
-                if (spec.icon.includes('bathroom')) $('#edit-bathroom').val(parseFloat(spec.value));
+                if (spec.icon.includes('person')) $('#edit-max-capasity').val(Number.isNaN(parseFloat(spec.value)) ? '-' : parseFloat(spec.value));
+                if (spec.icon.includes('bedroom')) $('#edit-bedroom').val(Number.isNaN(parseFloat(spec.value)) ? '-' : parseFloat(spec.value));
+                if (spec.icon.includes('bathroom')) $('#edit-bathroom').val(Number.isNaN(parseFloat(spec.value)) ? '-' : parseFloat(spec.value));
                 if (spec.icon.includes('area')) $('#edit-area').val(spec.value);
             });
         }
