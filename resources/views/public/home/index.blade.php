@@ -224,7 +224,7 @@
     <div class="relative overflow-hidden">
         <div class="flex transition-transform duration-500 ease-in-out" id="facility-track">
             @foreach($facility as $val)
-            <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
+            <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2" data-url="{{ route('facility.detail', ['id' => $val->id]) }}" onclick="window.open(this.dataset.url, '_self')">
                 <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
                     <div class="md:h-[405px] min-w-[90px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
                         <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
@@ -443,7 +443,7 @@
 
         const facilityDetailBase = "{{ url('/facility/detail') }}";
         const element = `
-            <div class="rounded-xl overflow-hidden bg-white flex flex-row">
+            <div class="rounded-xl overflow-hidden bg-white flex flex-row" onclick="window.open('${facilityDetailBase}?id=${item.id}', '_self')">
                 <div class="min-w-[70px] w-[70px] aspect-square bg-gray-50 overflow-hidden group">
                     <img src="{{ asset('storage/${item.thumbnails?.[0]?.path}') }}"
                         alt=""

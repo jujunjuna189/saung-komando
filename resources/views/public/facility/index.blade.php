@@ -26,7 +26,7 @@
     <div class="mt-7 md:mt-12 px-5">
         <div class="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-x-3 gap-y-5" id="container-facilitys">
             @foreach($facility as $val)
-            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col opacity-0 fade-up-scroll">
+            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col opacity-0 fade-up-scroll" data-url="{{ route('facility.detail', ['id' => $val->id]) }}" onclick="window.open(this.dataset.url, '_self')">
                 <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
                     <img src="{{ asset('storage/' . $val->thumbnails[0]->path) }}"
                         alt=""
@@ -225,7 +225,7 @@
 
         const facilityDetailBase = "{{ url('/facility/detail') }}";
         const element = `
-            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
+            <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col" onclick="window.open('${facilityDetailBase}?id=${item.id}', '_self')">
                 <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
                     <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
