@@ -696,25 +696,25 @@
         <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2">
             <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
                 <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
-                    <img src="{{ asset('storage/${item.thumbnails?.[0]?.path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
                 <div class="p-3 md:p-5 grow flex flex-col">
                     ${freeGuest}
                     ${membership}
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
-                        ${item.description?.length > 75 ? item.description?.substring(0, 75) + "..." : item.description}
+                        ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
                     </p>
-                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden flex-wrap">
+                    <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
                         ${specHtml}
                     </div>
                     <div class="md:grow"></div>
                     <div class="flex flex-row justify-between items-center mt-1 md:mt-4">
-                        <div class="flex flex-wrap flex-row items-center gap-1">
-                            <p for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</p>
+                        <div class="leading-3">
                             <p for="price" class="text-[11px] md:text-[14px] text-red-600 line-through whitespace-pre">${item.markup_price ?? ''}</p>
+                            <p for="price" class="font-semibold text-sm md:text-xl whitespace-pre">${item.price}</p>
                         </div>
                         <a href="${facilityDetailBase}?id=${item.id}" class="bg-[#AEEF8B] py-1 px-2 md:px-5 md:py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1">
-                            <div class="flex gap-3 items-center text-[10px] md:text-[14px]">
+                            <div class="flex gap-3 items-center text-[10px] md:text-[14px] whitespace-pre">
                                 <span class="hidden md:flex">Lihat Detail Fasilitas</span>
                                 <span class="md:hidden flex">Lihat Detail</span>
                             </div>
