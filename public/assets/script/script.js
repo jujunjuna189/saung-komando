@@ -267,7 +267,16 @@ function showCopyAlert({ text = "Tersalin!" }) {
     }, 1500);
 }
 
-function initDateRangePicker(inputSelector, popupSelector, checkinSelector = null, checkoutSelector = null) {
+function initDateRangePicker(
+    inputSelector,
+    popupSelector,
+    checkinSelector = null,
+    checkoutSelector = null,
+    bookedRanges = [],
+    callbacks = {}
+) {
+    const { onPrevMonth = null, onNextMonth = null } = callbacks;
+
     let $input = $(inputSelector);
     let $popup = $(popupSelector);
     let $checkin = checkinSelector ? $(checkinSelector) : null;
@@ -277,12 +286,47 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
     let endDate = null;
     let currentDate = new Date();
 
+    // 🔥 STATE BOOKING (DINAMIS)
+    let bookedData = bookedRanges;
+
+    /* ===============================
+        EVENT OPEN INPUT
+    =============================== */
     $input.on("click", function (e) {
         e.stopPropagation();
         renderCalendar(currentDate);
         $popup.removeClass("hidden");
     });
 
+    /* ===============================
+        BOOKING CHECK
+    =============================== */
+    function isBooked(date) {
+        return bookedData.some(range => {
+            let start = new Date(range.start);
+            let end = new Date(range.end);
+
+            start.setHours(0, 0, 0, 0);
+            end.setHours(23, 59, 59, 999);
+
+            return date >= start && date <= end;
+        });
+    }
+
+    function hasBookingBetween(start, end) {
+        let from = new Date(start);
+        let to = new Date(end);
+        if (to < from) [from, to] = [to, from];
+
+        for (let d = new Date(from); d <= to; d.setDate(d.getDate() + 1)) {
+            if (isBooked(new Date(d))) return true;
+        }
+        return false;
+    }
+
+    /* ===============================
+        RENDER CALENDAR
+    =============================== */
     function renderCalendar(date) {
         $popup.html("");
 
@@ -290,24 +334,35 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
         let year = date.getFullYear();
         let firstDay = new Date(year, month, 1).getDay();
         let lastDate = new Date(year, month + 1, 0).getDate();
-        let monthName = date.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+        let monthName = date.toLocaleDateString("id-ID", {
+            month: "long",
+            year: "numeric"
+        });
 
-        let $header = `
+        $popup.append(`
             <div class="flex justify-between items-center mb-2 px-2">
                 <button id="prevMonth" class="px-2 py-1">◀</button>
                 <span class="font-semibold">${monthName}</span>
                 <button id="nextMonth" class="px-2 py-1">▶</button>
             </div>
-        `;
-        $popup.append($header);
+        `);
 
-        let $cal = $('<div class="calendar grid grid-cols-7 gap-1 p-2"></div>');
+        let $cal = $('<div class="grid grid-cols-7 gap-1 p-2"></div>');
 
-        for (let i = 0; i < firstDay; i++) $cal.append("<span></span>");
+        for (let i = 0; i < firstDay; i++) {
+            $cal.append("<span></span>");
+        }
 
         for (let d = 1; d <= lastDate; d++) {
             let chosen = new Date(year, month, d);
-            let $cell = $(`<div class="cursor-pointer text-center p-1 rounded select-none">${d}</div>`);
+            let disabled = isBooked(chosen);
+
+            let $cell = $(`
+                <div class="text-center p-1 rounded select-none
+                    ${disabled ? 'bg-gray-200 text-gray-400 line-through cursor-not-allowed' : 'cursor-pointer'}">
+                    ${d}
+                </div>
+            `);
 
             if (startDate && chosen.getTime() === startDate.getTime()) {
                 $cell.addClass("bg-[#AEEF8B]");
@@ -321,19 +376,33 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
 
             $cell.on("click", function (e) {
                 e.stopPropagation();
+                if (disabled) return;
 
                 if (!startDate) {
                     startDate = chosen;
                     endDate = null;
                 } else if (!endDate) {
+                    if (hasBookingBetween(startDate, chosen)) {
+                        showToast(
+                            "error",
+                            "Periksa Ulang",
+                            "Tanggal sudah dibooking di tengah pilihan"
+                        );
+                        return;
+                    }
+
                     endDate = chosen;
-                    if (endDate < startDate) [startDate, endDate] = [endDate, startDate];
+                    if (endDate < startDate) {
+                        [startDate, endDate] = [endDate, startDate];
+                    }
+
                     updateInputs();
                     $popup.addClass("hidden");
                 } else {
                     startDate = chosen;
                     endDate = null;
                 }
+
                 renderCalendar(currentDate);
             });
 
@@ -342,29 +411,46 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
 
         $popup.append($cal);
 
-        $(document).off("click", "#prevMonth");
-        $(document).off("click", "#nextMonth");
-
-        $(document).on("click", "#prevMonth", function (e) {
+        /* ===============================
+            MONTH NAVIGATION
+        =============================== */
+        $("#prevMonth").off().on("click", function (e) {
             e.stopPropagation();
             currentDate = new Date(year, month - 1, 1);
+
+            onPrevMonth?.({
+                month: currentDate.getMonth() + 1,
+                year: currentDate.getFullYear(),
+                date: currentDate
+            });
+
             renderCalendar(currentDate);
         });
 
-        $(document).on("click", "#nextMonth", function (e) {
+        $("#nextMonth").off().on("click", function (e) {
             e.stopPropagation();
             currentDate = new Date(year, month + 1, 1);
+
+            onNextMonth?.({
+                month: currentDate.getMonth() + 1,
+                year: currentDate.getFullYear(),
+                date: currentDate
+            });
+
             renderCalendar(currentDate);
         });
     }
 
+    /* ===============================
+        UPDATE INPUT
+    =============================== */
     function updateInputs() {
         let start = formatDate(startDate);
         let end = formatDate(endDate);
 
         $input.val(`${start} - ${end}`);
-        if ($checkin) $checkin.val(start);
-        if ($checkout) $checkout.val(end);
+        $checkin?.val(start);
+        $checkout?.val(end);
     }
 
     function formatDate(date) {
@@ -375,12 +461,29 @@ function initDateRangePicker(inputSelector, popupSelector, checkinSelector = nul
         });
     }
 
+    /* ===============================
+        UPDATE BOOKING (API)
+    =============================== */
+    function updateBookedRanges(newRanges = []) {
+        bookedData = newRanges;
+        renderCalendar(currentDate);
+    }
+
     $(document).on("click", function (e) {
-        if (!$(e.target).closest(inputSelector).length &&
-            !$(e.target).closest(popupSelector).length) {
+        if (
+            !$(e.target).closest(inputSelector).length &&
+            !$(e.target).closest(popupSelector).length
+        ) {
             $popup.addClass("hidden");
         }
     });
+
+    /* ===============================
+        EXPOSE API
+    =============================== */
+    return {
+        updateBookedRanges
+    };
 }
 
 function initTimePicker(container = "", suffix = "") {

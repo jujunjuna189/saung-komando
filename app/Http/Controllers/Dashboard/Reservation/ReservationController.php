@@ -53,7 +53,7 @@ class ReservationController extends Controller
     {
         DB::beginTransaction();
         try {
-            foreach(json_decode($request->facility_id) as $val){
+            foreach (json_decode($request->facility_id) as $val) {
                 $model = new ReservationModel();
                 $model->fill($request->except('facility_id'));
                 $model->facility_id = $val;

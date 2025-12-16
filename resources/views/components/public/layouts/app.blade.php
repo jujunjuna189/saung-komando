@@ -61,9 +61,22 @@
             const id = $(this).data('id');
             closeModal(id);
         });
+
+        // Tutup modal saat klik overlay
+        $(document).on('click', '.modal-overlay', function(e) {
+            // pastikan klik di overlay, bukan di box
+            if ($(e.target).is(this)) {
+                closeModal(this.id);
+            }
+        });
+
+        // Stop klik di box modal supaya tidak ikut close
+        $(document).on('click', '.modal-box', function(e) {
+            e.stopPropagation();
+        });
     });
 
-    function openModal(id){
+    function openModal(id) {
         const modal = $('#' + id);
         const box = modal.find('> div');
 

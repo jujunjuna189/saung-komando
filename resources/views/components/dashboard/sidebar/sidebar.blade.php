@@ -35,10 +35,13 @@
                 </a>
             </li> -->
             <li>
-                <a href="{{ route('login') }}" class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 hover:bg-gray-100">
+                <button
+                    type="button"
+                    onclick="logout()"
+                    class="flex items-center gap-3 w-full border rounded-xl px-4 py-4 hover:bg-gray-100 w-full text-left">
                     <img src="{{ asset('assets/icon/profile.svg') }}" alt="Profile">
                     <span>Logout</span>
-                </a>
+                </button>
             </li>
         </ul>
     </div>
@@ -51,3 +54,16 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    function logout() {
+        // hapus status login
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        // redirect ke login
+        window.location.href = "{{ route('login') }}";
+    }
+</script>
+@endpush

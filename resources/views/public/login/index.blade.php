@@ -28,6 +28,10 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            window.location.href = "{{ route('dashboard.overview') }}";
+        }
+
         $("#form-login").on("submit", function(e) {
             e.preventDefault();
             onLogin();
@@ -56,8 +60,12 @@
 
         // cek akun
         const match = accounts.find(a => a.username === user && a.password === pass);
-        console.log(match);
+
         if (match) {
+            // simpan login state
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("username", match.username);
+
             // redirect
             window.location.href = "{{ route('dashboard.overview') }}";
         } else {

@@ -38,3 +38,4 @@ Route::post('/Gallery/delete', [App\Http\Controllers\Dashboard\Gallery\GalleryCo
 
 // Public Api
 Route::get('/public/facility/show', [App\Http\Controllers\Public\Facility\FacilityController::class, 'show']);
+Route::get('/public/reservation/show', [App\Http\Controllers\Public\Reservation\ReservationController::class, 'show']);

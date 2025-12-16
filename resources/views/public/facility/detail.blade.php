@@ -466,9 +466,31 @@
 <script>
     let category = [];
     let categoryActive = "";
+    let datePicker;
     $(document).ready(function() {
         getFacility({});
-        initDateRangePicker("#date", "#calendarPopup", "#checkin", "#checkout");
+        getReservation({
+            header: `filter_month=${new Date().toISOString().slice(0, 7)}`,
+        });
+        datePicker = initDateRangePicker("#date", "#calendarPopup", "#checkin", "#checkout", [], {
+            onNextMonth: ({
+                year,
+                month
+            }) => {
+                getReservation({
+                    header: `filter_month=${year}-${month}`
+                });
+            },
+            onPrevMonth: ({
+                year,
+                month
+            }) => {
+                getReservation({
+                    header: `filter_month=${year}-${month}`
+                });
+            }
+        });
+
         $("#shareCopyBtn").click(function() {
             copyToClipboard(window.location.href, "#shareCopyBtn");
         });
@@ -549,6 +571,27 @@
                     });
                     $('#modalCheckout #facility_id').append(element);
                 });
+            },
+        });
+    }
+
+    function getReservation({
+        header = {},
+    }) {
+        requestServer({
+            url: url + '/api/public/reservation/show',
+            type: "GET",
+            data: header,
+            onLoader: false,
+            onSuccess: function(response) {
+                let events = [];
+                $.each(response.data, function(i, item) {
+                    events.push({
+                        start: formatDateYMD(item.check_in),
+                        end: formatDateYMD(item.check_out),
+                    });
+                });
+                datePicker.updateBookedRanges(events);
             },
         });
     }
@@ -696,13 +739,13 @@
         <div class="flex-shrink-0 w-full md:w-1/3 2xl:w-1/4 px-2" onclick="window.open('${facilityDetailBase}?id=${item.id}', '_self')">
             <div class="rounded-xl md:rounded-4xl overflow-hidden bg-white flex flex-row md:flex-col">
                 <div class="md:h-[405px] w-[90px] md:w-full aspect-square bg-gray-50 overflow-hidden group">
-                    <img src="{{ asset('storage/${item.thumbnails[0].path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <img src="{{ asset('storage/${item.thumbnails?.[0]?.path}') }}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                 </div>
                 <div class="p-3 md:p-5 grow flex flex-col">
                     ${freeGuest}
                     ${membership}
                     <p class="mt-1 md:mt-3 text-[#808080] text-[10px] md:text-[14px]">
-                        ${item.description.length > 75 ? item.description.substring(0, 75) + "..." : item.description}
+                        ${item.description?.length > 75 ? item.description?.substring(0, 75) + "..." : item.description}
                     </p>
                     <div class="mt-2 md:mt-5 flex justify-between gap-2 overflow-x-auto no-scrollbar md:overflow-hidden">
                         ${specHtml}
