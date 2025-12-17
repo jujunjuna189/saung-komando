@@ -445,7 +445,7 @@
         const area = $('#' + prefix + 'area').val();
 
         const spesificationItem = [];
-        if (maxCapasity !== null && maxCapasity !== undefined && maxCapasity !== "") {
+        if (maxCapasity !== null && maxCapasity !== undefined && maxCapasity !== "" && maxCapasity !== "0" && maxCapasity !== "-") {
             spesificationItem.push({
                 icon: "assets/icon/person.png",
                 value: maxCapasity + " Orang",
@@ -453,7 +453,7 @@
             });
         }
 
-        if (bedroom !== null && bedroom !== undefined && bedroom !== "") {
+        if (bedroom !== null && bedroom !== undefined && bedroom !== "" && bedroom !== "0" && bedroom !== "-") {
             spesificationItem.push({
                 icon: "assets/icon/bedroom.png",
                 value: bedroom + " KT",
@@ -461,7 +461,7 @@
             });
         }
 
-        if (bathroom !== null && bathroom !== undefined && bathroom !== "") {
+        if (bathroom !== null && bathroom !== undefined && bathroom !== "" && bathroom !== "0" && bathroom !== "-") {
             spesificationItem.push({
                 icon: "assets/icon/bathroom.png",
                 value: bathroom + " KM",
@@ -469,7 +469,7 @@
             });
         }
 
-        if (area !== null && area !== undefined && area !== "") {
+        if (area !== null && area !== undefined && area !== "" && area !== "0" && area !== "-") {
             spesificationItem.push({
                 icon: "assets/icon/area.png",
                 value: area,
