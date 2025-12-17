@@ -81,14 +81,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex flex-row flex-wrap gap-1 items-center">
-                                <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
+                        <div class="flex justify-between flex-wrap space-y-2 md:space-y-0 md:flex-nowrap items-center">
+                            <div class="flex flex-col">
                                 <h4 class="text-md text-red-600 line-through whitespace-pre">{{ $detail->markup_price ?? '' }}</h4>
+                                <h4 class="font-semibold text-lg whitespace-pre">{{ $detail->price }}</h4>
                             </div>
                             <div>
                                 <div class="bg-[#AEEF8B] px-5 py-3 rounded-full hover:bg-black hover:text-white cursor-pointer transition-all duration-200 hover:-translate-y-1" onclick="scheduleModalOpen()">
-                                    <div class="flex gap-3 items-center">
+                                    <div class="flex gap-3 items-center whitespace-pre">
                                         <span>Pesan Sekarang</span>
                                     </div>
                                 </div>
@@ -372,14 +372,14 @@
             </button>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 items-center w-full md:w-auto md:flex md:order-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 items-center w-full md:w-auto md:flex md:order-1">
             <div class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full md:w-auto">
                 <select name="filter-month" id="filter-month" class="border-none focus:outline-none bg-transparent w-full" onchange="filterMonthChange(event)">
                     <!-- Generate -->
                 </select>
             </div>
             <div id="weekSelector" class="px-3 py-2 border rounded-full bg-[#F2F4F7] w-full md:w-auto">
-                <div class="flex gap-2 items-center whitespace-pre">
+                <div class="flex gap-2 items-center justify-between whitespace-pre">
                     <span id="weekLabel">Tanggal 08 - 13</span>
                     <div class="flex gap-1 items-center">
                         <svg id="prevWeek" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -806,7 +806,7 @@
         var weekStart = new Date();
         const startHour = 16;
         const endHour = 22;
-        const dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const dayNames = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
         var days = [];
         let schedule = []; // bisa diubah dari luar
         let hideTimeout = null;
@@ -820,7 +820,6 @@
                     label: dayNames[d.getDay()],
                     date: d.toLocaleDateString("id-ID", {
                         day: "2-digit",
-                        month: "short"
                     })
                 });
             }
