@@ -426,7 +426,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
         <div class="grow">
             <label for="" class="font-semibold text-[12px]">Tanggal<span class="text-red-500">*</span></label>
-            <input type="date" name="date" id="date" class="border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
+            <input type="date" name="date" id="date" class="date-filter border rounded-xl bg-[#F1F3F6] px-5 py-3 w-full mt-2">
         </div>
         <!-- Time range -->
         <div class="grow">
@@ -1115,5 +1115,39 @@
         const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
         window.open(waUrl, "_blank");
     }
+
+    // Untuk date =================================================================================================
+    $('.date-filter').on('change', function() {
+        const value = $(this).val();
+        getDataValidateReservation({
+            header: `date=${value}`
+        });
+    });
+
+    function getDataValidateReservation({
+        header = {},
+    }) {
+        requestServer({
+            url: url + '/api/public/reservation-mini-soccer/show',
+            type: "GET",
+            data: header,
+            onLoader: false,
+            onSuccess: function(response) {
+                var events = [];
+                $.each(response.data, function(i, item) {
+                    console.log(item);
+                    events.push({
+                        time_start: item.time_in,
+                        time_end: item.time_out,
+                    });
+                });
+                $('#modalAddMiniSoccer #time').val('');
+                $('#modalAddMiniSoccer #time_in').val('');
+                $('#modalAddMiniSoccer #time_out').val('');
+                initTimePicker("#modalAddMiniSoccer", "#time", events);
+            },
+        });
+    }
+    // ============================================================================================================
 </script>
 @endsection

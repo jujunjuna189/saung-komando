@@ -486,7 +486,7 @@ function initDateRangePicker(
     };
 }
 
-function initTimePicker(container = "", suffix = "") {
+function initTimePicker(container = "", suffix = "", events = []) {
     let prefix = container ? container + " " : "";
     const startHour = 16;
     const endHour = 22;
@@ -494,19 +494,39 @@ function initTimePicker(container = "", suffix = "") {
     let start = null;
     let end = null;
 
-    // Klik input untuk toggle dropdown
-    $(document).on("click", prefix + suffix, function () {
+    // ❗ HAPUS EVENT LAMA
+    $(document).off("click.timepicker");
+
+    // Buka picker
+    $(document).on("click.timepicker", prefix + suffix, function (e) {
+        e.stopPropagation();
+        resetSelection();
         renderHours();
         $(prefix + "#hourSlots").toggleClass("hidden");
     });
 
-    // Klik di luar → tutup
-    $(document).on("click", function (e) {
+    // Klik luar → tutup
+    $(document).on("click.timepicker", function (e) {
         if (!$(e.target).closest(prefix + "#time-picker").length) {
             $(prefix + "#hourSlots").addClass("hidden");
             resetSelection();
         }
     });
+
+    function isHourDisabled(hour) {
+        return events.some(e => hour >= e.time_start && hour < e.time_end);
+    }
+
+    function hasDisabledBetween(start, end) {
+        let s = parseInt(start.split(":")[0]);
+        let e = parseInt(end.split(":")[0]);
+
+        for (let h = s + 1; h <= e; h++) {
+            const t = `${String(h).padStart(2, '0')}:00`;
+            if (isHourDisabled(t)) return true;
+        }
+        return false;
+    }
 
     function renderHours() {
         const box = $(prefix + "#hourSlots");
@@ -514,47 +534,83 @@ function initTimePicker(container = "", suffix = "") {
 
         for (let h = startHour; h <= endHour; h++) {
             const t = `${String(h).padStart(2, '0')}:00`;
+            const disabled = isHourDisabled(t);
 
             box.append(`
-                <div class="hour-item px-4 py-2 cursor-pointer text-sm
-                    hover:bg-blue-100" data-hour="${t}">
+                <div class="hour-item px-4 py-2 text-sm
+                    ${disabled
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'cursor-pointer hover:bg-blue-100'}
+                "
+                data-hour="${t}"
+                data-disabled="${disabled}">
                     ${t}
                 </div>
             `);
         }
 
-        // Klik item jam
-        $(prefix + ".hour-item").on("click", function () {
+        $(prefix + ".hour-item").off("click").on("click", function (e) {
+            e.stopPropagation();
+
             const t = $(this).data("hour");
+            const disabled = $(this).data("disabled");
+
+            if (disabled) return;
+
             if (start == null) showCopyAlert({ text: "Silakan pilih jam selesai" });
+
+            if (start === t) {
+                resetSelection();
+                start = t;
+                $(this).addClass("bg-blue-500 text-white");
+                return;
+            }
 
             if (!start) {
                 start = t;
                 $(this).addClass("bg-blue-500 text-white");
-            } else if (!end) {
-                end = t;
-
-                if (end <= start) {
-                    showToast("error", "Gagal", "Jam keluar harus lebih besar!");
-                    end = null;
-                    return;
-                }
-
-                updateValues();
-                resetSelection();
-            } else {
-                resetSelection();
-                start = t;
-                $(this).addClass("bg-blue-500 text-white");
+                return;
             }
+
+            if (t <= start) {
+                showToast("error", "Gagal", "Jam selesai harus lebih besar!");
+                return;
+            }
+
+            if (hasDisabledBetween(start, t)) {
+                showToast("error", "Gagal", "Tidak boleh melewati jam yang terisi!");
+                resetSelection();
+                return;
+            }
+
+            end = t;
+            updateValues();
+            resetSelection();
         });
+
+        document.addEventListener("pointerdown", function (e) {
+            const picker = document.querySelector(prefix + "#time-picker");
+            const input = document.querySelector(prefix + suffix);
+            const hourSlots = document.querySelector(prefix + "#hourSlots");
+
+            if (!picker || !hourSlots || !input) return;
+
+            // klik di dalam popup → abaikan
+            if (picker.contains(e.target)) return;
+
+            // klik input time → abaikan (biar click-nya buka)
+            if (input.contains(e.target)) return;
+
+            // 🔥 SELAIN ITU → TUTUP
+            hourSlots.classList.add("hidden");
+            resetSelection();
+        }, true);
     }
 
     function updateValues() {
         $(prefix + suffix).val(`${start} - ${end}`);
         $(prefix + "#time_in").val(start);
         $(prefix + "#time_out").val(end);
-
         $(prefix + "#hourSlots").addClass("hidden");
     }
 
@@ -564,6 +620,7 @@ function initTimePicker(container = "", suffix = "") {
         $(prefix + ".hour-item").removeClass("bg-blue-500 text-white");
     }
 }
+
 
 function getDayIndexByDate(dateString) {
     const dayNames = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
