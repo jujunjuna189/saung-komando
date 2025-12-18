@@ -513,8 +513,17 @@ function initTimePicker(container = "", suffix = "", events = []) {
         }
     });
 
+    // ===== NORMALIZE TIME =====
+    function normalize(time) {
+        return time ? time.substring(0, 5) : null; // "18:00:00" → "18:00"
+    }
+
     function isHourDisabled(hour) {
-        return events.some(e => hour >= e.time_start && hour < e.time_end);
+        return events.some(e => {
+            const start = normalize(e.time_start);
+            const end = normalize(e.time_end);
+            return hour >= start && hour < end;
+        });
     }
 
     function hasDisabledBetween(start, end) {
