@@ -104,6 +104,7 @@
                             </div>
                             @endforeach
                         </div>
+                        @if($detail->category == 'Penginapan')
                         <div class="flex flex-wrap gap-2 justify-evenly md:justify-between my-5">
                             <div class="text-center">
                                 <div class="flex justify-center mb-3">
@@ -130,6 +131,7 @@
                                 <span class="text-[#808391] text-[10px] font-semibold whitespace-pre">32inc+ Smart TV</span>
                             </div>
                         </div>
+                        @endif
                         <div class="flex justify-between items-center">
                             <div class="flex-wrap gap-1 items-center leading-3">
                                 <h4 class="text-md text-red-600 line-through whitespace-pre">{{ $detail->markup_price ?? '' }}</h4>
